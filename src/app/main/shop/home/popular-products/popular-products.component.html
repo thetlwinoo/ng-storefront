@@ -1,0 +1,35 @@
+<section id="popular-products" class="tools-grey">
+  <div class="container">
+    <div class="viwer-title">
+      <div class="viwer-title-spacer title">
+        popular products
+      </div>
+      <button mat-icon-button color="warn" (click)="slickModal.slickPrev();">
+          <mat-icon aria-label="nav left">arrow_left</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="slickModal.slickNext();">
+          <mat-icon aria-label="nav right">arrow_right</mat-icon>
+      </button>
+    </div>
+    <div class="viwer-body">
+      <div class="content">
+        <div class="cards">
+          <!-- <owl-carousel #owlPopularProducts class="headphone-slider-active product-slider" [options]="carousel.popular.options" [carouselClasses]="['owl-theme']">
+            <div class="card" *ngFor="let item of stockItems | slice:0:10">
+              <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+                <div #productcard class="card-preview">
+                  <product-card [stockItem]="item"></product-card>
+                </div>
+              </a>
+            </div>
+          </owl-carousel> -->          
+          <ngx-slick-carousel class="product-5 product-m slick-button-override" #slickModal="slick-carousel" [config]="productSlideConfig">
+            <div ngxSlickItem class="product-box product-wrap" *ngFor="let product of products | slice:0:16">
+              <product-box-hover [product]="product"></product-box-hover>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

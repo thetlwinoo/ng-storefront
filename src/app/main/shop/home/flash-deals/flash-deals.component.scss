@@ -1,0 +1,96 @@
+@import "src/@box/scss/box";
+
+#flash-deals {
+    // position: relative;
+    // z-index: 2;
+
+    margin-top: 10px;
+
+    .title3 .title-inner3 {
+        margin-bottom: 10px !important;
+    }
+
+    .title3 .line {
+        margin-bottom: 20px !important;
+    }
+
+    .viwer-wrapper {
+        // background: white;
+        // padding: 5px;
+
+        button {
+            color: #EE3741;
+        }
+    }
+
+    .viwer-title {
+        align-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        padding: 0 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        position: relative;
+        z-index: 2;
+
+        .viwer-title-spacer {
+            flex: 1 1 auto;
+
+            i {
+                color: #f44336;
+            }
+
+            .title {
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+
+            .countdown {
+                margin-left: 5px;
+                padding: 5px;
+                background: #000000;
+                color: #ffffff;
+            }
+        }
+
+        button {
+            color: #EE3741;
+            font-weight: 400;
+            margin-right: 15px;
+
+            mat-icon {
+                color: #EE3741;
+                margin-left: 2px;
+            }
+        }
+    }
+
+    .viwer-body {
+        padding-top: 20px;
+
+        .content {
+            .cards {
+                .flash-deals-slider .card {
+                    border: none;
+                    display: flex;
+                    align-items: flex-start;
+                    background: transparent;
+                    padding: 5px;
+
+                    .card-preview {
+                        display: flex;
+                        min-width: 185px;
+
+                        @include media-breakpoint("xs") {
+                            min-width: 177px !important;
+                        }
+                    }
+
+                    .card-source {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

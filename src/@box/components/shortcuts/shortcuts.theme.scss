@@ -1,0 +1,11 @@
+@mixin box-shortcuts-theme($theme) {
+
+    $background: map-get($theme, background);
+
+    #box-shortcuts {
+
+        &.show-mobile-panel {
+            background-color: map-get($background, background);
+        }
+    }
+}

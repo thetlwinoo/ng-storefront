@@ -1,0 +1,68 @@
+<div id="product-card">
+    <div class="product-card-wrapper">
+        <div class="product-left-badge-wrapper">
+            <div class="product-left-badge horizontal-badge">
+                <i class="product-svg-icon icon ion-md-checkmark"></i>
+                Preferred
+            </div>
+        </div>
+        <div class="product-badge-wrapper">
+            <div class="product-badge product-badge-fixed-width product-badge-promotion">
+                <div class="product-badge-promotion-label-wrapper">
+                    <span class="percent">14%</span>
+                    <span class="product-badge-promotion-label-wrapper-off">off</span>
+                </div>
+            </div>
+        </div>
+        <img src="assets/devita/img/lowest.png" class="product-lowest-guaranteed">
+        <img src="{{ product.gravatar }}" alt="" *ngIf="product.gravatar else noimage">
+        <ng-template #noimage>
+            <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
+        </ng-template>
+        <div class="p-8 pt-0">
+            <div class="rating-love">
+                <div class="love-spacer">
+                    <i class="icon ion-md-heart-empty s-16 amber-fg"></i>
+                    <span class="ml-4 secondary-text">(51)</span>
+                </div>
+                <bar-rating [rate]="5" [readOnly]="true"></bar-rating>
+                <span class="ml-4 secondary-text">(4.7)</span>
+            </div>
+        </div>
+        <div class="px-8 product-name">
+            {{product.name | ellipsis:45}}
+        </div>
+        <div class="card-divider"></div>
+        <div class="p-8 pt-0 line-height-1.75">
+            <div class="price-wrapper">
+                <div class="price-spacer">
+                    <div class="product-price-wrapper">
+                        <span class="product-price-old">$162.00 </span>
+                        <span class="product-current-price">$260.00</span>
+                    </div>
+                </div>
+                <i class="icon ion-md-bicycle"></i>
+            </div>
+        </div>
+        <!-- <div class="card-divider"></div> -->
+        <!-- <div class="p-8 pt-0 line-height-1.75 add-to-cart">
+            <button mat-raised-button color="warn" (click)="addItem($event);">Add to Cart</button>
+    </div> -->
+    </div>
+    <div class="product-card-footer" fxHide fxShow.gt-md>
+        <div class="footer-control">
+            <button mat-icon-button matTooltip="Wishlist">
+                <mat-icon aria-label="Wishlist">favorite_border</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Add To Cart">
+                <mat-icon aria-label="Add To Cart">shopping_cart</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Quick View">
+                <mat-icon aria-label="Quick View">image</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Compare">
+                <mat-icon aria-label="Compare">refresh</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+@import "src/@box/components/countdown/countdown.theme";
+@import "src/@box/components/material-color-picker/material-color-picker.theme";
+@import "src/@box/components/search-bar/search-bar.theme";
+@import "src/@box/components/shortcuts/shortcuts.theme";
+@import "src/@box/components/sidebar/sidebar.theme";
+@import "src/@box/components/theme-options/theme-options.theme";
+@import "src/@box/components/widget/widget.theme";
+
+@mixin box-core-theme($theme) {
+
+    // Theming for Box core styles
+    @include colors-theme($theme);
+    @include cards-theme($theme);
+    @include material-theme($theme);
+    @include page-layouts-theme($theme);
+    @include typography-theme($theme);
+
+    // Theming for Box components
+    @include box-countdown-theme($theme);
+    @include box-search-bar-theme($theme);
+    @include box-shortcuts-theme($theme);
+    @include box-sidebar-theme($theme);
+    @include box-theme-options-theme($theme);
+    @include box-material-color-picker-theme($theme);
+    @include box-widget-theme($theme);
+
+    // Theming for 3rd party components
+    @include ngx-datatable-theme($theme);
+}
+

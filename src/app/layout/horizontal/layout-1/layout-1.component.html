@@ -1,0 +1,141 @@
+<!-- SIDE PANEL -->
+<ng-container *ngIf="!boxConfig.layout.sidepanel.hidden && boxConfig.layout.sidepanel.position === 'left'">
+
+    <!-- PANEL CONTENT -->
+
+</ng-container>
+<!-- / SIDE PANEL -->
+
+<div id="main">
+
+    <!-- TOOLBAR: Above -->
+    <ng-container *ngIf="boxConfig.layout.toolbar.position === 'above'">
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+    </ng-container>
+    <!-- / TOOLBAR: Above -->
+
+    <ng-container *ngIf="boxConfig.layout.header.position === 'top'">
+        <ng-container *ngTemplateOutlet="header"></ng-container>
+    </ng-container>
+
+    <!-- NAVBAR: Top -->
+    <ng-container>
+        <ng-container *ngTemplateOutlet="topNavbar"></ng-container>
+    </ng-container>
+    <!-- / NAVBAR: Top -->
+
+    <!-- TOOLBAR: Below -->
+    <ng-container *ngIf="boxConfig.layout.toolbar.position === 'below'">
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+    </ng-container>
+    <!-- / TOOLBAR: Below -->
+
+    <div id="container-1" class="box-container">
+
+        <!-- NAVBAR: Left -->
+        <ng-container>
+            <ng-container *ngTemplateOutlet="leftNavbar"></ng-container>
+        </ng-container>
+        <!-- / NAVBAR: Left -->
+
+        <div id="container-2" class="box-container">
+
+            <div id="container-3" class="box-container" boxPerfectScrollbar
+                [boxPerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
+
+                <div class="container">
+                    <mc-breadcrumbs></mc-breadcrumbs>
+                </div>
+                <!-- CONTENT -->
+                <content></content>
+                <!-- / CONTENT -->
+
+                <ng-container *ngIf="boxConfig.layout.contentBelow.position === 'below'">
+                    <ng-container *ngTemplateOutlet="contentBelow"></ng-container>
+                </ng-container>
+
+                <!-- FOOTER: Below -->
+                <ng-container *ngIf="boxConfig.layout.footer.position === 'above-static'">
+                    <ng-container *ngTemplateOutlet="footer"></ng-container>
+                </ng-container>
+                <!-- / FOOTER: Below -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER: Above -->
+    <ng-container *ngIf="boxConfig.layout.footer.position === 'above-fixed'">
+        <ng-container *ngTemplateOutlet="footer"></ng-container>
+    </ng-container>
+    <!-- FOOTER: Above -->
+
+</div>
+
+<!-- SIDE PANEL -->
+<ng-container *ngIf="!boxConfig.layout.sidepanel.hidden && boxConfig.layout.sidepanel.position === 'right'">
+
+    <!-- CHAT PANEL -->
+    <box-sidebar name="chatPanel" position="right" class="chat-panel right-chat-panel" [folded]="true"
+        [foldedWidth]="70" [foldedAutoTriggerOnHover]="false" lockedOpen="gt-md">
+        <chat-panel></chat-panel>
+    </box-sidebar>
+    <!-- / CHAT PANEL -->
+
+</ng-container>
+<!-- / SIDE PANEL -->
+
+<!-- QUICK PANEL -->
+<box-sidebar name="quickPanel" position="right" class="quick-panel">
+    <quick-panel></quick-panel>
+</box-sidebar>
+<!-- / QUICK PANEL -->
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- @ PARTIALS                                                                                            -->
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+<ng-template #header>
+    <header *ngIf="!boxConfig.layout.header.hidden"
+        [ngClass]="[boxConfig.layout.header.position, boxConfig.layout.header.custom]"></header>
+</ng-template>
+
+<!-- TOOLBAR -->
+<ng-template #toolbar>
+    <toolbar *ngIf="!boxConfig.layout.toolbar.hidden"
+        [ngClass]="boxConfig.layout.toolbar.customBackgroundColor === true ? boxConfig.layout.toolbar.position + ' ' + boxConfig.layout.toolbar.background : boxConfig.layout.toolbar.position">
+    </toolbar>
+</ng-template>
+<!-- / TOOLBAR -->
+
+<ng-template #contentBelow>
+    <content-below *ngIf="!boxConfig.layout.contentBelow.hidden">
+    </content-below>
+</ng-template>
+
+<!-- FOOTER -->
+<ng-template #footer>
+    <footer *ngIf="!boxConfig.layout.footer.hidden"
+        [ngClass]="boxConfig.layout.footer.customBackgroundColor === true ? boxConfig.layout.footer.position + ' ' + boxConfig.layout.footer.background : boxConfig.layout.footer.position"
+        fxHide.gt-md>
+    </footer>
+</ng-template>
+<!-- / FOOTER -->
+
+<!-- TOP NAVBAR -->
+<ng-template #topNavbar>
+    <navbar variant="horizontal-style-1" class="top-navbar" fxHide fxShow.gt-md *ngIf="!boxConfig.layout.navbar.hidden">
+    </navbar>
+</ng-template>
+<!-- / TOP NAVBAR -->
+
+<!-- LEFT NAVBAR -->
+<ng-template #leftNavbar>
+    <box-sidebar name="navbar" class="navbar-box-sidebar" [folded]="boxConfig.layout.navbar.folded"
+        *ngIf="!boxConfig.layout.navbar.hidden">
+        <navbar [variant]="boxConfig.layout.navbar.variant" class="left-navbar"></navbar>
+    </box-sidebar>
+</ng-template>
+<!-- / LEFT NAVBAR -->

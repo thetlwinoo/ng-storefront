@@ -1,0 +1,42 @@
+<div id="product-category">
+    <div class="container">
+        <div class="viwer-wrapper">
+            <div class="viwer-title">
+                <div class="viwer-title-spacer title">
+                    trending search
+                </div>
+                <button mat-icon-button (click)="onPrevClick($event);">
+                    <mat-icon aria-label="nav left">arrow_left</mat-icon>
+                </button>
+                <button mat-icon-button (click)="onNextClick($event);">
+                    <mat-icon aria-label="nav right">arrow_right</mat-icon>
+                </button>
+            </div>
+            <div class="viwer-body">
+                <div class="content">
+                    <div class="cards">
+                        <owl-carousel #owlProductCategory class="product-category-slider"
+                            [options]="carousel.category.options" [carouselClasses]="['owl-theme']">
+                            <div class="card" *ngFor="let bundle of bundles">
+                                <div class="bundle-list" *ngFor="let category of bundle">
+                                    <a routerLink="/pages/shop" routerLinkActive="active">
+                                        <div class="card-preview">
+                                            <div class="box-card cag">
+                                                <img src="assets/devita/img/cag/{{category.icon}}.png">
+                                                <div class="title p-2 line-height-1.75">
+                                                    {{category.short_title}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </owl-carousel>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

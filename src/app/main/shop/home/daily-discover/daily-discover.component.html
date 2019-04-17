@@ -1,0 +1,31 @@
+<section id="daily-discover">
+    <div class="viwer-area">
+        <div class="container">
+            <div class="viwer-title">
+                <div class="viwer-title-spacer title">
+                    daily discover
+                </div>
+                <!-- <a routerLink="/pages/shop" routerLinkActive="active">see all
+                <i class="ion-ios-arrow-forward"></i>
+            </a> -->
+                <button mat-icon-button color="warn" routerLink="/pages/shop">
+                    <span>see all</span>
+                    <mat-icon>select_all</mat-icon>
+                </button>
+            </div>
+            <div class="viwer-body">
+                <div class="content">
+                    <div class="cards">
+                        <div class="card product-box" *ngFor="let item of products | slice:0:18">
+                            <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+                                <div #productcard class="card-preview">
+                                    <product-card [product]="item"></product-card>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

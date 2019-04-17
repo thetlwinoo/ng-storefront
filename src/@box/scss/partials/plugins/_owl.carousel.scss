@@ -1,0 +1,28 @@
+$owl-image-path: "~owl.carousel/src/img/";
+@import '~owl.carousel/src/scss/owl.carousel';
+
+.owl-dot-style-2 .owl-dot {
+    background: #d8d9d9 none repeat scroll 0 0 !important;
+    border-radius: 50px;
+    display: inline-block;
+    height: 10px;
+    margin: 0 5px;
+    width: 10px;
+}
+
+.owl-dot-style-2 .owl-dot.active {
+    background: #0363cd none repeat scroll 0 0 !important;
+    height: 13px;
+    position: relative;
+    top: 2px;
+    width: 13px;
+}
+
+.owl-dot-style-2 .owl-dots {
+    // bottom: 25px;
+    bottom: 12px;
+    left: 0px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}

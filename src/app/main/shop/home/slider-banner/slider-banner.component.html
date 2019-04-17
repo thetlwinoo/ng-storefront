@@ -1,0 +1,52 @@
+<section id="slider-banner" class="p-0">
+    <div class="container">
+        <div class="main-banner">
+            <div class="main-banner-slider">
+                <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options"
+                    [carouselClasses]="['owl-theme']">
+                    <div class="main-slider" *ngFor="let banner of carousel.banner2.slides;let i = index">
+                        <div class="item-banner">
+                            <div class="banner-thumb">
+                                <a href="#">
+                                    <img [ngStyle]="banner.style" class="img-fluid" src="{{ banner.image }}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </owl-carousel>
+            </div>
+            <div class="right-nav-wrapper" fxHide fxShow.gt-md>
+                <div class="right-nav right-nav-fixed-width">
+                    <div class="banner-img banner-hover">
+                        <a href="#">
+                            <img alt="" src="assets/devita/img/banner/banner7.jpg">
+                        </a>
+                    </div>
+                    <div class="banner-img banner-hover">
+                        <a href="#">
+                            <img alt="" src="assets/devita/img/banner/banner6.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="cards">
+                <div class="card" *ngFor="let category of bannerCategories">
+                    <a routerLink="/pages/shop" routerLinkActive="active">
+                        <div #boxcag class="card-preview">
+                            <div class="category">
+                                <img src="assets/devita/img/bc/{{category.icon}}">
+                                <div class="title p-2 line-height-1.75">
+                                    {{category.title}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
