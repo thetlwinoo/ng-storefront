@@ -1,0 +1,52 @@
+<div class="page-layout blank">
+  <div class="container">
+    <div class="page-layout simple left-sidebar">
+      <box-sidebar class="sidebar" name="simple-left-sidebar-2" position="left" lockedOpen="gt-md">
+        <div class="content">
+          <div class="shop-sidebar-wrapper gray-bg-7">
+              <app-brand [tagsFilters]="tags" (tagFilters)="updateTagFilters($event)" *ngIf="tags.length"></app-brand>
+              <app-color [colorsFilters]="colors" (colorFilters)="updateColorFilters($event)" *ngIf="colors.length">
+              </app-color>
+              <app-price (priceFilters)="updatePriceFilters($event)"></app-price>
+          </div>
+        </div>
+      </box-sidebar>
+      <div class="center" boxPerfectScrollbar>
+        <div class="header header-light-grey p-12" fxLayout="row" fxLayoutAlign="start center">
+
+          <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+            (click)="toggleSidebar('simple-left-sidebar-2')">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <!-- <view-toolbar [total]="total$ | async" [limit]="limit$ | async" [skip]="skip$ | async"
+            (setPage)="onSetPage($event)"></view-toolbar> -->
+        </div>
+        <div class="horizontal-content">
+          <div class="horizontal-wrapper" *ngIf="key?.length>0">
+            <div class="horizontal-spacer">
+              <h4>Search related to &#34;
+                <span>{{key}}</span>&#34;</h4>
+            </div>
+          </div>
+          <!-- <product-list [products]="products"></product-list> -->
+          <div class="content">
+            <div class="cards">
+              <div class="card" *ngFor="let product of filterItems() | orderBy:sortByOrder">
+                <a [routerLink]="['/pages/shop',product.id]" routerLinkActive="active">
+                  <div #productcard class="card-preview">
+                    <product-card [product]="product"></product-card>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="2000" (scrolled)="onScroll()"
+              *ngIf="filterItems().length">
+            </div>
+          </div>
+          <!-- <view-paging [total]="total$ | async" [limit]="limit$ | async" [skip]="skip$ | async" [last]="last$ | async"
+            [numbers]="numbers" (setPage)="onSetPage($event)" fxHide fxShow.gt-md></view-paging> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

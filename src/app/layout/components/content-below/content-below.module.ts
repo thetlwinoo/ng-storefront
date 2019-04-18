@@ -21,8 +21,8 @@ import { SocialComponent } from './widgets/social/social.component';
     CommonModule,
     RouterModule
   ],
-  exports     : [
+  exports: [
     ContentBelowComponent
-]
+  ]
 })
 export class ContentBelowModule { }

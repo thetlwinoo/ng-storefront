@@ -2,7 +2,7 @@
     <div class="container header-with-search">
         <a routerLink="/pages/home" routerLinkActive="active" class="header-with-search__logo-section" fxHide
             fxShow.gt-xs>
-            <img src="assets/zezawar.svg" class="page-logo" alt="">
+            <img src="assets/zezawar.svg" alt="">
         </a>
         <box-search class="header-with-search__search-section" [url]="currentUrl" [defaultKeywords]="defaultKeywords"
             [keywords]="keywords$ | async" [query]="searchQuery$ | async" [searching]="loading$ | async"
