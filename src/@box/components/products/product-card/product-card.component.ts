@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ViewEncapsulation, Input, OnDestroy } from '@angular/core';
+import { AfterContentInit, Component, ViewEncapsulation, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { ProductCardDirective } from './product-card.directive';
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
@@ -18,8 +18,11 @@ import { take } from 'rxjs/operators';
 
 export class ProductCardComponent implements AfterContentInit, OnDestroy {
     @Input() product;
+    @Output() quickview = new EventEmitter<any>();
 
     title;
+    rating: number = 4;
+
     constructor(
         private cartService: CartService<any>,
         private snack: SnackBarService,
@@ -80,10 +83,17 @@ export class ProductCardComponent implements AfterContentInit, OnDestroy {
             quantity: stockItem.quantity,
             image: stockItem.gravatar
         });
-        newItem.setQuantity(stockItem.quantityPerOuter-1);
+        newItem.setQuantity(stockItem.quantityPerOuter - 1);
         return cartItem || newItem;
     }
 
     ngOnDestroy() {
+    }
+
+    onQuickView(event, product) {
+        // console.log(product);
+        event.preventDefault();
+        event.stopPropagation();
+        this.quickview.emit(product);        
     }
 }

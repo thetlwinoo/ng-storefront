@@ -1,30 +1,28 @@
-<div class="viwer-area">
+<section id="related-products" class="tools-grey">
     <div class="container">
         <div class="viwer-title">
             <div class="viwer-title-spacer title">
                 related products
             </div>
-            <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+            <button mat-icon-button color="warn" (click)="slickModal.slickPrev();">
                 <mat-icon aria-label="nav left">arrow_left</mat-icon>
             </button>
-            <button mat-icon-button color="warn" (click)="onNextClick($event);">
+            <button mat-icon-button color="warn" (click)="slickModal.slickNext();">
                 <mat-icon aria-label="nav right">arrow_right</mat-icon>
             </button>
         </div>
         <div class="viwer-body">
             <div class="content">
                 <div class="cards">
-                    <!-- <owl-carousel #owlRelatedProducts class="top-selling-slider" [options]="carousel.popular.options" [carouselClasses]="['owl-theme']">
-                        <div class="card" *ngFor="let item of relatedItems | slice:0:10">
-                            <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
-                                <div #productcard class="card-preview">
-                                    <product-card [stockItem]="item"></product-card>
-                                </div>
-                            </a>
+                    <ngx-slick-carousel class="product-5 product-m slick-button-override" #slickModal="slick-carousel"
+                        [config]="productSlideConfig">
+                        <div ngxSlickItem class="product-box product-wrap"
+                            *ngFor="let product of products | slice:0:16">
+                            <product-box-hover [product]="product"></product-box-hover>
                         </div>
-                    </owl-carousel> -->
+                    </ngx-slick-carousel>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

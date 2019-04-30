@@ -1,25 +1,26 @@
-<div class="container-wrapper header-with-search-wrapper">
+<div class="container-wrapper header-with-search-wrapper" [ngClass]="boxConfig.layout.header.primaryBackground">
     <div class="container header-with-search">
         <a routerLink="/pages/home" routerLinkActive="active" class="header-with-search__logo-section" fxHide
             fxShow.gt-xs>
             <img src="assets/zezawar.svg" alt="">
         </a>
         <box-search class="header-with-search__search-section" [url]="currentUrl" [defaultKeywords]="defaultKeywords"
-            [keywords]="keywords$ | async" [query]="searchQuery$ | async" [searching]="loading$ | async"
-            [error]="error$ | async" (search)="search($event)" (summit)="onSummit($event)"></box-search>
+            [boxConfig]="boxConfig" [keywords]="keywords$ | async" [query]="searchQuery$ | async"
+            [searching]="loading$ | async" [error]="error$ | async" (search)="search($event)"
+            (summit)="onSummit($event)"></box-search>
         <div class="header-with-search__cart-wrapper" fxHide fxShow.gt-xs>
             <div class="box-drawer">
                 <div class="cart-drawer-container">
                     <div class="cart-drawer flex v-center">
                         <div class="drop">
-                            <a href routerLink="/pages/cart" routerLinkActive="active" class="cart-button"
+                            <a href routerLink="/shop/cart" routerLinkActive="active" class="cart-button"
                                 mat-icon-button matBadge="{{totalCount}}" matBadgePosition="after" matBadgeColor="warn">
                                 <!-- <mat-icon class="fas">shopping_cart</mat-icon> -->
                                 <i class="material-icons fas">
                                     shopping_cart
                                 </i>
                             </a>
-                            <div class="pPanel" *ngIf="items?.length>0 && (currentUrl !== '/pages/cart')">
+                            <div class="pPanel" *ngIf="items?.length>0 && (currentUrl !== '/shop/cart')">
                                 <div class="inner cart-container" boxPerfectScrollbar>
                                     <div class="widget_shopping_cart_content">
                                         <ul class="cart_list product_list_widget ">

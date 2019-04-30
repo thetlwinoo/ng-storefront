@@ -1,6 +1,45 @@
 @import "src/@box/scss/box";
 
-#slider-banner {
+:host {
+
+    #slider-banner {
+        margin-top: 0.5em;
+    }
+
+    .sub-banner-wrapper {
+        padding: 0 !important;
+        .sub-banner {
+            height: 100%;
+
+            :first-child {
+                padding-bottom: 0.5em !important;
+            }
+        }
+    }
+
+
+    .main-banner-wrapper {
+        padding: 0 0 0 0.5em !important;
+    }
+
+    .sub-banner1 {
+        background-image: url("/assets/images/banner/sub-banner1.jpg");
+        width: auto;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
+    .sub-banner2 {
+        background-image: url("/assets/images/banner/sub-banner2.jpg");
+        width: auto;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
     .owl-carouse img {
         width: 100%;
     }
@@ -14,14 +53,20 @@
     }
 
     .main-slider {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: bottom;
-        width: 100%;
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        // background-position: bottom;
+        // width: 100%;
+        min-height: 235px;
+    }
+
+    .banner-thumb {
+        position: relative;
+        display: block;
     }
 
     .banner-thumb img {
-        height: 100%;
+        // height: 100%;
     }
 
     .main-banner {

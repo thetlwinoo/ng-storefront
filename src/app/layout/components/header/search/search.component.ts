@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit {
   @Input() error = '';
   @Input() keywords: any;
   @Input() defaultKeywords: any;
+  @Input() boxConfig: any;
   @Output() search = new EventEmitter<string>();
   @Output() summit = new EventEmitter<any>();
   @ViewChild('boxsearch') boxsearch: ElementRef;

@@ -1,6 +1,30 @@
 $owl-image-path: "~owl.carousel/src/img/";
 @import '~owl.carousel/src/scss/owl.carousel';
 
+.owl-carousel {
+    position: relative;
+    height: 100%;
+
+    div:not(.owl-controls) {
+        height: 100%;
+    }
+
+    .owl-stage {
+        display: flex;
+        position: relative;
+        padding: 0;
+        margin: 0;
+    }
+
+    .owl-item .banner-image {
+        width: auto;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+}
+
 .owl-dot-style-2 .owl-dot {
     background: #d8d9d9 none repeat scroll 0 0 !important;
     border-radius: 50px;

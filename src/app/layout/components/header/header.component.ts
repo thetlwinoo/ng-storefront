@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 // import * as KeywordActions from '@store/keywords/actions/keyword.actions';
 // import * as fromKeywords from '@store/keywords/reducers';
+import { BoxConfigService } from '@box/services/config.service';
 import { boxAnimations } from '@box/animations';
 import { HeaderService } from './header.service';
 
@@ -21,6 +22,7 @@ import { HeaderService } from './header.service';
     // encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+    boxConfig: any;
     currentUrl: any;
     defaultKeywords: any;
 
@@ -45,6 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         // private store: Store<fromKeywords.State>,
         private _headerService: HeaderService,
         private _router: Router,
+        private _boxConfigService: BoxConfigService,
         // private cartService: CartService<any>
     ) {
 
@@ -74,7 +77,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-
+        this._boxConfigService.config
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((config) => {
+                this.boxConfig = config;
+            });
     }
 
     // search(query: string) {
@@ -111,21 +118,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // }
 
     // remove(event, item: CartItem) {
-        // event.preventDefault();
-        // event.stopPropagation();
-        // this.cartService.removeItem(item.getId());
-        // return false;
+    // event.preventDefault();
+    // event.stopPropagation();
+    // this.cartService.removeItem(item.getId());
+    // return false;
     // }
 
     // update() {
-        // this.empty = this.cartService.isEmpty();
-        // this.items = this.cartService.getItems();
-        // this.taxRate = this.cartService.getTaxRate() / 100;
-        // this.tax = this.cartService.getTax();
-        // this.shipping = this.cartService.getShipping();
-        // this.cost = this.cartService.totalCost();
-        // this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
-        // this.totalCount = this.cartService.itemCount();
+    // this.empty = this.cartService.isEmpty();
+    // this.items = this.cartService.getItems();
+    // this.taxRate = this.cartService.getTaxRate() / 100;
+    // this.tax = this.cartService.getTax();
+    // this.shipping = this.cartService.getShipping();
+    // this.cost = this.cartService.totalCost();
+    // this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
+    // this.totalCount = this.cartService.itemCount();
     // }
 
     onCart(event) {

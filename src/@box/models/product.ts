@@ -7,6 +7,8 @@ export type ProductSize = 'M' | 'L' | 'XL';
 // Product Tag
 export type ProductTags = 'nike' | 'puma' | 'lifestyle' | 'caprese';
 
+
+
 // Product
 export interface Product {
   id?: number;
@@ -20,7 +22,7 @@ export interface Product {
   stock?: number;
   new?: boolean;
   sale?: boolean;
-  category?: string;
+  categories?: string[];
   colors?: ProductColor[];
   size?: ProductTags[];
   tags?: ProductSize[];

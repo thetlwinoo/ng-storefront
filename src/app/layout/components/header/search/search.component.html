@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-solid-primary btn--s btn--inline" (click)="summit.emit(boxsearch.value);">
+    <button class="btn btn-solid-primary btn--s btn--inline" (click)="summit.emit(boxsearch.value);" [ngClass]="boxConfig.layout.header.primaryBackground">
         <mat-icon>search</mat-icon>
     </button>
 </div>

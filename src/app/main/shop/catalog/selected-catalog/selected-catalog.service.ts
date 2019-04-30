@@ -8,15 +8,20 @@ import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
+import { Product } from '@box/models';
+import { ProductsService } from '@box/services/products.service';
 
 @Injectable()
 export class SelectedCatalogService implements Resolve<any> {
 
-    products: any[];
-    onStockItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
+    images: any[];
+    products: Product[];
+    public product: Product = {};
+    // onStockItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private productsService: ProductsService
     ) {
     }
 
@@ -27,12 +32,12 @@ export class SelectedCatalogService implements Resolve<any> {
        * @returns {Observable<any> | Promise<any> | any}
        */
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+        const productId = route.params["id"];
         return new Promise((resolve, reject) => {
             Promise.all([
-                this.getStockItems({
-                    $limit: 10,
-                    $skip: 0
-                })
+                this.getProducts(),
+                this.getProductImages(),
+                this.getProduct(+productId)
             ]).then(
                 () => {
                     resolve();
@@ -42,17 +47,35 @@ export class SelectedCatalogService implements Resolve<any> {
         });
     }
 
-    getStockItems(query): Promise<any> {
+    getProducts(): Promise<any> {
         return new Promise((resolve, reject) => {
-            //   this.products$(query)
-            //     .subscribe((response: any) => {
-            //       this.products = response;
-            //       this.onStockItemsChanged.next(this.products);
-            //       resolve(response);
-            //     }, reject);
+            this.http.get('api/products')
+                .subscribe((response: any) => {                    
+                    this.products = response;
+                    console.log(response);
+                    resolve(response);
+                }, reject);
         });
     }
 
+    getProductImages(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.http.get('api/images')
+                .subscribe((response: any) => {
+                    this.images = response;
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    getProduct(id) {
+        return new Promise((resolve, reject) => {
+            this.productsService.getProduct(id).subscribe((response: any) => {
+                this.product = response;
+                resolve(response);
+            }, reject);
+        });
+    }
     //   products$(query): Observable<any[]> {
     //     return (<any>this.feathers
     //       .service('warehouse/stock-items'))

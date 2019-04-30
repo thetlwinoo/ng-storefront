@@ -8,7 +8,8 @@ export interface BoxConfig
         header: {
             hidden: boolean,
             position: 'top' | 'top-fixed',
-            background: string,
+            primaryBackground: string,
+            secondaryBackground: string,
             custom: string,
         },
         navbar: {

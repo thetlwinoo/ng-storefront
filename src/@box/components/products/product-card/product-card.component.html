@@ -25,8 +25,9 @@
                     <i class="icon ion-md-heart-empty s-16 amber-fg"></i>
                     <span class="ml-4 secondary-text">(51)</span>
                 </div>
-                <bar-rating [rate]="5" [readOnly]="true"></bar-rating>
-                <span class="ml-4 secondary-text">(4.7)</span>
+                <!-- <bar-rating [rate]="5" [readOnly]="true"></bar-rating> -->
+                <p-rating [ngModel]="rating" readonly="true" stars="5" [cancel]="false"></p-rating>
+                <span class="ml-4 secondary-text">({{rating}})</span>
             </div>
         </div>
         <div class="px-8 product-name">
@@ -57,7 +58,7 @@
             <button mat-icon-button matTooltip="Add To Cart">
                 <mat-icon aria-label="Add To Cart">shopping_cart</mat-icon>
             </button>
-            <button mat-icon-button matTooltip="Quick View">
+            <button mat-icon-button matTooltip="Quick View" (click)="onQuickView($event,product)">
                 <mat-icon aria-label="Quick View">image</mat-icon>
             </button>
             <button mat-icon-button matTooltip="Compare">

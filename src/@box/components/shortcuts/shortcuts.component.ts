@@ -91,16 +91,16 @@ export class BoxShortcutsComponent implements OnInit, OnDestroy
                     'url'  : '/apps/mail'
                 },
                 {
-                    'title': 'Contacts',
+                    'title': 'Compare',
                     'type' : 'item',
                     'icon' : 'account_box',
-                    'url'  : '/apps/contacts'
+                    'url'  : '/shop/compare'
                 },
                 {
-                    'title': 'To-Do',
+                    'title': 'Wishlist',
                     'type' : 'item',
                     'icon' : 'check_box',
-                    'url'  : '/apps/todo'
+                    'url'  : '/shop/wishlist'
                 }
             ];
         }

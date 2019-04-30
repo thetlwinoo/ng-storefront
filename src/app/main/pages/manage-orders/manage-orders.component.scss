@@ -1,0 +1,21 @@
+:host {
+    // margin-bottom: 30px;
+
+    .page-layout {
+        &.simple {
+            &.left-sidebar {
+                >.center {
+                    >.header {
+                        height: auto;
+                        min-height: auto;
+                        max-height: auto;
+                    }
+
+                    >.content{
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+    }    
+}

@@ -18,11 +18,12 @@ export const boxConfig: BoxConfig = {
         header: {
             hidden: false,
             position: 'top',
-            background: 'box-white-500',
+            primaryBackground: 'box-navy-700',
+            secondaryBackground: 'box-navy-900',
             custom: 'header-area theme-bg'
         },
         navbar: {
-            primaryBackground: 'box-navy-500',
+            primaryBackground: 'box-navy-700',
             secondaryBackground: 'box-navy-900',
             folded: false,
             hidden: false,
@@ -30,8 +31,8 @@ export const boxConfig: BoxConfig = {
             variant: 'vertical-style-1'
         },
         toolbar: {
-            customBackgroundColor: false,
-            background: 'box-white-500',
+            customBackgroundColor: true,
+            background: 'box-navy-700',
             hidden: false,
             position: 'above'
         },
@@ -43,7 +44,7 @@ export const boxConfig: BoxConfig = {
         },
         contentBelow: {
             customBackgroundColor: true,
-            background: 'box-navy-900',
+            background: 'box-navy-700',
             hidden: false,
             position: 'below'
         },

@@ -1,0 +1,25 @@
+:host {
+    ul {
+        padding-left: 0px;
+
+        li {
+            display: inline-block;
+
+            >a {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .qty-box {
+        input {
+            font-size: 2rem !important;
+        }
+    }
+
+    .product-buttons{
+        button:not(:first-child) {
+            margin-left: 5px;
+        }
+    }
+}

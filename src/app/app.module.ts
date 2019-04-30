@@ -27,6 +27,10 @@ const appRoutes: Routes = [
         loadChildren: './main/shop/shop.module#ShopModule'
     },
     {
+        path: 'pages',
+        loadChildren: './main/pages/pages.module#PagesModule'
+    },
+    {
         path: '**',
         redirectTo: 'shop/home'
     }

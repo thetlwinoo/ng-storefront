@@ -24,6 +24,7 @@ import { ProductLogoComponent } from './logo/logo.component';
 import { SnackBarService } from '@box/services/snackbar.service';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { BarRatingModule } from "ngx-bar-rating";
+import { BreadcrumbInitializedGuard } from '@box/services/breadcrumb-initialized-guard.service';
 
 const routes = [
   {
@@ -31,7 +32,11 @@ const routes = [
     component: HomeComponent,
     resolve: {
       data: HomeService
-    }
+    },
+    data: {
+      crumbs: []
+    },
+    canActivate: [BreadcrumbInitializedGuard]
   }
 ];
 

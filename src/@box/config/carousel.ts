@@ -50,7 +50,7 @@ export const carousel = {
             autoplayTimeout: 5000,
             nav: false,
             loop: true,
-            dots: true,
+            dots: false,
             stopOnHover: true,
             item: 1,
             responsive: {
@@ -67,33 +67,33 @@ export const carousel = {
         },
         slides: [
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner-a.jpg')" },
-                image: 'assets/devita/img/banner/banner-a.jpg',
+                style: { "background-image": "url('assets/images/banner/banner01.jpg')" },
+                image: 'assets/images/banner/banner01.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner-b.jpg')" },
-                image: 'assets/devita/img/banner/banner-b.jpg',
+                style: { "background-image": "url('assets/images/banner/banner02.jpg')" },
+                image: 'assets/images/banner/banner01.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner-c.jpg')" },
-                image: 'assets/devita/img/banner/banner-c.jpg',
+                style: { "background-image": "url('assets/images/banner/banner03.jpg')" },
+                image: 'assets/images/banner/banner01.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner-d.jpg')" },
-                image: 'assets/devita/img/banner/banner-d.jpg',
+                style: { "background-image": "url('assets/images/banner/banner04.jpg')" },
+                image: 'assets/images/banner/banner01.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner-e.jpg')" },
-                image: 'assets/devita/img/banner/banner-e.jpg',
+                style: { "background-image": "url('assets/images/banner/banner01.jpg')" },
+                image: 'assets/images/banner/banner01.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner-f.jpg')" },
-                image: 'assets/devita/img/banner/banner-f.jpg',
+                style: { "background-image": "url('assets/images/banner/banner02.jpg')" },
+                image: 'assets/images/banner/banner01.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             }
         ]

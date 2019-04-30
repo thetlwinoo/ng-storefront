@@ -1,0 +1,25 @@
+body {
+    .ui-dataview .ui-dataview-content {
+        background-color: transparent !important;
+    }
+
+    .ui-tree {
+        border: none !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+    }
+
+    .ui-breadcrumb {
+        background-color: transparent;
+        border: none;
+    }
+    .tree-wrapper {
+        // .ui-tree {
+        //     width: auto !important;
+        // }
+
+        .ui-widget {
+            font-size: 12px;
+        }
+    }
+}

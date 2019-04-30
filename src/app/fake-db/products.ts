@@ -11,7 +11,7 @@ export class ProductsFakeDb {
         "stock": 5,
         "new": true,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["yellow", "gray", "green"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "caprese", "lifestyle"],
@@ -41,7 +41,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["gray", "orange"],
         "size": ["M", "L", "XL"],
         "tags": ["caprese", "puma", "lifestyle"],
@@ -67,7 +67,7 @@ export class ProductsFakeDb {
         "stock": 25,
         "new": false,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["blue", "white", "yellow"],
         "size": ["M", "L", "XL"],
         "tags": ["puma", "lifestyle"],
@@ -97,7 +97,7 @@ export class ProductsFakeDb {
         "stock": 15,
         "new": true,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["pink", "gray", "green"],
         "size": ["M", "L", "XL"],
         "tags": ["lifestyle", "nike", "puma"],
@@ -127,7 +127,7 @@ export class ProductsFakeDb {
         "stock": 12,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["pink", "yellow", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["caprese", "lifestyle", "puma"],
@@ -157,7 +157,7 @@ export class ProductsFakeDb {
         "stock": 50,
         "new": false,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["blue", "gray", "orange"],
         "size": ["M", "L", "XL"],
         "tags": ["caprese"],
@@ -187,7 +187,7 @@ export class ProductsFakeDb {
         "stock": 30,
         "new": true,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["red", "white", "blue"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "lifestyle", "puma"],
@@ -217,7 +217,7 @@ export class ProductsFakeDb {
         "stock": 30,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["black", "yellow"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "lifestyle", "puma"],
@@ -243,7 +243,7 @@ export class ProductsFakeDb {
         "stock": 40,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["pink", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -269,7 +269,7 @@ export class ProductsFakeDb {
         "stock": 1,
         "new": false,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["red", "black", "white"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "lifestyle", "caprese"],
@@ -299,7 +299,7 @@ export class ProductsFakeDb {
         "stock": 16,
         "new": true,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["orange", "gray", "pink"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle"],
@@ -329,7 +329,7 @@ export class ProductsFakeDb {
         "stock": 60,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["white", "black"],
         "size": ["M", "L", "XL"],
         "tags": ["puma", "lifestyle", "caprese"],
@@ -355,7 +355,7 @@ export class ProductsFakeDb {
         "stock": 30,
         "new": false,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["gray", "green"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -381,7 +381,7 @@ export class ProductsFakeDb {
         "stock": 80,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["orange", "black", "yellow"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -411,7 +411,7 @@ export class ProductsFakeDb {
         "stock": 11,
         "new": false,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["black", "white", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -441,7 +441,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["pink", "yellow", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma"],
@@ -471,7 +471,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": true,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["pink", "yellow", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma"],
@@ -497,7 +497,7 @@ export class ProductsFakeDb {
         "stock": 9,
         "new": false,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["red", "gray", "pink"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "lifestyle", "caprese"],
@@ -519,7 +519,7 @@ export class ProductsFakeDb {
         "stock": 1,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["orange", "black", "red"],
         "size": ["M", "L", "XL"],
         "tags": ["lifestyle", "caprese"],
@@ -545,7 +545,7 @@ export class ProductsFakeDb {
         "stock": 9,
         "new": false,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["red", "gray", "pink"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "lifestyle", "caprese"],
@@ -575,7 +575,7 @@ export class ProductsFakeDb {
         "stock": 1,
         "new": true,
         "sale": false,
-        "category": "women",
+        "categories": ["Dresses"],
         "colors": ["orange", "black", "red"],
         "size": ["M", "L", "XL"],
         "tags": ["lifestyle", "caprese"],
@@ -605,7 +605,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["white", "gray", "black"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -635,7 +635,7 @@ export class ProductsFakeDb {
         "stock": 3,
         "new": false,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["orange", "green", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle"],
@@ -665,7 +665,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": true,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["white", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -691,7 +691,7 @@ export class ProductsFakeDb {
         "stock": 24,
         "new": false,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["green", "gray", "black"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "lifestyle", "caprese"],
@@ -721,7 +721,7 @@ export class ProductsFakeDb {
         "stock": 100,
         "new": false,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["pink", "green", "yellow"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -751,7 +751,7 @@ export class ProductsFakeDb {
         "stock": 30,
         "new": true,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["orange", "black", "white"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -781,7 +781,7 @@ export class ProductsFakeDb {
         "stock": 18,
         "new": false,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["black", "green"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -807,7 +807,7 @@ export class ProductsFakeDb {
         "stock": 16,
         "new": false,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["white", "pink", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -837,7 +837,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": true,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["blue", "black"],
         "size": ["M", "L", "XL"],
         "tags": ["nike"],
@@ -863,7 +863,7 @@ export class ProductsFakeDb {
         "stock": 21,
         "new": false,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["white", "black", "red"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -893,7 +893,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": true,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["green", "yellow"],
         "size": ["M", "L", "XL"],
         "tags": ["puma", "lifestyle"],
@@ -919,7 +919,7 @@ export class ProductsFakeDb {
         "stock": 3,
         "new": true,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["yellow", "gray", "black"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -949,7 +949,7 @@ export class ProductsFakeDb {
         "stock": 38,
         "new": true,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["black", "red"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -975,7 +975,7 @@ export class ProductsFakeDb {
         "stock": 34,
         "new": false,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["pink", "gray"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle"],
@@ -1001,7 +1001,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": false,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["blue", "black", "white"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -1031,7 +1031,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["red", "white"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle"],
@@ -1057,7 +1057,7 @@ export class ProductsFakeDb {
         "stock": 40,
         "new": false,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["orange", "gray", "green"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -1087,7 +1087,7 @@ export class ProductsFakeDb {
         "stock": 50,
         "new": false,
         "sale": false,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["pink", "white"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "lifestyle", "caprese"],
@@ -1113,7 +1113,7 @@ export class ProductsFakeDb {
         "stock": 80,
         "new": true,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["black", "green", "orange"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -1135,7 +1135,7 @@ export class ProductsFakeDb {
         "stock": 88,
         "new": true,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["blue", "black"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "caprese"],
@@ -1161,7 +1161,7 @@ export class ProductsFakeDb {
         "stock": 90,
         "new": false,
         "sale": true,
-        "category": "men",
+        "categories": ["Pants"],
         "colors": ["gray", "black", "white"],
         "size": ["M", "L", "XL"],
         "tags": ["nike", "puma", "lifestyle", "caprese"],
@@ -1191,7 +1191,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": false,
         "sale": false,
-        "category": "vegetable"
+        "categories": ["Tablet Accessories"],
     },
     {
         "id": 50,
@@ -1205,7 +1205,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": false,
         "sale": false,
-        "category": "vegetable"
+        "categories": ["Tablet Accessories"],
     },
     {
         "id": 51,
@@ -1219,7 +1219,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": false,
         "sale": false,
-        "category": "vegetable"
+        "categories": ["Tablet Accessories"],
     },
     {
         "id": 52,
@@ -1233,7 +1233,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": false,
         "sale": false,
-        "category": "vegetable"
+        "categories": ["Tablet Accessories"],
     },
     {
         "id": 52,
@@ -1247,7 +1247,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": false,
         "sale": false,
-        "category": "vegetable"
+        "categories": ["Tablet Accessories"],
     },
     {
         "id": 53,
@@ -1261,7 +1261,7 @@ export class ProductsFakeDb {
         "stock": 5,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["black"],
         "tags": ["titan", "reebok"],
         "variants": [
@@ -1282,7 +1282,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["white", "black"],
         "tags": ["titan"],
         "variants": [
@@ -1307,7 +1307,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["blue", "black"],
         "tags": ["reebok", "rolex"],
         "variants": [
@@ -1332,7 +1332,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["brown", "black"],
         "tags": ["reebok", "rolex"],
         "variants": [
@@ -1357,7 +1357,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["brown", "white"],
         "tags": ["reebok", "rolex", "reebok"],
         "variants": [
@@ -1382,7 +1382,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["black", "gray"],
         "tags": ["reebok", "rolex", "reebok"],
         "variants": [
@@ -1407,7 +1407,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["blue", "white", "gray"],
         "tags": ["reebok", "rolex", "reebok"],
         "variants": [
@@ -1436,7 +1436,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "watch",
+        "categories": ["Communication Equipments"],
         "colors": ["brown", "gray"],
         "tags": ["reebok", "rolex", "reebok"],
         "variants": [
@@ -1461,7 +1461,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": false,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["craft", "durian", "vittoria", "aura"]
     },
     {
@@ -1476,7 +1476,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": false,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["durian", "vittoria"]
     },
     {
@@ -1491,7 +1491,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": true,
         "sale": true,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["durian", "vittoria", "aura"]
     },
     {
@@ -1506,7 +1506,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": false,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["craft", "vittoria", "aura"]
     },
     {
@@ -1521,7 +1521,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": true,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["craft", "durian", "aura"]
     },
     {
@@ -1536,7 +1536,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": false,
         "sale": true,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["craft", "aura"]
     },
     {
@@ -1551,7 +1551,7 @@ export class ProductsFakeDb {
         "stock": 4,
         "new": true,
         "sale": false,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["aura"]
     },
     {
@@ -1566,7 +1566,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": false,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["durian", "aura"]
     },
     {
@@ -1581,7 +1581,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": true,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["durian"]
     },
     {
@@ -1596,7 +1596,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": false,
         "sale": false,
-        "category": "furniture",
+        "categories": ["Bathroom Products"],
         "tags": ["craft", "durian", "aura"]
     },
     {
@@ -1611,7 +1611,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": false,
         "sale": false,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 72,
@@ -1625,7 +1625,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": true,
         "sale": false,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 73,
@@ -1639,7 +1639,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": false,
         "sale": true,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 74,
@@ -1653,7 +1653,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": false,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 75,
@@ -1667,7 +1667,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": true,
         "sale": true,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 76,
@@ -1681,7 +1681,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": false,
         "sale": false,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 77,
@@ -1695,7 +1695,7 @@ export class ProductsFakeDb {
         "stock": 2,
         "new": false,
         "sale": true,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 78,
@@ -1709,7 +1709,7 @@ export class ProductsFakeDb {
         "stock": 10,
         "new": true,
         "sale": true,
-        "category": "flower"
+        "categories": ["Home Decor"],
     },
     {
         "id": 79,
@@ -1723,7 +1723,7 @@ export class ProductsFakeDb {
         "stock": 1,
         "new": false,
         "sale": false,
-        "category": "beauty"
+        "categories": ["Skin Care"],
     },
     {
         "id": 80,
@@ -1737,7 +1737,7 @@ export class ProductsFakeDb {
         "stock": 8,
         "new": true,
         "sale": false,
-        "category": "beauty"
+        "categories": ["Skin Care"],
     },
     {
         "id": 81,
@@ -1751,7 +1751,7 @@ export class ProductsFakeDb {
         "stock": 6,
         "new": true,
         "sale": false,
-        "category": "beauty"
+        "categories": ["Skin Care"],
     },
     {
         "id": 82,
@@ -1765,7 +1765,7 @@ export class ProductsFakeDb {
         "stock": 1,
         "new": false,
         "sale": true,
-        "category": "beauty"
+        "categories": ["Skin Care"],
     },
     {
         "id": 83,
@@ -1779,7 +1779,7 @@ export class ProductsFakeDb {
         "stock": 8,
         "new": true,
         "sale": false,
-        "category": "beauty"
+        "categories": ["Skin Care"],
     },
     {
         "id": 84,
@@ -1793,7 +1793,7 @@ export class ProductsFakeDb {
         "stock": 11,
         "new": true,
         "sale": true,
-        "category": "beauty"
+        "categories": ["Skin Care"],
     },
     {
         "id": 85,
@@ -1807,7 +1807,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "beauty"
+        "categories": ["Skin Care"],
     },
     {
         "id": 86,
@@ -1821,7 +1821,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 87,
@@ -1835,7 +1835,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 88,
@@ -1849,7 +1849,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 89,
@@ -1863,7 +1863,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 90,
@@ -1877,7 +1877,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 91,
@@ -1891,7 +1891,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 92,
@@ -1905,7 +1905,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 93,
@@ -1919,7 +1919,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "electronics"
+        "categories": ["Smart Electronics"],
     },
     {
         "id": 94,
@@ -1933,7 +1933,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 95,
@@ -1947,7 +1947,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 96,
@@ -1961,7 +1961,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 97,
@@ -1975,7 +1975,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 98,
@@ -1989,7 +1989,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 99,
@@ -2003,7 +2003,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 100,
@@ -2017,7 +2017,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 101,
@@ -2031,7 +2031,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "pets"
+        "categories": ["Major Appliances"],
     },
     {
         "id": 102,
@@ -2045,7 +2045,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 103,
@@ -2059,7 +2059,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 104,
@@ -2073,7 +2073,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 105,
@@ -2087,7 +2087,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 106,
@@ -2101,7 +2101,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 107,
@@ -2115,7 +2115,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 108,
@@ -2129,7 +2129,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 109,
@@ -2143,7 +2143,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "gym"
+        "categories": ["Building Supplies"],
     },
     {
         "id": 110,
@@ -2157,7 +2157,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 111,
@@ -2171,7 +2171,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 112,
@@ -2185,7 +2185,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 113,
@@ -2199,7 +2199,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 114,
@@ -2213,7 +2213,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 115,
@@ -2227,7 +2227,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 116,
@@ -2241,7 +2241,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 117,
@@ -2255,7 +2255,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "tools"
+        "categories": ["Power Tools"],
     },
     {
         "id": 118,
@@ -2269,7 +2269,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 119,
@@ -2283,7 +2283,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 120,
@@ -2297,7 +2297,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 121,
@@ -2311,7 +2311,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 122,
@@ -2325,7 +2325,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 123,
@@ -2339,7 +2339,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 124,
@@ -2353,7 +2353,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 125,
@@ -2367,7 +2367,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 126,
@@ -2381,7 +2381,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "marijuana"
+        "categories": ["Human Hair Weaves"],
     },
     {
         "id": 127,
@@ -2395,7 +2395,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 128,
@@ -2409,7 +2409,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 129,
@@ -2423,7 +2423,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 130,
@@ -2437,7 +2437,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 131,
@@ -2451,7 +2451,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 132,
@@ -2465,7 +2465,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 133,
@@ -2479,7 +2479,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 134,
@@ -2493,7 +2493,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 135,
@@ -2507,7 +2507,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 136,
@@ -2521,7 +2521,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 137,
@@ -2535,7 +2535,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 138,
@@ -2549,7 +2549,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 139,
@@ -2563,7 +2563,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 140,
@@ -2577,7 +2577,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 141,
@@ -2591,7 +2591,7 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     },
     {
         "id": 142,
@@ -2605,8 +2605,56 @@ export class ProductsFakeDb {
         "stock": 20,
         "new": false,
         "sale": false,
-        "category": "metro"
+        "categories": ["Video Surveillance"],
     }
     ]
 
+    public static product_categories = [
+        {
+            "label": "Documents",
+            "data": "Documents Folder",
+            "expandedIcon": "fa fa-folder-open",
+            "collapsedIcon": "fa fa-folder",            
+            "children": [{
+                "label": "Work",
+                "data": "Work Folder",
+                "expandedIcon": "fa fa-folder-open",
+                "collapsedIcon": "fa fa-folder",
+                "children": [{ "label": "Expenses.doc", "icon": "fa fa-file-word-o", "data": "Expenses Document" }, { "label": "Resume.doc", "icon": "fa fa-file-word-o", "data": "Resume Document" }]
+            },
+            {
+                "label": "Home",
+                "data": "Home Folder",
+                "expandedIcon": "fa fa-folder-open",
+                "collapsedIcon": "fa fa-folder",
+                "children": [{ "label": "Invoices.txt", "icon": "fa fa-file-word-o", "data": "Invoices for this month" }]
+            }]
+        },
+        {
+            "label": "Pictures",
+            "data": "Pictures Folder",
+            "expandedIcon": "fa fa-folder-open",
+            "collapsedIcon": "fa fa-folder",
+            "children": [
+                { "label": "barcelona.jpg", "icon": "fa fa-file-image-o", "data": "Barcelona Photo" },
+                { "label": "logo.jpg", "icon": "fa fa-file-image-o", "data": "PrimeFaces Logo" },
+                { "label": "primeui.png", "icon": "fa fa-file-image-o", "data": "PrimeUI Logo" }]
+        },
+        {
+            "label": "Movies",
+            "data": "Movies Folder",
+            "expandedIcon": "fa fa-folder-open",
+            "collapsedIcon": "fa fa-folder",
+            "children": [{
+                "label": "Al Pacino",
+                "data": "Pacino Movies",
+                "children": [{ "label": "Scarface", "icon": "fa fa-file-video-o", "data": "Scarface Movie" }, { "label": "Serpico", "icon": "fa fa-file-video-o", "data": "Serpico Movie" }]
+            },
+            {
+                "label": "Robert De Niro",
+                "data": "De Niro Movies",
+                "children": [{ "label": "Goodfellas", "icon": "fa fa-file-video-o", "data": "Goodfellas Movie" }, { "label": "Untouchables", "icon": "fa fa-file-video-o", "data": "Untouchables Movie" }]
+            }]
+        }
+    ];
 }

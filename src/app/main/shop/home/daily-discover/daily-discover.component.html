@@ -17,7 +17,7 @@
                 <div class="content">
                     <div class="cards">
                         <div class="card product-box" *ngFor="let item of products | slice:0:18">
-                            <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+                            <a [routerLink]="['/shop/product',item.id]" routerLinkActive="active">
                                 <div #productcard class="card-preview">
                                     <product-card [product]="item"></product-card>
                                 </div>

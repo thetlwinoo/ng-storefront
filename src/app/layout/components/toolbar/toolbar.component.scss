@@ -2,8 +2,7 @@
 
 toolbar {
     //custom start
-    background-image: linear-gradient(-180deg, #EE3741, #EE333C);
-
+    // background-image: linear-gradient(-180deg, #EE3741, #EE333C);    
     .container {
 
         @include media-breakpoint("xs") {
@@ -29,7 +28,7 @@ toolbar {
         color: rgba(255, 255, 255, .7) !important;
     }
 
-    border-bottom: 1px solid #e81d28;
+    // border-bottom: 1px solid #e81d28;
     //custom end
 
     position: relative;

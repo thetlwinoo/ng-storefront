@@ -1,7 +1,8 @@
-:host {
-    .viwer-area {
-        position: relative;
-        z-index: 2;
+@import "src/@box/scss/box";
+
+:host {    
+    #related-products {
+        margin-bottom: 30px;
 
         .viwer-title {
             align-content: center;
@@ -14,11 +15,11 @@
             z-index: 2;
 
             .viwer-title-spacer {
-                flex: 1 1 auto;                
+                flex: 1 1 auto;
 
-                &.title {                    
+                &.title {
                     text-transform: uppercase;
-                    font-weight: 500;                    
+                    font-weight: 500;
                 }
             }
 
@@ -34,9 +35,11 @@
         }
 
         .viwer-body {
+            padding-top: 20px;
+
             .content {
                 .cards {
-                    .top-selling-slider .card {
+                    .product-slider .card {
                         border: none;
                         display: flex;
                         align-items: flex-start;
@@ -45,7 +48,11 @@
 
                         .card-preview {
                             display: flex;
-                            min-width: 185px;                            
+                            min-width: 185px;
+
+                            @include media-breakpoint("xs") {
+                                min-width: 177px !important;
+                            }
                         }
 
                         .card-source {
@@ -56,4 +63,7 @@
             }
         }
     }
+
 }
+
+// }

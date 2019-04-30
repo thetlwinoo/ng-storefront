@@ -17,7 +17,7 @@
                     // max-width: 205px !important;
                     >.content {
                         >.shop-sidebar-wrapper {
-                            border: 1px solid #efefef;
+                            // border: 1px solid #efefef;
                             padding: 17px 18px 29px;
 
                             h4.shop-sidebar-title {
@@ -29,6 +29,7 @@
                             >.shop-price-filter {
                                 >.price_filter {
                                     padding: 10px;
+
                                     >.horizontal-wrapper {
                                         >span {
                                             min-width: 40.66px;
@@ -66,6 +67,10 @@
                                 }
                             }
                         }
+
+                        .product-infinitescroll {
+                            margin-top: 20px;
+                        }
                     }
                 }
 
@@ -73,47 +78,47 @@
         }
     }
 
-    .content {
-        .cards {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: flex-start;
+    // .content {        
+    //     .cards {
+    //         display: flex;
+    //         flex-direction: row;
+    //         flex-wrap: wrap;
+    //         justify-content: flex-start;
+    //         align-items: flex-start;
 
-            .card {
-                border: none;
-                display: flex;
-                align-items: flex-start;
-                background: transparent;
-                padding: 5px;
+    //         .card {
+    //             border: none;
+    //             display: flex;
+    //             align-items: flex-start;
+    //             background: transparent;
+    //             padding: 5px;
 
-                flex: 0 0 20%;
-                max-width: 20%;
+    //             flex: 0 0 20%;
+    //             max-width: 20%;
 
-                @include media-breakpoint("sm") {
-                    flex: 0 0 33.33333333%;
-                    max-width: 33.33333333%;
-                }
+    //             @include media-breakpoint("sm") {
+    //                 flex: 0 0 33.33333333%;
+    //                 max-width: 33.33333333%;
+    //             }
 
-                @include media-breakpoint("md") {
-                    flex: 0 0 33.33333333%;
-                    max-width: 33.33333333%;
-                }
+    //             @include media-breakpoint("md") {
+    //                 flex: 0 0 33.33333333%;
+    //                 max-width: 33.33333333%;
+    //             }
 
-                @include media-breakpoint("xs") {
-                    flex: 0 0 50%;
-                    max-width: 50%;
-                }
+    //             @include media-breakpoint("xs") {
+    //                 flex: 0 0 50%;
+    //                 max-width: 50%;
+    //             }
 
-                .card-preview {
-                    display: flex;
-                }
+    //             .card-preview {
+    //                 display: flex;
+    //             }
 
-                .card-source {
-                    display: none;
-                }
-            }
-        }
-    }
+    //             .card-source {
+    //                 display: none;
+    //             }
+    //         }
+    //     }
+    // }
 }
