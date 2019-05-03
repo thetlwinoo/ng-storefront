@@ -17,15 +17,8 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   ngOnInit() {    
-    if (this.categories.length >= 8) {
-      let _cag = this.categories.slice(0,20);
-      for (let i = 1; i <= 10; i++) {
-        let _category = [];
-        _category.push(_cag[(i * 2) - 2]);
-        _category.push(_cag[(i * 2) - 1]);
-        this.bundles.push(_category);
-      }
-    }
+    console.log('carousel',this.carousel.category.options);
+  while(this.categories.length) this.bundles.push(this.categories.splice(0,2));
   }
 
   onPrevClick(event) {

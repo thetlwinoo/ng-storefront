@@ -1,4 +1,4 @@
-<div id="product-category">
+<section id="product-category">
     <div class="container">
         <div class="viwer-wrapper">
             <div class="viwer-title">
@@ -14,29 +14,24 @@
             </div>
             <div class="viwer-body">
                 <div class="content">
-                    <div class="cards">
-                        <owl-carousel #owlProductCategory class="product-category-slider"
-                            [options]="carousel.category.options" [carouselClasses]="['owl-theme']">
-                            <div class="card" *ngFor="let bundle of bundles">
-                                <div class="bundle-list" *ngFor="let category of bundle">
-                                    <a routerLink="/pages/shop" routerLinkActive="active">
-                                        <div class="card-preview">
-                                            <div class="box-card cag">
-                                                <img src="assets/devita/img/cag/{{category.theme.icon}}.png">
-                                                <div class="title p-2 line-height-1.75">
-                                                    {{category.data}}
-                                                </div>
-                                            </div>
+                    <owl-carousel #owlProductCategory [options]="carousel.category.options"
+                        [carouselClasses]="['owl-theme']">
+                        <div class="bundle" *ngFor="let bundle of bundles">
+                            <div class="category" *ngFor="let category of bundle">
+                                <a routerLink="/pages/shop" routerLinkActive="active">
+                                    <div class="category-item">
+                                        <img src="assets/devita/img/cag/{{category.theme.icon}}.png">
+                                        <div class="title p-2 line-height-1.75 word_wrap">
+                                            {{category.data}}
                                         </div>
-                                    </a>
-                                </div>
-
+                                    </div>
+                                </a>
                             </div>
-                        </owl-carousel>
-                    </div>
+                        </div>
+                    </owl-carousel>
                 </div>
             </div>
         </div>
 
     </div>
-</div>
+</section>

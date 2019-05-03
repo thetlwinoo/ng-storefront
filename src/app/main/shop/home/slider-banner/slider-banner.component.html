@@ -53,20 +53,23 @@
                             </a>
                         </div>
                     </owl-carousel>
-                    <!-- <div class="main-slider">
-                        <ngx-slick-carousel #slickModal="slick-carousel" [config]="sliderConfig">
-                            <div ngxSlickItem class="slick-banner" *ngFor="let banner of carousel.banner2.slides;let i = index">
-                                <div [ngStyle]="banner.style" class="banner-image">
-                                </div>
-                            </div>
-                        </ngx-slick-carousel>
-                    </div> -->
                 </div>
             </div>
         </div>
 
         <div class="content">
-            <div class="cards">
+            <div class="p-grid p-justify-between p-nogutter">
+                <div class="p-col-3 p-sm-3 p-lg-1 category-wrapper" *ngFor="let category of bannerCategories">
+                    <div class="category">
+                        <img src="assets/devita/img/bc/{{category.icon}}">
+                        <div class="title p-2 line-height-1.75">
+                            {{category.label}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="cards">
                 <div class="card" *ngFor="let category of bannerCategories">
                     <a routerLink="/pages/shop" routerLinkActive="active">
                         <div #boxcag class="card-preview">
@@ -79,7 +82,7 @@
                         </div>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </div>

@@ -1,28 +1,10 @@
 <section id="related-products" class="tools-grey">
     <div class="container">
-        <div class="viwer-title">
-            <div class="viwer-title-spacer title">
-                related products
-            </div>
-            <button mat-icon-button color="warn" (click)="slickModal.slickPrev();">
-                <mat-icon aria-label="nav left">arrow_left</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="slickModal.slickNext();">
-                <mat-icon aria-label="nav right">arrow_right</mat-icon>
-            </button>
-        </div>
-        <div class="viwer-body">
-            <div class="content">
-                <div class="cards">
-                    <ngx-slick-carousel class="product-5 product-m slick-button-override" #slickModal="slick-carousel"
-                        [config]="productSlideConfig">
-                        <div ngxSlickItem class="product-box product-wrap"
-                            *ngFor="let product of products | slice:0:16">
-                            <product-box-hover [product]="product"></product-box-hover>
-                        </div>
-                    </ngx-slick-carousel>
-                </div>
-            </div>
-        </div>
+        <p-carousel headerText="related products" [value]="products | slice:0:18" [circular]="true" [numVisible]="6"
+            [pageLinks]="3">
+            <ng-template let-product pTemplate="item">
+                <product-box [product]="product" [mode]="'related'"></product-box>
+            </ng-template>
+        </p-carousel>
     </div>
 </section>

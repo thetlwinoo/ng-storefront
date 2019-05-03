@@ -1,0 +1,132 @@
+/* Title Block Element */
+.kl-title-block {
+    padding-top: 0;
+    padding-bottom: 35px;
+}
+
+.tbk__title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-family: 'Open Sans';
+    font-size: 1.6rem;
+    line-height: 1.4;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.tbk__subtitle {
+    margin-top: 0;
+    font-family: 'Open Sans';
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.tbk-thinsubtitle {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-weight: 100;
+}
+
+/* Symbol - icon */
+.tbk-symbol--icon.tbk-icon-pos--after-text .tbk__text {
+    margin-bottom: 25px;
+}
+
+/* Symbol inside title */
+.tbk__title .tbk__symbol {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.tbk__title .tbk__icon {
+    vertical-align: middle;
+}
+
+/* Font Family */
+.kl-font-alt {
+    font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.light-gray2 {
+    color: #dedede;
+}
+
+/* offer-banners */
+.offer-banners .offer-banners-link {
+    margin-bottom: 30px;
+    display: block;
+}
+
+.offer-banners.ob--resize-cover .offer-banners-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hoverBorder {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.hoverBorder:hover img {
+    border-radius: 2px;
+    opacity: 0.8;
+}
+
+.hoverBorderWrapper {
+    position: relative;
+    display: block;
+}
+
+.hoverBorderWrapper img {
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: 2px;
+    width: 100%;
+    position: relative;
+}
+
+.theHoverBorder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) inset;
+}
+
+.theHoverBorder:hover {
+    box-shadow: 0 0 0 3px #cd2122 inset;
+}
+
+.plus .theHoverBorder {
+    background-position: center center;
+}
+
+.plus .theHoverBorder:hover {
+    background-image: url("/assets/kallas/plus01.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(35, 35, 35, 0.5);
+}
+
+.hoverBorder:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 3px hsla(0, 0%, 100%, .15);
+    transition: box-shadow .2s ease-out, background-color .2s ease-out;
+}
+
+.hoverBorder:hover:after {
+    box-shadow: inset 0 0 0 3px #cd2122;
+}

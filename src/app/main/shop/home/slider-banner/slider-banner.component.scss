@@ -4,10 +4,16 @@
 
     #slider-banner {
         margin-top: 0.5em;
+
+        @include media-breakpoint("xs") {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
     }
 
     .sub-banner-wrapper {
         padding: 0 !important;
+
         .sub-banner {
             height: 100%;
 
@@ -20,6 +26,11 @@
 
     .main-banner-wrapper {
         padding: 0 0 0 0.5em !important;
+
+        @include media-breakpoint("xs") {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
     }
 
     .sub-banner1 {
@@ -100,74 +111,108 @@
     }
 
     .content {
-        .cards {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-items: flex-start;
+        .p-grid {
             background: white;
 
-            .card {
-                border: none;
-                display: flex;
-                align-items: flex-start;
-                background: transparent;
-                padding: 5px;
+            .category {
+                img {
+                    padding: 15px 15px 2px 15px;
+                    transform: scale(1);
+                    transition: .5s;
 
-                flex: 0 0 12.5%;
-                max-width: 12.5%;
-
-                @include media-breakpoint("sm") {
-                    flex: 0 0 25%;
-                    max-width: 25%;
+                    @include media-breakpoint("lt-md") {
+                        padding: 10px;
+                    }
                 }
 
-                @include media-breakpoint("md") {
-                    flex: 0 0 25%;
-                    max-width: 25%;
+                .title {
+                    text-align: center;
+                    font-size: 0.85em;
                 }
+            }
 
-                @include media-breakpoint("xs") {
-                    flex: 0 0 25%;
-                    max-width: 25%;
-                }
+            .category-wrapper {
+                cursor: pointer;
 
-                .card-preview {
-                    display: flex;
-
+                &:hover {
                     .category {
                         img {
-                            padding: 35px 35px 15px 35px;
-                            transform: scale(1);
-                            transition: .5s;
-
-                            @include media-breakpoint("lt-md") {
-                                padding: 10px;
-                            }
-                        }
-
-                        .title {
-                            text-align: center;
-                            font-size: 0.85em;
+                            transform: scale(1.1);
+                            transition: all 0.5s ease;
                         }
                     }
-
-                    &:hover {
-                        .category {
-                            img {
-                                transform: scale(1.1);
-                                transition: all 0.5s ease;
-                            }
-                        }
-                    }
-                }
-
-                .card-source {
-                    display: none;
                 }
             }
         }
+
+        // .cards {
+        //     display: flex;
+        //     flex-direction: row;
+        //     flex-wrap: wrap;
+        //     justify-content: flex-start;
+        //     align-items: flex-start;
+        //     background: white;
+
+        //     .card {
+        //         border: none;
+        //         display: flex;
+        //         align-items: flex-start;
+        //         background: transparent;
+        //         padding: 5px;
+
+        //         flex: 0 0 12.5%;
+        //         max-width: 12.5%;
+
+        //         @include media-breakpoint("sm") {
+        //             flex: 0 0 25%;
+        //             max-width: 25%;
+        //         }
+
+        //         @include media-breakpoint("md") {
+        //             flex: 0 0 25%;
+        //             max-width: 25%;
+        //         }
+
+        //         @include media-breakpoint("xs") {
+        //             flex: 0 0 25%;
+        //             max-width: 25%;
+        //         }
+
+        //         .card-preview {
+        //             display: flex;
+
+        //             .category {
+        //                 img {
+        //                     padding: 35px 35px 15px 35px;
+        //                     transform: scale(1);
+        //                     transition: .5s;
+
+        //                     @include media-breakpoint("lt-md") {
+        //                         padding: 10px;
+        //                     }
+        //                 }
+
+        //                 .title {
+        //                     text-align: center;
+        //                     font-size: 0.85em;
+        //                 }
+        //             }
+
+        //             &:hover {
+        //                 .category {
+        //                     img {
+        //                         transform: scale(1.1);
+        //                         transition: all 0.5s ease;
+        //                     }
+        //                 }
+        //             }
+        //         }
+
+        //         .card-source {
+        //             display: none;
+        //         }
+        //     }
+        // }
     }
 
     // .content {

@@ -1,0 +1,35 @@
+<div id="product-box">
+    <div class="ui-grid ui-grid-responsive">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <img [src]="product.pictures[0]" class="img-fluid" alt="">
+            </div>
+        </div>
+        <div class="ui-grid-row" *ngIf="mode == 'deal'">
+            <div class="ui-grid-col-12">
+                <div class="p-3">
+                    <p-progressBar [value]="50" [style]="{'height': '8px'}" [showValue]="false"></p-progressBar>
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <div class="product-name word_wrap p-3">
+                    {{product.name}}
+                </div>
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-6">
+                <div class="product-price p-3">
+                    {{product.price | currency:productsService?.currency:'symbol'}}
+                </div>
+            </div>
+            <div class="ui-grid-col-6">
+                <div class="product-sold p-3">
+                    {{product.salePrice}} sold
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

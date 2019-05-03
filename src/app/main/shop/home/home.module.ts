@@ -8,7 +8,8 @@ import { BoxSharedModule } from '@box/shared.module';
 import { HomeService } from './home.service';
 import { ProductsService } from '@box/services/products.service';
 import { OwlModule } from 'ngx-owl-carousel';
-import { ProductCardModule, ProductBoxHoverModule } from '@box/components';
+import { ProductCardModule, ProductBoxHoverModule, ProductBoxModule } from '@box/components';
+import { CarouselModule } from 'primeng/carousel';
 
 import { MatGridListModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { SliderBannerComponent } from './slider-banner/slider-banner.component';
@@ -69,7 +70,9 @@ const routes = [
     ProductCardModule,
     ProductBoxHoverModule,
     SlickCarouselModule,
-    BarRatingModule
+    BarRatingModule,
+    CarouselModule,
+    ProductBoxModule
   ],
   providers: [
     HomeService,

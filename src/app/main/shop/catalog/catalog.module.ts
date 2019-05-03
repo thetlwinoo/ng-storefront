@@ -14,7 +14,7 @@ import { SelectedCatalogComponent } from './selected-catalog/selected-catalog.co
 import { RelatedProductsComponent } from './selected-catalog/related-products/related-products.component';
 import { SelectedCatalogService } from './selected-catalog/selected-catalog.service';
 //Thirdparty Module
-import { BoxTreeViewModule, BoxSidebarModule, ProductCardModule, ProductBoxHoverModule } from '@box/components';
+import { BoxTreeViewModule, BoxSidebarModule, ProductCardModule, ProductBoxHoverModule, ProductBoxModule } from '@box/components';
 import { BoxSharedModule } from '@box/shared.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SliderModule } from 'primeng/slider';
@@ -28,6 +28,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { RatingModule } from 'primeng/rating';
 import { GalleriaModule } from 'primeng/galleria';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CarouselModule } from 'primeng/carousel';
 
 //Filter
 import { ColorComponent } from './view-catalog/filter/color/color.component';
@@ -110,7 +111,9 @@ const routes = [
     RatingModule,
     GalleriaModule,
     SlickCarouselModule,
-    ProductBoxHoverModule
+    ProductBoxHoverModule,
+    CarouselModule,
+    ProductBoxModule
   ],
   providers: [
     ViewCatalogService,

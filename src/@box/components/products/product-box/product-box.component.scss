@@ -1,0 +1,17 @@
+@import "src/@box/scss/box";
+
+#product-box {
+    .product-name{
+        min-height: 42px;
+    }
+    
+    .product-sold{
+        text-align: right;
+    }
+    
+    .product-price{
+        font-size: 16px;
+        color: #f57224;
+        font-weight: 500;
+    }
+}

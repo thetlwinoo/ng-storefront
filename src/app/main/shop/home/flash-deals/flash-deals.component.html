@@ -23,29 +23,15 @@
         </button>
       </div>
       <div class="viwer-body">
-        <div class="content">
-          <div class="cards">
-            <div class="title3">
-              <h2 class="title-inner3">Flash Deals</h2>
-              <div class="line"></div>
-            </div>
-            <ngx-slick-carousel class="product-5 product-m slick-button-override" #slickModal="slick-carousel" [config]="productSlideConfig">
-              <div ngxSlickItem class="product-box product-wrap" *ngFor="let product of products | slice:0:16">
-                <product-box-hover [product]="product"></product-box-hover>
-              </div>
-            </ngx-slick-carousel>
-            <!-- <owl-carousel #owlFlashDeals class="flash-deals-slider" [options]="carousel.popular.options" [carouselClasses]="['owl-theme']">
-                    <div class="card" *ngFor="let item of products | slice:0:10">
-                      <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
-                        <div #productcard class="card-preview">
-                          <product-card [stockItem]="item"></product-card>
-                        </div>
-                      </a>
-                    </div>
-                  </owl-carousel> -->
-            <!-- <carousel-slider #carousel [products]="stockItems | slice:0:10"></carousel-slider> -->
-          </div>
+        <div class="title3">
+          <h2 class="title-inner3">Flash Deals</h2>
+          <div class="line"></div>
         </div>
+        <p-carousel [value]="products | slice:0:18" [circular]="true" [numVisible]="6" [pageLinks]="3">
+          <ng-template let-product pTemplate="item">
+            <product-box [product]="product"  [mode]="'deal'"></product-box>
+          </ng-template>
+        </p-carousel>
       </div>
     </div>
 

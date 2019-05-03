@@ -5,11 +5,11 @@
     z-index: 2;
     // margin-top: 10px;   
 
-    .viwer-wrapper{
+    .viwer-wrapper {
         // background: white;
         // padding: 5px;
 
-        button{
+        button {
             color: #EE3741;
         }
     }
@@ -40,57 +40,80 @@
     }
 
     .viwer-body {
+        margin-left: 2px;
+        
         .content {
-            .cards {
-                .product-category-slider .card {
-                    display: flex;
-                    align-items: flex-start;
-
-                    // padding: 2px 2px 4px 2px;
-                    padding: 1px;
-
-                    // margin-bottom: 2px;
-                    background-color: transparent;
-                    border: none;
-
-                    .card-source {
-                        display: none;
+            .category {
+                >a:hover {
+                    .category-item {
+                        box-shadow: 0px 3px 1px -2px rgba(211, 164, 164, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
                     }
-
-                    .bundle-list {
-                        margin-bottom: 2px;
-
-                        >a {
-                            .card-preview {
-                                display: flex;
-                                min-width: 115px;
-
-                                .box-card {
-                                    box-shadow: none;
-                                    min-width: 115px !important;
-                                    max-width: 115px !important;
-
-                                    &.cag {
-                                        .title {
-                                            text-align: center;
-                                            min-height: 58px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        >a:hover {
-                            .card-preview {
-                                .box-card {
-                                    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-                                }
-                            }
-                        }
-                    }
-
                 }
             }
+
+            .category-item {
+                // border: 1px solid #c8c8c8;
+                // border-radius: 3px;
+                margin: 1px;
+                background: white;
+
+                .title {
+                    text-align: center;
+                    letter-spacing: 0em;
+                    min-height: 58px;                    
+                }
+            }
+
+            // .cards {                
+            // .product-category-slider .card {
+            //     display: flex;
+            //     align-items: flex-start;
+
+            //     // padding: 2px 2px 4px 2px;
+            //     padding: 1px;
+
+            //     // margin-bottom: 2px;
+            //     background-color: transparent;
+            //     border: none;
+
+            //     .card-source {
+            //         display: none;
+            //     }
+
+            //     .bundle-list {
+            //         margin-bottom: 2px;
+
+            //         >a {
+            //             .card-preview {
+            //                 display: flex;
+            //                 min-width: 115px;
+
+            //                 .box-card {
+            //                     box-shadow: none;
+            //                     min-width: 115px !important;
+            //                     max-width: 115px !important;
+
+            //                     &.cag {
+            //                         .title {
+            //                             text-align: center;
+            //                             min-height: 58px;
+            //                         }
+            //                     }
+            //                 }
+            //             }
+            //         }
+
+            //         >a:hover {
+            //             .card-preview {
+            //                 .box-card {
+            //                     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+            //                 }
+            //             }
+            //         }
+            //     }
+
+            // }
+            // }
         }
     }
 

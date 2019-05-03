@@ -125,13 +125,13 @@ export const carousel = {
             autoplay: false,
             autoplayTimeout: 5000,
             responsiveClass: true,
-            autoWidth: true,            
+            autoWidth: false,            
             animateOut: 'fadeOut',
             animateIn: 'fadeIn',
             item: 10,
             responsive: {
                 0: {
-                    items: 2,
+                    items: 3,
                     nav: false
                 },
                 480: {

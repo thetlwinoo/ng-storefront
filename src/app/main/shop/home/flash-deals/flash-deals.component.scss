@@ -1,9 +1,13 @@
 @import "src/@box/scss/box";
 
+section{
+    padding-top: 0px !important;
+}
+
 #flash-deals {
     // position: relative;
     // z-index: 2;
-
+    
     margin-top: 10px;
 
     .title3 .title-inner3 {

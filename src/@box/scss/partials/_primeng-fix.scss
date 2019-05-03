@@ -13,6 +13,7 @@ body {
         background-color: transparent;
         border: none;
     }
+
     .tree-wrapper {
         // .ui-tree {
         //     width: auto !important;
@@ -20,6 +21,34 @@ body {
 
         .ui-widget {
             font-size: 12px;
+        }
+    }
+
+    .ui-widget {
+        font-family: inherit !important;
+        font-size: inherit !important;
+    }
+
+    .ui-carousel {
+
+        .ui-carousel-header{
+            border: none;
+            padding: 0.571em 0.571em;
+        }
+
+        .ui-carousel-viewport {
+            background-color: transparent;
+            border: none;
+        }
+
+        .ui-carousel-header .ui-carousel-header-title {
+            // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .ui-carousel-page-links {
+            display: none;
         }
     }
 }
