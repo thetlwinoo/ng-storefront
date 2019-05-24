@@ -1,5 +1,13 @@
 <div class="container">
   <div class="wrapper">
+    <div class="seller-menubar">
+      <p-menubar [model]="items">
+        <div>
+          <input type="text" pInputText placeholder="Search">
+          <button pButton label="Search" icon="fa fa-search" style="margin-left:.25em"></button>
+        </div>
+      </p-menubar>
+    </div>
     <div class="row">
       <div class="col-sm-4 col-md-4">
         <div class="seller-card-wrapper">
@@ -13,8 +21,8 @@
               </div>
               <div class="col-md-8">
                 <div class="row">
-                  <div class="col-md-12">example.com</div>
-                  <div class="col-md-12">active</div>
+                  <div class="col-md-12 seller-name">example.com</div>
+                  <div class="col-md-12 seller-desc">active</div>
                   <div class="col-md-12">
                     <div class="button-row">
                       <button pButton type="button" label="Follow Us" class="ui-button-secondary"></button>
@@ -52,6 +60,54 @@
 
       </div>
     </div>
+    <seller-banner [bannerCategories]="bannerCategories" [carousel]="carousel"></seller-banner>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="viwer-wrapper">
+          <div class="viwer-title">
+            <div class="viwer-title-spacer title">
+              xxx official store
+            </div>
+            <button mat-icon-button (click)="onPrevClick($event);">
+              <mat-icon aria-label="nav left">arrow_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onNextClick($event);">
+              <mat-icon aria-label="nav right">arrow_right</mat-icon>
+            </button>
+          </div>
+          <div class="viwer-body">
+            <div class="content">
+              <owl-carousel #owlSellerProduct [options]="options" [carouselClasses]="['owl-theme']">
+                <div class="item-video" data-merge="1"><a class="owl-video"
+                    href="https://www.youtube.com/watch?v=JpxsRwnRwCQ"></a></div>
+                <div class="item-video" data-merge="2"><a class="owl-video"
+                    href="https://www.youtube.com/watch?v=FBu_jxT1PkA"></a></div>
+                <div class="item-video" data-merge="1"><a class="owl-video"
+                    href="https://www.youtube.com/watch?v=oy18DJwy5lI"></a></div>
+                <div class="item-video" data-merge="2"><a class="owl-video"
+                    href="https://www.youtube.com/watch?v=H3jLkJrhHKQ"></a></div>
+                <div class="item-video" data-merge="3"><a class="owl-video"
+                    href="https://www.youtube.com/watch?v=g3J4VxWIM6s"></a></div>
+                <div class="item-video" data-merge="1"><a class="owl-video"
+                    href="https://www.youtube.com/watch?v=0fhoIate4qI"></a></div>
+                <div class="item-video" data-merge="2"><a class="owl-video"
+                    href="https://www.youtube.com/watch?v=EF_kj2ojZaE"></a></div>
+              </owl-carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <promotional-products [products]="products" [carousel]="carousel"></promotional-products>
+
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <seller-products [products]="products"></seller-products>
   </div>
 
 </div>

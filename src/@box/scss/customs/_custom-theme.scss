@@ -13403,3 +13403,33 @@ footer {
 .toast-warning {
     background-color: #F89406 !important;
 }
+
+// .viwer-wrapper {
+//     button {
+//         color: #EE3741 !important;
+//     }
+// }
+
+.viwer-title {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
+
+    .viwer-title-spacer {
+        flex: 1 1 auto;
+
+        &.title {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+    }
+
+    a {
+        font-weight: 400;
+    }
+}

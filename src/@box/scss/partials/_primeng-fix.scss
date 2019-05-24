@@ -1,4 +1,25 @@
 body {
+
+    .search-wrapper .search-bar{
+        width: 100%;
+
+        >.ui-autocomplete{
+            width: 100%;            
+        }
+
+        input{
+            width: 100%;
+            border: none !important;
+            outline: none !important;
+            line-height: inherit !important;
+            color: #333333 !important;
+        }
+
+        .ui-autocomplete-panel{
+            margin-top: 5px;
+        }
+    }
+
     .ui-dataview .ui-dataview-content {
         background-color: transparent !important;
     }

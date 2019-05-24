@@ -13,43 +13,49 @@
                 <div class="cart-drawer-container">
                     <div class="cart-drawer flex v-center">
                         <div class="drop">
-                            <a href routerLink="/shop/cart" routerLinkActive="active" class="cart-button"
-                                mat-icon-button matBadge="{{totalCount}}" matBadgePosition="after" matBadgeColor="warn">
+                            <a href routerLink="/checkout" routerLinkActive="active" class="cart-button" 
+                                mat-icon-button matBadge="{{cartItemCount}}" matBadgePosition="after" matBadgeColor="warn" *ngIf="isAuthenticated()">
                                 <!-- <mat-icon class="fas">shopping_cart</mat-icon> -->
                                 <i class="material-icons fas">
                                     shopping_cart
                                 </i>
                             </a>
-                            <div class="pPanel" *ngIf="items?.length>0 && (currentUrl !== '/shop/cart')">
+                            <a href routerLink="/checkout" routerLinkActive="active" class="cart-button" 
+                                mat-icon-button *ngIf="!isAuthenticated()">
+                                <i class="material-icons fas">
+                                    shopping_cart
+                                </i>
+                            </a>
+                            <div class="pPanel" *ngIf="isAuthenticated() && (cartState | async).cart.cartItemLists?.length>0 && (currentUrl !== '/checkout')">
                                 <div class="inner cart-container" boxPerfectScrollbar>
                                     <div class="widget_shopping_cart_content">
                                         <ul class="cart_list product_list_widget ">
-                                            <li *ngFor="let item of items;let i=index">
+                                            <li *ngFor="let cartItem of (cartState | async).cart.cartItemLists">
                                                 <a href class="remove" title="Remove this item"
                                                     (click)="remove($event,item)">×</a>
                                                 <a href class="product-title" (click)="onCart($event)">
-                                                    <img src="{{ item.image }}" alt="" *ngIf="item.image else noimage">
+                                                    <img src="{{ cartItem.product.image }}" alt="" *ngIf="cartItem.product.image;else noimage">
                                                     <ng-template #noimage>
                                                         <img src="assets/devita/img/no_photo.jpg"
                                                             alt="no image preview">
                                                     </ng-template>
-                                                    {{item.name}}
+                                                    {{cartItem.product.productName}}
                                                 </a>
                                                 <span class="color-variations">Blue</span>
-                                                <span class="quantity">{{item.quantity}} ×
-                                                    <span class="amount">{{item.price | currency:'USD' }}</span>
+                                                <span class="quantity">{{cartItem.amount}} ×
+                                                    <span class="amount">{{cartItem.product.listPrice | currency:'USD' }}</span>
                                                 </span>
                                             </li>
                                         </ul>
                                         <!-- end product list -->
                                         <p class="total">
                                             <strong>Subtotal:</strong>
-                                            <span class="amount">{{cost | currency:'USD'}}</span>
+                                            <span class="amount">{{(cartState | async).cart.totalPrice | currency:'USD'}}</span>
                                         </p>
                                         <p class="buttons">
-                                            <a href [routerLink]="['/pages/cart']" routerLinkActive="active"
+                                            <a href [routerLink]="['/checkout']" routerLinkActive="active"
                                                 class="button wc-forward">View Cart</a>
-                                            <a href [routerLink]="['/pages/checkout']" routerLinkActive="active"
+                                            <a href [routerLink]="['/checkout']" routerLinkActive="active"
                                                 class="button checkout wc-forward">Checkout</a>
                                         </p>
                                     </div>

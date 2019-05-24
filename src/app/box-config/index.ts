@@ -26,7 +26,7 @@ export const boxConfig: BoxConfig = {
             primaryBackground: 'box-navy-700',
             secondaryBackground: 'box-navy-900',
             folded: false,
-            hidden: false,
+            hidden: true,
             position: 'top',
             variant: 'vertical-style-1'
         },
@@ -49,7 +49,7 @@ export const boxConfig: BoxConfig = {
             position: 'below'
         },
         sidepanel: {
-            hidden: false,
+            hidden: true,
             position: 'right'
         }
     }

@@ -17,7 +17,7 @@ export class ProductCategoryComponent implements OnInit {
   }
 
   ngOnInit() {    
-    console.log('carousel',this.carousel.category.options);
+    // console.log('carousel',this.carousel.category.options);
   while(this.categories.length) this.bundles.push(this.categories.splice(0,2));
   }
 

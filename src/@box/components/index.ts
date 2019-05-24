@@ -12,3 +12,4 @@ export * from './theme-options/theme-options.module';
 export * from './widget/widget.module';
 export * from './tree-view/tree-view.module';
 export * from './products';
+export * from './login/login.component';

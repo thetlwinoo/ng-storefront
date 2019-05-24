@@ -6,15 +6,17 @@ import { MatButtonModule, MatIconModule, MatToolbarModule, MatInputModule, MatFo
 import { BoxSharedModule } from '@box/shared.module';
 
 import { HeaderComponent } from 'app/layout/components/header/header.component';
-import { SearchComponent } from './search/search.component';
+import { SearchBarComponent } from './search/search-bar.component';
 
 // import { KeywordsModule } from '@store/keywords/keywords.module';
 import { HeaderService } from './header.service';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        SearchComponent
+        SearchBarComponent
     ],
     imports: [
         RouterModule,
@@ -28,6 +30,8 @@ import { HeaderService } from './header.service';
         MatBadgeModule,
         MatProgressSpinnerModule,
         BoxSharedModule,
+        AutoCompleteModule,
+        ButtonModule
         // KeywordsModule      
     ],
     exports: [

@@ -8,20 +8,22 @@ import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
-import { Product } from '@box/models';
+// import { Product } from '@box/models';
+import { Product } from "app/store/cart/cart.reducer";
 import { ProductsService } from '@box/services/products.service';
+import { ProductService } from '@box/services/e-commerce/product.service';
 
 @Injectable()
 export class SelectedCatalogService implements Resolve<any> {
 
     images: any[];
     products: Product[];
-    public product: Product = {};
+    public product: Product;
     // onStockItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
     constructor(
         private http: HttpClient,
-        private productsService: ProductsService
+        private productService: ProductService
     ) {
     }
 
@@ -35,7 +37,7 @@ export class SelectedCatalogService implements Resolve<any> {
         const productId = route.params["id"];
         return new Promise((resolve, reject) => {
             Promise.all([
-                this.getProducts(),
+                // this.getProducts(),
                 this.getProductImages(),
                 this.getProduct(+productId)
             ]).then(
@@ -50,7 +52,7 @@ export class SelectedCatalogService implements Resolve<any> {
     getProducts(): Promise<any> {
         return new Promise((resolve, reject) => {
             this.http.get('api/products')
-                .subscribe((response: any) => {                    
+                .subscribe((response: any) => {
                     this.products = response;
                     console.log(response);
                     resolve(response);
@@ -70,26 +72,11 @@ export class SelectedCatalogService implements Resolve<any> {
 
     getProduct(id) {
         return new Promise((resolve, reject) => {
-            this.productsService.getProduct(id).subscribe((response: any) => {
+            this.productService.getFullProduct(id).subscribe((response: any) => {
                 this.product = response;
+                console.log('Product Respnose',response)
                 resolve(response);
             }, reject);
         });
     }
-    //   products$(query): Observable<any[]> {
-    //     return (<any>this.feathers
-    //       .service('warehouse/stock-items'))
-    //       .watch()
-    //       .find({
-    //         query: query
-    //       })
-    //       .map(d => {
-    //         const _list: StockItem[] = [];
-    //         d.data.forEach(element => {
-    //           const _stockItem = new StockItem(element);
-    //           _list.push(_stockItem);
-    //         });
-    //         return _list;
-    //       });
-    //   }
 }

@@ -1,0 +1,88 @@
+@import "src/@box/scss/box";
+
+:host {
+
+    #slider-banner {
+        margin-top: 0.5em;
+
+        @include media-breakpoint("xs") {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    }
+
+    .sub-banner-wrapper {
+        padding: 0 !important;
+
+
+    }
+
+
+    .seller-banner-wrapper {
+        padding: 0 0.5em 0 0 !important;
+
+        @include media-breakpoint("xs") {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+    }
+
+    .owl-carouse img {
+        width: 100%;
+    }
+
+    .banner2 {
+        width: 100%;
+    }
+
+    .main-carousel {
+        width: 100%;
+    }
+
+    .main-slider {
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        // background-position: bottom;
+        // width: 100%;
+        min-height: 235px;
+    }
+
+    .banner-thumb {
+        position: relative;
+        display: block;
+    }
+
+    .banner-thumb img {
+        // height: 100%;
+    }
+
+    .seller-banner {
+        .right-nav-wrapper {
+            position: absolute;
+            // right: 0;
+            top: 0px;
+            padding: 5px 5px 0 0;
+            z-index: 6;
+            opacity: 0.9;
+
+            .right-nav {
+                float: right;
+                margin-left: .5rem;
+                position: relative;
+
+                &.right-nav-fixed-width {
+                    width: 296px;
+
+                    .banner-img {
+                        padding-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    .slider-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}

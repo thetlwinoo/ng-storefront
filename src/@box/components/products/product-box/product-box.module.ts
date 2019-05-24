@@ -6,6 +6,7 @@ import { MatIconModule, MatButtonModule, MatListModule, MatTooltipModule } from 
 import { ProductBoxComponent } from './product-box.component';
 import { BoxPipesModule } from '@box/pipes/pipes.module';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { SnackBarService } from '@box/services/snackbar.service';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
     ],
     exports: [
         ProductBoxComponent
+    ],
+    providers: [
+        SnackBarService
     ]
 })
 export class ProductBoxModule {

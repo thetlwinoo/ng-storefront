@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectionStrateg
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Router, NavigationEnd, ActivatedRouteSnapshot, CanActivate, NavigationExtras } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+// import { select, Store } from '@ngrx/store';
+// import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 // import * as KeywordActions from '@store/keywords/actions/keyword.actions';
 // import * as fromKeywords from '@store/keywords/reducers';
@@ -11,8 +11,15 @@ import { BoxConfigService } from '@box/services/config.service';
 import { boxAnimations } from '@box/animations';
 import { HeaderService } from './header.service';
 
+import { AccountService } from '@box/services/core';
+import { Store } from "@ngrx/store";
+import * as fromApp from "app/store/app.reducers";
+import * as CartActions from 'app/store/cart/cart.actions';
 // import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem, LocaleFormat, parseLocaleFormat } from 'ng-shopping-cart';
-
+import { Observable } from "rxjs/Observable";
+import { Subscription } from "rxjs/Subscription";
+import { Cart } from "app/store/cart/cart.reducer";
+import { HttpError } from "app/store/app.reducers";
 @Component({
     selector: 'header',
     // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +40,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     private _unsubscribeAll: Subject<any>;
 
+    cartState: Observable<{ cart: Cart, errors: HttpError[], loading: boolean }>;
+    cartItemCountSubscription: Subscription;
+    cartItemCount: number = 0;
+
     // format: LocaleFormat;
     empty = true;
     // items: CartItem[];
@@ -48,6 +59,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private _headerService: HeaderService,
         private _router: Router,
         private _boxConfigService: BoxConfigService,
+        private store: Store<fromApp.AppState>,
+        private accountService: AccountService,
         // private cartService: CartService<any>
     ) {
 
@@ -82,6 +95,30 @@ export class HeaderComponent implements OnInit, OnDestroy {
             .subscribe((config) => {
                 this.boxConfig = config;
             });
+
+        this.cartState = this.store.select('cart');
+
+        this.accountService.getAuthenticationState().subscribe(auth => {
+            if (auth) {
+                console.log(auth)
+                this.store.dispatch(new CartActions.FetchCart());                
+                this.cartItemCountSubscription = this.cartState.subscribe(data => {
+                    console.log('cart data', data)
+                    let totalCount = 0;
+                    for (let i = 0; i < data.cart.cartItemLists.length; i++) {
+                        totalCount += data.cart.cartItemLists[i].amount;
+                    }
+                    this.cartItemCount = totalCount;
+                    console.log('cart total count', totalCount);
+                });
+            }
+            else {
+                this.cartItemCount = 0;
+                if (this.cartItemCountSubscription != null) {
+                    this.cartItemCountSubscription.unsubscribe();
+                }
+            }
+        })
     }
 
     // search(query: string) {
@@ -97,10 +134,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this._router.navigate(['/pages/shop'], navigationExtras);
     }
 
+    isAuthenticated() {
+        return this.accountService.isAuthenticated();
+    }
+
     ngOnDestroy(): void {
         this._serviceSubscription.unsubscribe();
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+
+        if (this.cartItemCountSubscription != null) {
+            this.cartItemCountSubscription.unsubscribe();
+        }
     }
 
     // increase(item: CartItem) {

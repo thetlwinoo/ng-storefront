@@ -11,10 +11,21 @@
         "experimentalDecorators": true,
         "importHelpers": true,
         "paths": {
-            "@angular/*": ["node_modules/@angular/*"],
+            "@angular/*": [
+                "node_modules/@angular/*"
+            ],
             "@box": [
                 "@box/"
-            ]
+            ],
+            "@app/env": [
+                "environments/environment"
+            ],
+            "@app/root-state/*": [
+                "app/state/*"
+            ],
+            "@app/root-state": [
+                "app/state/index"
+            ],
         },
         "target": "es5",
         "typeRoots": [

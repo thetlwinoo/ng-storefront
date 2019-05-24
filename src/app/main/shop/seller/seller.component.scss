@@ -8,7 +8,7 @@
         height: 100%;
         border: 1px solid rgba(0, 0, 0, 0.12);
         border-radius: 3px;
-        background-color: rgba(0, 0, 0, 0.12);
+        background-color: #FFFFFF;
 
         .seller-card {
             padding: 5px;
@@ -19,9 +19,21 @@
 
             .button-row {
                 margin-top: 10px;
+
                 button:not(:first-child) {
                     margin-left: 5px;
                 }
+            }
+
+            .seller-name {
+                font-size: 1.7rem;
+                font-weight: 400;
+                letter-spacing: 0.15rem;
+            }
+
+            .seller-desc {
+                letter-spacing: 0.15rem;
+                font-weight: 400;
             }
         }
     }
@@ -88,4 +100,13 @@
             height: 220px;
         }
     }
+
+    .seller-menubar{
+        margin-bottom: 0.5em;
+    }    
+
+    .item-video {
+        height: 300px !important;
+    }
+
 }

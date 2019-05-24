@@ -3,11 +3,17 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
-
+import { Router } from '@angular/router';
 import { BoxConfigService } from '@box/services/config.service';
 import { BoxSidebarService } from '@box/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
+
+import { LoginModalService, AccountService, LoginService } from '@box/services/core';
+import { Account } from '@box/models';
+
 
 @Component({
     selector: 'toolbar',
@@ -17,6 +23,11 @@ import { navigation } from 'app/navigation/navigation';
 })
 
 export class ToolbarComponent implements OnInit, OnDestroy {
+    account: Account;
+    modalRef: NgbModalRef;
+
+    isCollapsed: boolean = true;
+
     boxConfig: any;
     horizontalNavbar: boolean;
     rightNavbar: boolean;
@@ -39,7 +50,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     constructor(
         private _boxConfigService: BoxConfigService,
         private _boxSidebarService: BoxSidebarService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private accountService: AccountService,
+        private loginService: LoginService,
+        private router: Router,
+        private loginModalService: LoginModalService,
+        private eventManager: JhiEventManager,
     ) {
         // Set the defaults
         this.userStatusOptions = [
@@ -107,17 +123,44 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
             });
 
+        this.accountService.identity().then((account: Account) => {
+            this.account = account;
+        });
+        this.registerAuthenticationSuccess();        
+
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { 'id': this._translateService.currentLang });
+
+
     }
 
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            this.accountService.identity().then(account => {
+                this.account = account;
+            });
+        });
+    }
+
+    isAuthenticated() {
+        return this.accountService.isAuthenticated();
+    }
+
+    login() {
+        this.modalRef = this.loginModalService.open();
+    }
+
+    logout() {
+        this.loginService.logout();
+        this.router.navigate(['']);
+    }
     /**
      * On destroy
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+        this._unsubscribeAll.complete();        
     }
 
     // -----------------------------------------------------------------------------------------------------

@@ -1,6 +1,9 @@
 <section id="related-products" class="tools-grey">
     <div class="container">
-        <p-carousel headerText="related products" [value]="products | slice:0:18" [circular]="true" [numVisible]="6"
+        <div *ngIf="fetchError != null && fetchError.status !== 404" class=" col-md-12 alert-warning">
+            Problem loading products...
+        </div>
+        <p-carousel headerText="related products" [value]="relatedProducts" [circular]="true" [numVisible]="6"
             [pageLinks]="3">
             <ng-template let-product pTemplate="item">
                 <product-box [product]="product" [mode]="'related'"></product-box>

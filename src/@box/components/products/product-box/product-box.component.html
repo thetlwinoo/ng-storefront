@@ -2,7 +2,10 @@
     <div class="ui-grid ui-grid-responsive">
         <div class="ui-grid-row">
             <div class="ui-grid-col-12">
-                <img [src]="product.pictures[0]" class="img-fluid" alt="">
+                <img [src]="product.productPhoto" class="img-fluid" alt="" *ngIf="product.productPhoto;else noimages">
+                <ng-template #noimages>
+                    <img src="assets/multicart/images/fashion/product/1.jpg" class="img-fluid" alt="">
+                </ng-template>
             </div>
         </div>
         <div class="ui-grid-row" *ngIf="mode == 'deal'">
@@ -15,19 +18,19 @@
         <div class="ui-grid-row">
             <div class="ui-grid-col-12">
                 <div class="product-name word_wrap p-3">
-                    {{product.name}}
+                    {{product.productName}}
                 </div>
             </div>
         </div>
         <div class="ui-grid-row">
             <div class="ui-grid-col-6">
                 <div class="product-price p-3">
-                    {{product.price | currency:productsService?.currency:'symbol'}}
+                    {{product.listPrice | currency:productsService?.currency:'symbol'}}
                 </div>
             </div>
             <div class="ui-grid-col-6">
                 <div class="product-sold p-3">
-                    {{product.salePrice}} sold
+                    {{product.cargoPrice}} sold
                 </div>
             </div>
         </div>

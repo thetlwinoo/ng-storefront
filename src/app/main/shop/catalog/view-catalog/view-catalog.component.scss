@@ -1,6 +1,15 @@
 @import "src/@box/scss/box";
 
 :host {
+
+    .example-card{
+        box-shadow: none !important;
+    }
+    .example-header-image {
+        background-image: url('/assets/devita/img/bc/bc4.png');
+        background-size: cover;
+      }
+
     h4 {
         font-size: 0.9em;
         font-weight: 500 !important;
@@ -36,7 +45,7 @@
                                         }
                                     }
                                 }
-                            }
+                            }                            
                         }
                     }
                 }

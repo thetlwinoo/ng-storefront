@@ -4,6 +4,20 @@
       <box-sidebar class="sidebar" name="simple-left-sidebar-2" position="left" lockedOpen="gt-md">
         <div class="content">
           <div class="shop-sidebar-wrapper gray-bg-7">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Jade</mat-card-title>
+                <mat-card-subtitle>Offical Store</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="assets/kallas/banner-set2-32.jpg"
+                alt="Photo of a Shiba Inu">
+              <mat-card-content>
+                <p>
+                    jewellery shop
+                </p>
+              </mat-card-content>
+            </mat-card>
             <app-category [categories]="filteredCategories" (selectedCategories)="updateCategories($event)">
             </app-category>
             <!-- <app-brand [tagsFilters]="tags" (tagFilters)="updateTagFilters($event)" *ngIf="tags.length"></app-brand> -->

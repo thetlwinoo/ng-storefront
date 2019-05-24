@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatListModule, MatIconModule, MatButtonModule, MatTooltipModule, MatSliderModule, MatCheckboxModule, MatChipsModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatCardModule, MatListModule, MatIconModule, MatButtonModule, MatTooltipModule, MatSliderModule, MatCheckboxModule, MatChipsModule, MatProgressSpinnerModule } from '@angular/material';
 
 //View Catalog
 import { ViewCatalogComponent } from './view-catalog/view-catalog.component';
@@ -29,6 +29,7 @@ import { RatingModule } from 'primeng/rating';
 import { GalleriaModule } from 'primeng/galleria';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
 
 //Filter
 import { ColorComponent } from './view-catalog/filter/color/color.component';
@@ -113,7 +114,9 @@ const routes = [
     SlickCarouselModule,
     ProductBoxHoverModule,
     CarouselModule,
-    ProductBoxModule
+    ProductBoxModule,
+    MatCardModule,
+    ButtonModule
   ],
   providers: [
     ViewCatalogService,

@@ -1,0 +1,26 @@
+<section id="slider-banner" class="p-0">
+    <div class="seller-banner">
+        <div class="p-grid p-nogutter">
+            <div class="p-col-12 p-sm-12 p-lg-8 seller-banner-wrapper">
+                <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options"
+                    [carouselClasses]="['owl-theme']">
+                    <div class="main-slider" *ngFor="let banner of carousel.banner2.slides;let i = index">
+                        <a href="#">
+                            <div [ngStyle]="banner.style" class="banner-image">
+                            </div>
+                        </a>
+                    </div>
+                </owl-carousel>
+            </div>
+            <div class="p-col-12 p-sm-12 p-lg-4 sub-banner-wrapper">
+                <p-card header="www.example.com" [style]="{width: 'auto', height: '100%'}">
+                    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error
+                        repudiandae numquam deserunt
+                        quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse,
+                        cupiditate neque quas!</div>
+                </p-card>
+
+            </div>
+        </div>
+    </div>
+</section>

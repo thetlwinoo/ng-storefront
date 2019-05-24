@@ -26,6 +26,7 @@ import { SnackBarService } from '@box/services/snackbar.service';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { BarRatingModule } from "ngx-bar-rating";
 import { BreadcrumbInitializedGuard } from '@box/services/breadcrumb-initialized-guard.service';
+import { NewlyAddedComponent } from './newly-added/newly-added.component';
 
 const routes = [
   {
@@ -52,7 +53,8 @@ const routes = [
     DailyDiscoverComponent,
     ProductBannerComponent,
     VerticalSlidersComponent,
-    ProductLogoComponent
+    ProductLogoComponent,
+    NewlyAddedComponent
   ],
   imports: [
     CommonModule,

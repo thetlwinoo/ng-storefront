@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SellerCatalogComponent } from './seller-catalog/seller-catalog.component';
 import { SellerComponent } from './seller.component';
 import { SellerService } from './seller.service';
 import { BreadcrumbInitializedGuard } from '@box/services/breadcrumb-initialized-guard.service';
 import { ButtonModule } from 'primeng/button';
+import { MatCardModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MenubarModule } from 'primeng/menubar';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { OwlModule } from 'ngx-owl-carousel';
+import { CarouselModule } from 'primeng/carousel';
+import { PromotionalProductsComponent } from './promotional-products/promotional-products.component';
+import { SellerBannerComponent } from './seller-banner/seller-banner.component';
+import { SellerProductsComponent } from './seller-products/seller-products.component';
+import { ProductCardModule, ProductBoxHoverModule, ProductBoxModule } from '@box/components';
 
 const routes = [
   {
@@ -23,13 +32,26 @@ const routes = [
 
 @NgModule({
   declarations: [
-    SellerCatalogComponent,
-    SellerComponent
+    SellerComponent,
+    PromotionalProductsComponent,
+    SellerBannerComponent,
+    SellerProductsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ButtonModule
+    ButtonModule,
+    MatCardModule,
+    CardModule,
+    MatButtonModule,
+    MatIconModule,
+    MenubarModule,
+    InputTextModule,
+    OwlModule,
+    CarouselModule,
+    ProductCardModule,
+    ProductBoxHoverModule,
+    ProductBoxModule
   ],
   providers: [
     SellerService

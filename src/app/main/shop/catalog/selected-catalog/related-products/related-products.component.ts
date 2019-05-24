@@ -1,5 +1,13 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { OwlCarousel } from 'ngx-owl-carousel';
+import { ProductService } from "@box/services/e-commerce/product.service";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { Product } from 'app/store/cart/cart.reducer';
+import { Subscription } from "rxjs/Subscription";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'related-products',
@@ -7,14 +15,42 @@ import { OwlCarousel } from 'ngx-owl-carousel';
   styleUrls: ['./related-products.component.scss']
 })
 export class RelatedProductsComponent implements OnInit {
-  @Input() products;
-  @Input() carousel;
-  @Input() searching = false;
-  @Input() error = '';
+  // @Input() product;
+  // @Input() carousel;
+  // @Input() searching = false;
+  // @Input() error = '';
+  fetchError: HttpErrorResponse = null;
+  paramSubscription: Subscription;
+  innerLoading: boolean = true;
+  relatedProducts: Product[];
+  id: number;
 
-  constructor() { }
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+
+    this.paramSubscription = this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params['id'];
+        this.productService.getRelatedProducts(this.id)
+          .take(1)
+          .catch(error => {
+            this.fetchError = error;
+            this.innerLoading = false;
+            return Observable.throw(error);
+          })
+          .subscribe(
+            (data: Product[]) => {
+              this.relatedProducts = data;
+              console.log(this.relatedProducts)
+              this.innerLoading = false;
+            }
+          )
+      }
+    );
   }
 
   public productSlideConfig: any = {

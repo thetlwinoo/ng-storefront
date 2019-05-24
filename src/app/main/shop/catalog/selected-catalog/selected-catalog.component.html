@@ -5,82 +5,82 @@
         <p-galleria [images]="images" panelWidth="auto" panelHeight="470" [showCaption]="false" [autoPlay]="false">
         </p-galleria>
       </div>
-      <div class="col-md-7 rtl-text">
-        <div class="product-right">
-          <h2>{{product.name}}</h2>
-          <h4 *ngIf="!productsService?.catalogMode">
-            <del>{{product.salePrice | currency:productsService?.currency:'symbol'}}</del><span>{{product.discount}}%
-              off</span></h4>
-          <h3 *ngIf="!productsService?.catalogMode">
-            {{product.price | currency:productsService?.currency:'symbol'}}</h3>
-          <ul class="color-variant" *ngIf="!productsService?.catalogMode">
-            <li [class]="variant.color" (click)="slickModal.slickGoTo(i)"
-              *ngFor="let variant of product.variants let i = index"></li>
-          </ul>
+      <div class="col-md-7 rtl-text" *ngIf="product">
+        <div class="right-column">
 
-          <div class="product-description border-product" *ngIf="!productsService?.catalogMode">
-            <h6 class="product-title size-text">select size
-              <span><a href="" data-toggle="modal" data-target="#sizemodal">size chart</a></span>
-            </h6>
-            <div class="size-box">
-              <ul>
-                <li [ngClass]="{'active': selectedSize == size}" *ngFor="let size of product.size">
-                  <a [routerLink]="" (click)="changeSizeVariant(size)">{{size}}</a>
-                </li>
-              </ul>
+          <!-- Product Description -->
+          <div class="product-description">
+            <span>{{ product.productSubCategoryProductSubCategoryName }}</span>
+            <h1>{{ product.productName}}</h1>
+            <p> {{ product.productModelProductModelName }}</p>
+          </div>
+
+          <!-- Product Configuration -->
+          <div class="product-configuration">
+
+            <!-- Product Color -->
+            <div class="product-color">
+              <span>Color</span>
+
+              <div class="color-choose">
+                <div>
+                  <input data-image="red" type="radio" id="red" name="color" value="red" checked>
+                  <label for="red"><span></span></label>
+                </div>
+                <div>
+                  <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+                  <label for="blue"><span></span></label>
+                </div>
+                <div>
+                  <input data-image="black" type="radio" id="black" name="color" value="black">
+                  <label for="black"><span></span></label>
+                </div>
+              </div>
+
             </div>
-            <h5 class="avalibility" *ngIf="counter <= product.stock"><span>In Stock</span></h5>
-            <h5 class="avalibility" *ngIf="counter > product.stock"><span>Out of Stock</span></h5>
-            <h6 class="product-title">quantity</h6>
-            <div class="qty-box">
-              <div class="input-group">
-                <span class="input-group-prepend">
-                  <button type="button" (click)="decrement()" class="btn quantity-left-minus" data-type="minus"
-                    data-field="">
-                    <i class="ti-angle-left"></i>
-                  </button>
-                </span>
-                <input type="text" disabled name="quantity" class="form-control input-number" value="{{counter}}">
-                <span class="input-group-prepend">
-                  <button type="button" (click)="increment()" class="btn quantity-right-plus" data-type="plus"
-                    data-field="">
-                    <i class="ti-angle-right"></i>
-                  </button>
-                </span>
+
+            <!-- Cable Configuration -->
+            <div class="cable-config">
+              <span>Amount</span>
+
+              <div class="cable-choose">
+                <input #amount type="number" placeholder="Amount" min="1" value="1">
+              </div>
+              <a (click)="open(faq)">How to contact support?</a>
+            </div>
+          </div>
+
+          <!-- Product Pricing -->
+          <div class="product-price">
+
+            <div class="row" *ngFor="let e of (cartState | async).errors">
+              <div *ngIf="e.errorEffect == 'ADD_TO_CART'" class="alert-warning">
+                <div class="col-md-12">
+                  <div *ngIf="e.error.status === 400 || e.error.status === 401">Could not add item.</div>
+                  <div *ngIf="e.error.status === 409">Please select a proper amount</div>
+                  <div *ngIf="e.error.status === 500 || e.error.status === 0">Internal server error. Please contact our
+                    support team.
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="product-buttons" *ngIf="!productsService?.catalogMode">
-            <button mat-flat-button color="primary" [routerLink]="" (click)="addToCart(product, counter)"
-              [disabled]="counter > product.stock">Add To
-              Cart</button>
-            <button mat-flat-button color="primary" [routerLink]="" (click)="buyNow(product, counter)"
-              [disabled]="counter > product.stock">Buy Now</button>
-          </div>
-          <div class="border-product">
-            <h6 class="product-title">product details</h6>
-            <p>{{product.shortDetails}}</p>
-          </div>
-          <div class="border-product">
-            <h6 class="product-title">share it</h6>
-            <div class="product-icon">
-              <ul class="product-social">
-                <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://plus.google.com/discover"><i class="fa fa-google-plus"></i></a>
-                </li>
-                <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
-              </ul>
-              <form class="d-inline-block" *ngIf="!productsService?.catalogMode">
-                <button class="wishlist-btn" (click)="addToWishlist(product)"><i class="fa fa-heart"></i><span
-                    class="title-font">Add To
-                    WishList</span></button>
-              </form>
+
+            <div class="row">
+              <div class="col-md-4">
+                <span>${{ product.listPrice }}</span>
+              </div>
+              <div class="col-md-8">
+                <div *ngIf="(cartState | async).loading" class="loader" style="top:0; left: 25%"></div>
+                <button (click)="addToCart(amount)" [disabled]="(cartState | async).loading"
+                  [style.display]="(cartState | async).loading ? 'none' : 'inline-block'" class="btn"
+                  style="font-size: 20px;" pButton label="Add to cart">
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <related-products [products]="products" [carousel]="carousel"></related-products>
+  <related-products></related-products>
 </div>

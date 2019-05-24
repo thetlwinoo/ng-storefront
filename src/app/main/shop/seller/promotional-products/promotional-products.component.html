@@ -1,0 +1,8 @@
+<section id="promotional-products" class="tools-grey">
+  <p-carousel headerText="promotional products" [value]="products | slice:0:18" [circular]="true" [numVisible]="6"
+    [pageLinks]="3">
+    <ng-template let-product pTemplate="item">
+      <product-box [product]="product" [mode]="'promotional'"></product-box>
+    </ng-template>
+  </p-carousel>
+</section>

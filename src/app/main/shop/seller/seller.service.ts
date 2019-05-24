@@ -27,9 +27,10 @@ export class SellerService {
     private http: HttpClient,
     private productsService: ProductsService
   ) { }
-  
+
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    const category = route.params['category'];
+    // const category = route.params['category'];
+    const category = 'all';
     return new Promise((resolve, reject) => {
       Promise.all([
         this.getCategories(),

@@ -5,7 +5,7 @@ $owl-image-path: "~owl.carousel/src/img/";
     position: relative;
     height: 100%;
 
-    div:not(.owl-controls) {
+    div:not(.owl-dots) {
         height: 100%;
     }
 
@@ -24,6 +24,7 @@ $owl-image-path: "~owl.carousel/src/img/";
         background-position: bottom;
     }
 }
+
 
 .owl-dot-style-2 .owl-dot {
     background: #d8d9d9 none repeat scroll 0 0 !important;

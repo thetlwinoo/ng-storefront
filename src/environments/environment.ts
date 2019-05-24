@@ -4,7 +4,15 @@
 
 export const environment = {
     production: false,
-    hmr       : false
+    hmr: false,
+    serverApi: {
+        baseUrl: 'http://localhost:8080/'
+    },
+    socketConfig: {
+        url: 'http://localhost:3000/',
+        opts: {
+        }
+    }
 };
 
 /*

@@ -130,7 +130,7 @@ p {
 .cart-container .cart_list .remove:hover {color: #7F7F7F;}
 .cart-container .cart_list .product-title:hover {color: #cd2122;}
 .cart-container .cart_list .color-variations,
-.cart-container .cart_list .quantity {display: block; text-align: left;}
+.cart-container .cart_list .quantity {display: block; text-align: left;color: #242424}
 .cart-container .cart_list li img {float: left !important; margin-right: 15px; margin-left: 0 !important; width: 75px !important }
 .cart-container .cart_list li .variation, 
 .cart-container .cart_list li .variation p {margin: 0;}
@@ -138,7 +138,7 @@ p {
 .cart-container .cart_list li .variation-Color {display: inline-block; padding: 0 !important; margin: 0 !important; clear: none !important;}
 .cart-container .cart_list li .variationr:before, .cart-container .cart_list li .variation:after {content: none;}
 .cart-container .total .amount {float: right; font-weight: bold; font-size: 1rem; line-height: 1;}
-.cart-container .total {border-bottom: 1px solid #ddd; padding: 0 0 15px; margin: 0 0 15px;}
+.cart-container .total {border-bottom: 1px solid #ddd; padding: 0 0 15px; margin: 0 0 15px;color: #242424}
 .cart-container .buttons {overflow: hidden; margin: 0;}
 .cart-container .buttons .button {width: 49%; display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border: 1px solid transparent; text-transform: uppercase;}
 .cart-container .buttons .button.wc-forward {background-color: #cd2122; color: #fff; text-shadow: none; font-weight: normal; padding: 9px 20px; line-height: 1.6; box-shadow: none; font-size: 14px; font-weight: 600; border-radius: 3px; -webkit-transition: background-color .2s ease-in-out; transition: background-color .2s ease-in-out; }

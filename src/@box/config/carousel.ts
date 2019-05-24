@@ -50,7 +50,7 @@ export const carousel = {
             autoplayTimeout: 5000,
             nav: false,
             loop: true,
-            dots: false,
+            dots: true,
             stopOnHover: true,
             item: 1,
             responsive: {

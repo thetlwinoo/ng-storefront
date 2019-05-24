@@ -1,0 +1,21 @@
+<div class="search-wrapper">
+    <div class="box-searchbar">
+        <p-autoComplete class="search-bar" [(ngModel)]="keyword" [suggestions]="filteredKeywords"
+            (completeMethod)="filterKeywords($event)" field="productName" [size]="30" placeholder="keyword search"
+            [minLength]="1" (onKeyUp)="onKeySearch($event)">
+        </p-autoComplete>
+        <button class="search-button" (click)="onClickSearch($event);"
+            [ngClass]="boxConfig.layout.header.primaryBackground">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+
+</div>
+<div class="hot-words" fxHide fxShow.gt-xs>
+    <div class="hot-words__list">
+        <a href class="hot-words__item" *ngFor="let item of defaultKeywords;let i=index"
+            (click)="onClick($event,item.keyword)">
+            <span>{{item.keyword}}</span>
+        </a>
+    </div>
+</div>

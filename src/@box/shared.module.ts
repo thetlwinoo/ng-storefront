@@ -7,8 +7,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BoxDirectivesModule } from '@box/directives/directives';
 import { BoxPipesModule } from '@box/pipes/pipes.module';
 
+import { JhiLoginModalComponent } from './components';
+// import { LoginService } from './services/core/login/login.service';
+import { CookieModule } from 'ngx-cookie';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+
 @NgModule({
-    imports  : [
+    imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -16,9 +23,16 @@ import { BoxPipesModule } from '@box/pipes/pipes.module';
         FlexLayoutModule,
 
         BoxDirectivesModule,
-        BoxPipesModule
+        BoxPipesModule,
+        CookieModule.forRoot(),
+        NgbModule.forRoot(),
+        InputTextModule,
+        ButtonModule
     ],
-    exports  : [
+    declarations: [JhiLoginModalComponent],
+    entryComponents: [JhiLoginModalComponent],
+    providers: [],
+    exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -26,9 +40,9 @@ import { BoxPipesModule } from '@box/pipes/pipes.module';
         FlexLayoutModule,
 
         BoxDirectivesModule,
-        BoxPipesModule
+        BoxPipesModule,
+        JhiLoginModalComponent
     ]
 })
-export class BoxSharedModule
-{
+export class BoxSharedModule {
 }
