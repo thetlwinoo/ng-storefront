@@ -9,9 +9,13 @@
     }
 
     .item {
+
+        // &:first-child{
+        //     border-top: 1px solid #E1E8EE;
+        // }
         padding: 20px 30px;
         height: 120px;
-        border-bottom: 1px solid #E1E8EE;
+        border-top: 1px solid #E1E8EE;
         margin-right: 0;
         margin-left: 0;
     }
@@ -127,7 +131,13 @@
         text-align: center;
         font-size: 16px;
         color: #43484D;
-        font-weight: 300;
+        font-weight: 300;        
+    }
+
+    .total-price{
+        font-size: 18px;
+        font-weight: 500;
+        color: #ff5722;
     }
 
     .pricing span {
@@ -138,6 +148,12 @@
 
     .apply-code {
         width: 100%;
+    }
+
+    .discount-code{
+        font-size: 18px;
+        color: #43484D;
+        font-weight: 500;
     }
 
     @media (max-width: 800px) {

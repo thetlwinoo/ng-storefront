@@ -100,16 +100,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
         this.accountService.getAuthenticationState().subscribe(auth => {
             if (auth) {
-                console.log(auth)
-                this.store.dispatch(new CartActions.FetchCart());                
+                console.log('AUTH ', auth);
+                this.store.dispatch(new CartActions.FetchCart());
                 this.cartItemCountSubscription = this.cartState.subscribe(data => {
                     console.log('cart data', data)
-                    let totalCount = 0;
-                    for (let i = 0; i < data.cart.cartItemLists.length; i++) {
-                        totalCount += data.cart.cartItemLists[i].amount;
+
+                    if (data.cart.cartItemLists) {
+                        let totalCount = 0;
+                        for (let i = 0; i < data.cart.cartItemLists.length; i++) {
+                            totalCount += data.cart.cartItemLists[i].quantity;
+                        }
+                        this.cartItemCount = totalCount;
+                        console.log('cart total count', totalCount);
                     }
-                    this.cartItemCount = totalCount;
-                    console.log('cart total count', totalCount);
                 });
             }
             else {

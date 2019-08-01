@@ -29,7 +29,7 @@
                 <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
                     <div fxLayout="row" fxLayoutAlign="center center" *ngSwitchCase="true">
                         <!-- <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg"> -->
-                        <span class="username mr-12" fxHide fxShow.gt-sm *ngIf="account">{{account.login}}</span>
+                        <span class="username mr-12" fxHide fxShow.gt-sm *ngIf="account">{{account.login | uppercase }}'S ACCOUNT</span>
                         <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center" *ngSwitchCase="false">
@@ -41,19 +41,43 @@
 
                 <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
 
-                    <button mat-menu-item *ngSwitchCase="true">
+                    <button mat-menu-item *ngSwitchCase="true" [routerLink]="['/pages/dashboard/my-profile']">
                         <mat-icon>account_circle</mat-icon>
                         <span>My Profile</span>
                     </button>
 
-                    <button mat-menu-item class="" [routerLink]="['/pages/manage-orders/my-orders']" routerLinkActive="active" *ngSwitchCase="true">
+                    <button mat-menu-item class="" [routerLink]="['/pages/dashboard/my-orders']"
+                        routerLinkActive="active" *ngSwitchCase="true">
                         <mat-icon>mail</mat-icon>
                         <span>My Orders</span>
+                    </button>
+
+                    <button mat-menu-item class="" [routerLink]="['/pages/dashboard/my-wishlist']"
+                        routerLinkActive="active" *ngSwitchCase="true">
+                        <mat-icon>favorite_border</mat-icon>
+                        <span [matBadge]="wishlistCount" matBadgeOverlap="false">My Wishlist</span>
+                    </button>
+
+                    <button mat-menu-item class="" [routerLink]="['/pages/dashboard/my-compare']"
+                        routerLinkActive="active" *ngSwitchCase="true">
+                        <mat-icon>collections</mat-icon>
+                        <span [matBadge]="compareCount" matBadgeOverlap="false">My Compare</span>
+                    </button>
+
+                    <button mat-menu-item class="" [routerLink]="['/pages/dashboard/address-book']"
+                        routerLinkActive="active" *ngSwitchCase="true">
+                        <mat-icon>mail</mat-icon>
+                        <span>Address Book</span>
                     </button>
 
                     <button (click)="logout()" mat-menu-item class="" *ngSwitchCase="true" id="logout">
                         <mat-icon>exit_to_app</mat-icon>
                         <span>Logout</span>
+                    </button>
+
+                    <button mat-menu-item class="" *ngSwitchCase="false" id="register" [routerLink]="['/account/register']">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Register</span>
                     </button>
 
                     <button (click)="login()" mat-menu-item class="" *ngSwitchCase="false" id="login">

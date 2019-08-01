@@ -45,7 +45,7 @@
 
                 <div class="container">
                     <!-- <mc-breadcrumbs></mc-breadcrumbs> -->
-                    <p-breadcrumb [model]="crumbs$ | async" [home]="home" *ngIf="(crumbs$ | async).length > 0"></p-breadcrumb>
+                    <p-breadcrumb [model]="crumbs$ | async" [home]="home" *ngIf="(crumbs$ | async)?.length > 0"></p-breadcrumb>
                 </div>
                 <!-- CONTENT -->
                 <content></content>

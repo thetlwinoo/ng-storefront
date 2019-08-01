@@ -27,6 +27,9 @@ export class ProductBoxComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // if(this.product){
+        //     console.log(this.product)
+        // }
 
     }
 

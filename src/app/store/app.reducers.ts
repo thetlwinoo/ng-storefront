@@ -4,6 +4,12 @@ import * as fromOrder from '../store/order/order.reducer';
 import * as fromAuth from '../store/auth/auth.reducer';
 import * as fromShowcase from '../store/showcase/showcase.reducer';
 import * as fromBrowse from '../store/browse/browse.reducer';
+import * as fromPeople from '../store/people/people.reducer';
+import * as fromAddress from './adresses/addresses.reducer';
+import * as fromPayment from './payment/payment.reducer';
+import * as fromPhotos from './photo/photo.reducer';
+import * as fromWishlist from './wishlist/wishlist.reducer';
+import * as fromCompare from './compare/compare.reducer';
 import { HttpErrorResponse } from "@angular/common/http";
 
 export interface HttpError {
@@ -16,7 +22,13 @@ export interface AppState {
     order: fromOrder.State,
     auth: fromAuth.State,
     showcase: fromShowcase.State,
-    browse: fromBrowse.State
+    browse: fromBrowse.State,
+    people: fromPeople.State,
+    addresses: fromAddress.State,
+    payment: fromPayment.State,
+    photos: fromPhotos.State,
+    wishlist: fromWishlist.State,
+    compare: fromCompare.State
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -24,5 +36,11 @@ export const reducers: ActionReducerMap<AppState> = {
     order: fromOrder.orderReducer,
     auth: fromAuth.authReducer,
     showcase: fromShowcase.showcaseReducer,
-    browse: fromBrowse.browseReducer
+    browse: fromBrowse.browseReducer,
+    people: fromPeople.peopleReducer,
+    addresses: fromAddress.addressReducer,
+    payment: fromPayment.paymentReducer,
+    photos: fromPhotos.photoReducer,
+    wishlist: fromWishlist.wishlistReducer,
+    compare: fromCompare.compareReducer
 };

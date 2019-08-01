@@ -8,38 +8,39 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import * as OrderActions from "./order.actions";
 import * as CartActions from "../cart/cart.actions";
-import { OrderService } from "@box/services/e-commerce/order.service";
-import { PostOrdersObject } from "./order.reducer";
+import { OrderService } from "app/store/order/order.service";
+import { Orders } from "@box/models";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 
 @Injectable()
 export class OrderEffects { //TODO ERROR HANDLING!!
 
 
-  // @Effect() login$ = this.actions$
-  //   .ofType(OrderActions.FETCH_ALL_ORDERS)
-  //   .switchMap((action: OrderActions.FetchAllOrders) => {
-  //       console.log('FETCH_ALL_ORDERS EFFECT');
-  //       return this.orderService.getAllOrders()
-  //         .map(res => ({type: OrderActions.FETCH_ALL_ORDERS_SUCCESS, payload: res}))
-  //     });
+  @Effect() fetchOrder$ = this.actions$.pipe(
+    ofType(OrderActions.FETCH_ORDER),
+    switchMap((action: OrderActions.FetchOrder) => {
+      console.log('FETCH_ALL_ORDERS EFFECT');
+      return this.orderService.getAllOrdersWithoutPaging()
+        .map(res => ({ type: OrderActions.FETCH_ORDER_SUCCESS, payload: res }))
+    })
+  )
 
   @Effect()
   postOrder = this.actions$.pipe(
     ofType(OrderActions.POST_ORDER),
     map((action: OrderActions.PostOrder) => {
-      console.log('POST_ORDER EFFECT');
       return action.payload
     }),
-    switchMap((data: PostOrdersObject) => {
+    switchMap((data: Orders) => {
       return this.orderService.postOrder(data)
         .switchMap(res => {
-          this.router.navigate(["/checkout/success"]);
+          // this.router.navigate(["/checkout/success"]);
           return [
             { type: OrderActions.EMPTY_ORDER },
-            { type: CartActions.EMPTY_CART }]
+            { type: CartActions.EMPTY_CART },
+            { type: OrderActions.POST_ORDER_SUCCESS, payload: res.body }]
         }).catch(error => {
           return Observable.of(
             new OrderActions.OrderError(

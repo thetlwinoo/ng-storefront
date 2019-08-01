@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { ManageOrdersModule } from 'app/main/pages/manage-orders/manage-orders.module';
+import { DashboardModule } from 'app/main/pages/dashboard/dashboard.module';
 
 @NgModule({
     imports: [
-        ManageOrdersModule
+        DashboardModule
     ]
 })
 export class PagesModule

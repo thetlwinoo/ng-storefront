@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Product, ProductDisplay } from "app/store/cart/cart.reducer";
+import { Products, IProducts } from '@box/models';
 import { environment } from '@app/env';
+import { Observable } from 'rxjs';
+type EntityResponseType = HttpResponse<IProducts>;
 
 @Injectable()
 export class ProductService {
 
-  url: string = `${environment.serverApi.baseUrl}` + 'api/product-extended';
+  url: string = `${environment.serverApi.baseUrl}` + 'api/products-extend';
   categoryUrl: string = 'backendurl/api/category';
 
   browsePageSize: number = 20;
@@ -35,10 +38,11 @@ export class ProductService {
       });
   }
 
-  getFullProduct(id: number) {
-    return this.httpClient.get<Product>(this.url + '/product',
+  getFullProduct(id: number): Observable<EntityResponseType> {
+    return this.httpClient.get<IProducts>(this.url + '/product',
       {
-        params: new HttpParams().set('id', id.toString())
+        params: new HttpParams().set('id', id.toString()),
+        observe: 'response'
       });
   }
 
@@ -62,11 +66,29 @@ export class ProductService {
     return this.httpClient.get<ProductDisplay[]>(this.url + '/interested');
   }
 
+  getDailyDiscover() {
+    console.log('daily discover')
+    return this.httpClient.get<ProductDisplay[]>(this.url + '/dailydiscover');
+  }
+
   searchProduct(page: number, keyword: string) {
     let params = new HttpParams();
     params = params.append('page', page.toString());
     params = params.append('keyword', keyword);
+    params = params.append('pageable', 'true');
     params = params.set('size', this.searchPageSize.toString());
+    return this.httpClient.get<ProductDisplay[]>(this.url + '/search', {
+      params: params
+    })
+  }
+
+  searchProductAll(keyword: string) {
+    let params = new HttpParams();
+    params = params.append('page', '0');
+    params = params.append('size', '0');
+    params = params.append('pageable', 'false');
+    params = params.append('keyword', keyword);
+    console.log(params)
     return this.httpClient.get<ProductDisplay[]>(this.url + '/search', {
       params: params
     })

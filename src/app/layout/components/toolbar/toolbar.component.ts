@@ -12,8 +12,15 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginModalService, AccountService, LoginService } from '@box/services/core';
+import { Observable } from "rxjs/Observable";
 import { Account } from '@box/models';
-
+import { Subscription } from "rxjs/Subscription";
+import { Store } from "@ngrx/store";
+import * as fromApp from 'app/store/app.reducers';
+import { HttpError } from 'app/store/app.reducers';
+import { Wishlists, Compares } from '@box/models';
+import * as WishlistActions from 'app/store/wishlist/wishlist.actions';
+import * as CompareActions from 'app/store/compare/compare.actions';
 
 @Component({
     selector: 'toolbar',
@@ -25,7 +32,8 @@ import { Account } from '@box/models';
 export class ToolbarComponent implements OnInit, OnDestroy {
     account: Account;
     modalRef: NgbModalRef;
-
+    wishlistState: Observable<{ wishlists: Wishlists, errors: HttpError[], loading: boolean }>;
+    compareState: Observable<{ compares: Compares, errors: HttpError[], loading: boolean }>;
     isCollapsed: boolean = true;
 
     boxConfig: any;
@@ -36,6 +44,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
+    wishlistCount: number = 0;
+    compareCount: number = 0;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -56,6 +66,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private router: Router,
         private loginModalService: LoginModalService,
         private eventManager: JhiEventManager,
+        private store: Store<fromApp.AppState>,
     ) {
         // Set the defaults
         this.userStatusOptions = [
@@ -125,13 +136,35 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         this.accountService.identity().then((account: Account) => {
             this.account = account;
+            console.log('logon account',account)
         });
         this.registerAuthenticationSuccess();        
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { 'id': this._translateService.currentLang });
 
+        this.wishlistState = this.store.select('wishlist');
+        this.wishlistState.subscribe(data=>{
+            if(data && data.wishlists && data.wishlists.wishlistLists){
+                this.wishlistCount = data.wishlists.wishlistLists.length;
+            }
+            else{
+                this.wishlistCount = 0 ;
+            }
+        });
 
+        this.compareState = this.store.select('compare');
+        this.compareState.subscribe(data=>{
+            console.log('compare',data)
+            if(data && data.compares && data.compares.compareLists){
+                this.compareCount = data.compares.compareLists.length;
+            }else{
+                this.compareCount = 0 ;
+            }
+        });
+
+        this.store.dispatch(new WishlistActions.FetchWishlist());
+        this.store.dispatch(new CompareActions.FetchCompare());
     }
 
     registerAuthenticationSuccess() {

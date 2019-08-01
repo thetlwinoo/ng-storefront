@@ -4,14 +4,13 @@ import { Router } from '@angular/router';
 
 import { map, switchMap } from 'rxjs/operators';
 import * as CartActions from "./cart.actions";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { CartService } from "@box/services/e-commerce/cart.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/throw';
-import 'rxjs/add/observable/of';
 
 @Injectable()
 export class CartEffects {
@@ -22,7 +21,7 @@ export class CartEffects {
     ofType(CartActions.FETCH_CART),
     switchMap((action: CartActions.FetchCart) => {
       return this.cartService.getCart()
-        .map(res => {                
+        .map(res => {            
           return { type: CartActions.FETCH_CART_SUCCESS, payload: { cart: res, effect: CartActions.FETCH_CART } }
         })
         .catch(error => {
@@ -39,11 +38,32 @@ export class CartEffects {
     map((action: CartActions.AddToCart) => {
       return action.payload
     }),
-    switchMap((payload: { id: number, amount: string }) => {
-      return this.cartService.postCart(payload.id, payload.amount)
+    switchMap((payload: { id: number, quantity: number }) => {
+      return this.cartService.postCart(payload.id, payload.quantity)
         .map(res => {
           console.log('success',res)
-          this.router.navigate(["/checkout"]);
+          // this.router.navigate(["/checkout"]);
+
+          return { type: CartActions.SET_CART, payload: { cart: res, effect: CartActions.ADD_TO_CART } }
+        }).catch(error => {
+          return Observable.of(
+            new CartActions.CartError(
+              { error: error, errorEffect: CartActions.ADD_TO_CART }));
+        })
+    })
+  )
+
+  @Effect()
+  reduceFromCart = this.actions$.pipe(
+    ofType(CartActions.REDUCE_FROM_CART),
+    map((action: CartActions.ReduceFromCart) => {
+      return action.payload
+    }),
+    switchMap((payload: { id: number, quantity: number }) => {
+      return this.cartService.reduceFromCart(payload.id, payload.quantity)
+        .map(res => {
+          console.log('reduce cart',res)
+          
           return { type: CartActions.SET_CART, payload: { cart: res, effect: CartActions.ADD_TO_CART } }
         }).catch(error => {
           return Observable.of(
@@ -91,10 +111,13 @@ export class CartEffects {
   emptyCart = this.actions$.pipe(
     ofType(CartActions.EMPTY_CART),
     switchMap((action: CartActions.EmptyCart) => {
+      console.log('Empty Cart Actions');
       return this.cartService.emptyCart()
         .map(res => {
+          console.log('Empty Cart Res',res);
           return { type: CartActions.EMPTY_CART_SUCCESS, payload: res }
         }).catch(error => {
+          console.log('Empty Cart Error',error);
           return Observable.of(
             new CartActions.CartError({ error: error, errorEffect: CartActions.EMPTY_CART })
           )

@@ -8,5 +8,9 @@ export const accountState: Routes = [
     {
         path: '',
         children: ACCOUNT_ROUTES
+    },
+    {
+        path: '**',
+        redirectTo: 'shop/home'
     }
 ];

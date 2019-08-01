@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -7,42 +6,30 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BoxDirectivesModule } from '@box/directives/directives';
 import { BoxPipesModule } from '@box/pipes/pipes.module';
 
+import { ResourceSharedLibsModule, ResourceSharedCommonModule} from './';
 import { JhiLoginModalComponent } from './components';
-// import { LoginService } from './services/core/login/login.service';
-import { CookieModule } from 'ngx-cookie';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-
         FlexLayoutModule,
-
         BoxDirectivesModule,
         BoxPipesModule,
-        CookieModule.forRoot(),
-        NgbModule.forRoot(),
-        InputTextModule,
-        ButtonModule
+        ResourceSharedCommonModule,
+        ResourceSharedLibsModule
     ],
     declarations: [JhiLoginModalComponent],
     entryComponents: [JhiLoginModalComponent],
     providers: [],
     exports: [
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-
+        ResourceSharedCommonModule,
         FlexLayoutModule,
-
         BoxDirectivesModule,
         BoxPipesModule,
         JhiLoginModalComponent
-    ]
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BoxSharedModule {
 }

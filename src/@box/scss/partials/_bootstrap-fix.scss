@@ -8,24 +8,41 @@ a:hover {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-
-}
+@media (min-width: 992px) and (max-width: 1199px) {}
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .container{
+    .container {
         padding: 0 !important;
     }
 }
 
 @media (max-width: 767px) {
-    .container{
+    .container {
         padding: 0 !important;
     }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) {
-    .container{
+    .container {
         padding: 0 !important;
+    }
+}
+
+button:focus {
+    outline: none !important;
+}
+
+#ngb-order-summary {
+    .card {
+        margin-top: 20px;
+        border: none !important;
+    }
+
+    #custom-order-summary-header.card-header {
+        border: none !important;
+    }
+
+    #custom-order-summary {
+        background: rgba(0, 0, 0, 0.03);
     }
 }

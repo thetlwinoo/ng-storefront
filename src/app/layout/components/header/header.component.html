@@ -1,7 +1,6 @@
 <div class="container-wrapper header-with-search-wrapper" [ngClass]="boxConfig.layout.header.primaryBackground">
     <div class="container header-with-search">
-        <a routerLink="/pages/home" routerLinkActive="active" class="header-with-search__logo-section" fxHide
-            fxShow.gt-xs>
+        <a routerLink="/home" routerLinkActive="active" class="header-with-search__logo-section" fxHide fxShow.gt-xs>
             <img src="assets/zezawar.svg" alt="">
         </a>
         <box-search class="header-with-search__search-section" [url]="currentUrl" [defaultKeywords]="defaultKeywords"
@@ -13,20 +12,17 @@
                 <div class="cart-drawer-container">
                     <div class="cart-drawer flex v-center">
                         <div class="drop">
-                            <a href routerLink="/checkout" routerLinkActive="active" class="cart-button" 
-                                mat-icon-button matBadge="{{cartItemCount}}" matBadgePosition="after" matBadgeColor="warn" *ngIf="isAuthenticated()">
-                                <!-- <mat-icon class="fas">shopping_cart</mat-icon> -->
-                                <i class="material-icons fas">
-                                    shopping_cart
-                                </i>
+                            <a href routerLink="/checkout" routerLinkActive="active" class="cart-button"
+                                mat-icon-button>
+                                <i class="pi pi-shopping-cart fas" matBadge="{{cartItemCount}}" matBadgePosition="after"
+                                    matBadgeColor="warn"
+                                    *ngIf="isAuthenticated() && (cartState | async).cart.cartItemLists?.length>0;else noauth"></i>
+                                <ng-template #noauth>
+                                    <i class="pi pi-shopping-cart fas"></i>
+                                </ng-template>
                             </a>
-                            <a href routerLink="/checkout" routerLinkActive="active" class="cart-button" 
-                                mat-icon-button *ngIf="!isAuthenticated()">
-                                <i class="material-icons fas">
-                                    shopping_cart
-                                </i>
-                            </a>
-                            <div class="pPanel" *ngIf="isAuthenticated() && (cartState | async).cart.cartItemLists?.length>0 && (currentUrl !== '/checkout')">
+                            <div class="pPanel"
+                                *ngIf="isAuthenticated() && (cartState | async).cart.cartItemLists?.length>0">
                                 <div class="inner cart-container" boxPerfectScrollbar>
                                     <div class="widget_shopping_cart_content">
                                         <ul class="cart_list product_list_widget ">
@@ -34,23 +30,25 @@
                                                 <a href class="remove" title="Remove this item"
                                                     (click)="remove($event,item)">×</a>
                                                 <a href class="product-title" (click)="onCart($event)">
-                                                    <img src="{{ cartItem.product.image }}" alt="" *ngIf="cartItem.product.image;else noimage">
+                                                    <img src="{{ cartItem.product.photo }}" alt=""
+                                                        *ngIf="cartItem.product.photo;else noimage">
                                                     <ng-template #noimage>
-                                                        <img src="assets/devita/img/no_photo.jpg"
-                                                            alt="no image preview">
+                                                        <img src="assets/images/noimage.png" alt="no image preview">
                                                     </ng-template>
                                                     {{cartItem.product.productName}}
                                                 </a>
                                                 <span class="color-variations">Blue</span>
                                                 <span class="quantity">{{cartItem.amount}} ×
-                                                    <span class="amount">{{cartItem.product.listPrice | currency:'USD' }}</span>
+                                                    <span
+                                                        class="amount">{{cartItem.product.unitPrice | currency:'USD' }}</span>
                                                 </span>
                                             </li>
                                         </ul>
                                         <!-- end product list -->
                                         <p class="total">
                                             <strong>Subtotal:</strong>
-                                            <span class="amount">{{(cartState | async).cart.totalPrice | currency:'USD'}}</span>
+                                            <span
+                                                class="amount">{{(cartState | async).cart.totalPrice | currency:'USD'}}</span>
                                         </p>
                                         <p class="buttons">
                                             <a href [routerLink]="['/checkout']" routerLinkActive="active"

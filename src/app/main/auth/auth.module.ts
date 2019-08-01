@@ -6,8 +6,7 @@ import { SigninComponent } from './signin/signin.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from "@angular/forms";
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
+import { BoxSharedModule } from '@box/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule
+    BoxSharedModule
   ],
   providers: []
 })

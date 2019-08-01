@@ -2,19 +2,6 @@ import * as CartActions from './cart.actions';
 import { HttpError } from "../app.reducers";
 
 export interface Product {
-  // cartDesc: string,
-  // id: number,
-  // image: string,
-  // live: number,
-  // longDesc: string,
-  // name: string,
-  // price: number,
-  // cargoPrice: number,
-  // taxPercent: number,
-  // productCategory: { name: string, id: number },
-  // sku: string,
-  // stock: number,
-  // unlimited: number
   id: number
   productName: string,
   productNumber: string,
@@ -24,16 +11,22 @@ export interface Product {
   safetyStockLevel: number,
   reorderPoint: number,
   standardCost: number,
-  cargoPrice: number,
-  listPrice: number,
-  size: string,
+  unitPrice: number,
+  recommendedRetailPrice: number,
+  brand: string,
+  specifySize: string,
   weight: number,
   daysToManufacture: number,
   productLine: string,
   classType: string,
   style: string,
+  customFields: string,
+  tags: string,
+  searchDetails: string,
   sellStartDate: Date,
   sellEndDate: Date,
+  marketingComments: string,
+  internalComments: string,
   discontinuedDate: Date,
   sellCount: number
 }
@@ -126,6 +119,7 @@ export function cartReducer(state = initialState, action: CartActions.CartAction
 
     case (CartActions.ADD_TO_CART):
     case (CartActions.REMOVE_FROM_CART):
+    case (CartActions.REDUCE_FROM_CART):
     case (CartActions.APPLY_DISCOUNT):
       return {
         ...state,

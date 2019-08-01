@@ -1,8 +1,44 @@
-<div id="product-box">
+<p-card id="product-box" header="{{product?.productName}}" subheader="{{product?.productSubCategory?.productSubCategoryName}}"
+    [style]="{width: '100%'}" styleClass="ui-card-shadow">
+    <p-header>
+        <!-- <img src="Card" [src]="product.photo" class="img-fluid" alt="" *ngIf="product.photo;else noimages">
+        <ng-template #noimages>
+            <img src="Card" src="assets/multicart/images/2.jpg" class="img-fluid" alt="">
+        </ng-template> -->
+        <div class="square" [style.backgroundImage]="'url('+ product?.photo +')'" *ngIf="product.photo;else noimage">
+        </div>
+        <ng-template #noimage>
+            <div class="square no-image"></div>
+        </ng-template>
+    </p-header>
+    <div class="ui-grid-row" *ngIf="mode == 'deal'">
+        <div class="ui-grid-col-12">
+            <div class="p-3">
+                <p-progressBar [value]="50" [style]="{'height': '8px'}" [showValue]="false"></p-progressBar>
+            </div>
+        </div>
+    </div>
+    <div>{{product?.productModel?.productModelName}}</div>
+    <p-footer>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-6">
+                <div class="product-price p-2">
+                    {{product.unitPrice | currency:productsService?.currency:'symbol'}}
+                </div>
+            </div>
+            <div class="ui-grid-col-6">
+                <div class="product-sold p-2">
+                    {{product.sellCount}} sold
+                </div>
+            </div>
+        </div>
+    </p-footer>
+</p-card>
+<!-- <div id="product-box">
     <div class="ui-grid ui-grid-responsive">
         <div class="ui-grid-row">
             <div class="ui-grid-col-12">
-                <img [src]="product.productPhoto" class="img-fluid" alt="" *ngIf="product.productPhoto;else noimages">
+                <img [src]="product.photo" class="img-fluid" alt="" *ngIf="product.photo;else noimages">
                 <ng-template #noimages>
                     <img src="assets/multicart/images/fashion/product/1.jpg" class="img-fluid" alt="">
                 </ng-template>
@@ -25,14 +61,14 @@
         <div class="ui-grid-row">
             <div class="ui-grid-col-6">
                 <div class="product-price p-3">
-                    {{product.listPrice | currency:productsService?.currency:'symbol'}}
+                    {{product.unitPrice | currency:productsService?.currency:'symbol'}}
                 </div>
             </div>
             <div class="ui-grid-col-6">
                 <div class="product-sold p-3">
-                    {{product.cargoPrice}} sold
+                    {{product.recommendedRetailPrice}} sold
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -1,4 +1,5 @@
 //custom theme start
+@import 'partials/bootstrap-variables';
 @import '~bootstrap/scss/bootstrap';
 //custom theme end
 // @import "~nouislider/distribute/nouislider.min.css";
@@ -34,7 +35,9 @@
 @import "partials/navigation";
 @import "partials/forms";
 @import "partials/print";
+@import "partials/custom";
 
 @import "partials/plugins/plugins";
 
-@import "customs/customs";
+
+// @import "customs/customs";

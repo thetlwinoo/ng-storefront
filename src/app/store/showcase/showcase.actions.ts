@@ -8,6 +8,8 @@ export const FETCH_MOST_SELLING = 'FETCH_MOST_SELLING';
 export const FETCH_MOST_SELLING_SUCCESS = 'FETCH_MOST_SELLING_SUCCESS';
 export const FETCH_INTERESTED = 'FETCH_INTERESTED';
 export const FETCH_INTERESTED_SUCCESS = 'FETCH_INTERESTED_SUCCESS';
+export const FETCH_DAILY_DISCOVER = 'FETCH_DAILY_DISCOVER';
+export const FETCH_DAILY_DISCOVER_SUCCESS = 'FETCH_DAILY_DISCOVER_SUCCESS';
 export const EMPTY_INTERESTED = 'EMPTY_INTERESTED';
 export const SHOWCASE_ERROR = 'SHOWCASE_ERROR';
 
@@ -50,6 +52,17 @@ export class EmptyInterested implements Action {
   readonly type = EMPTY_INTERESTED;
 }
 
+export class FetchDailyDiscover implements Action {
+  readonly type = FETCH_DAILY_DISCOVER;
+}
+
+export class FetchDailyDiscoverSuccess implements Action {
+  readonly type = FETCH_DAILY_DISCOVER_SUCCESS;
+
+  constructor(public payload: ProductDisplay[]) {
+  }
+}
+
 export class ShowcaseError implements Action {
   readonly type = SHOWCASE_ERROR;
 
@@ -59,4 +72,4 @@ export class ShowcaseError implements Action {
 
 
 export type ShowcaseActions = FetchNewlyAdded | FetchNewlyAddedSuccess | FetchMostSelling | FetchMostSellingSuccess
-  | FetchInterested | FetchInterestedSuccess | EmptyInterested | ShowcaseError
+  | FetchInterested | FetchInterestedSuccess | EmptyInterested | FetchDailyDiscover | FetchDailyDiscoverSuccess | ShowcaseError

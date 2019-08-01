@@ -125,7 +125,7 @@ export function browseReducer(state = initialState, action: BrowseActions.Browse
         loading: false
       };
 
-    default:
-      return state;
+      default:
+        return state;
   }
 }

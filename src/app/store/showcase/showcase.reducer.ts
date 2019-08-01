@@ -1,12 +1,13 @@
-import {ProductDisplay} from "../cart/cart.reducer";
+import { ProductDisplay } from "../cart/cart.reducer";
 import * as ShowcaseActions from "./showcase.actions";
-import {HttpError} from "../app.reducers";
+import { HttpError } from "../app.reducers";
 
 
 export interface State {
   newlyAdded: ProductDisplay[];
   mostSelling: ProductDisplay[];
   interested: ProductDisplay[];
+  dailyDiscover: ProductDisplay[];
   errors: HttpError[];
 }
 
@@ -14,6 +15,7 @@ const initialState: State = {
   newlyAdded: [],
   mostSelling: [],
   interested: [],
+  dailyDiscover: [],
   errors: []
 };
 
@@ -55,7 +57,7 @@ export function showcaseReducer(state = initialState, action: ShowcaseActions.Sh
         interested: action.payload,
         errors: fetchInterestedErrorClear
       };
-    case(ShowcaseActions.SHOWCASE_ERROR):
+    case (ShowcaseActions.SHOWCASE_ERROR):
       let showcaseErrorPush = state.errors;
       for (let i = 0; i < showcaseErrorPush.length; i++) {
         if (showcaseErrorPush[i].errorEffect === action.payload.errorEffect) {
@@ -70,6 +72,18 @@ export function showcaseReducer(state = initialState, action: ShowcaseActions.Sh
       return {
         ...state,
         errors: showcaseErrorPush
+      };
+    case (ShowcaseActions.FETCH_DAILY_DISCOVER_SUCCESS):
+      let fetchDailyDiscoverErrorClear = state.errors;
+      for (let i = 0; i < fetchDailyDiscoverErrorClear.length; i++) {
+        if (fetchDailyDiscoverErrorClear[i].errorEffect === 'FETCH_DAILY_DISCOVER') { //TODO put retry button on the field if it fails
+          fetchDailyDiscoverErrorClear = fetchDailyDiscoverErrorClear.splice(i, 1);
+        }
+      }
+      return {
+        ...state,
+        dailyDiscover: action.payload,
+        errors: fetchDailyDiscoverErrorClear
       };
     case (ShowcaseActions.EMPTY_INTERESTED):
       return {

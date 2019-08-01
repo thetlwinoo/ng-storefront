@@ -1,10 +1,11 @@
+import './vendor.ts';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule, MatSnackBarModule, MatProgressBarModule } from '@angular/material';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
@@ -33,15 +34,26 @@ import { OrderEffects } from "./store/order/order.effects";
 import { AuthEffects } from "./store/auth/auth.effects";
 import { ShowcaseEffects } from "./store/showcase/showcase.effects";
 import { BrowseEffects } from "./store/browse/browse.effects";
+import { PeopleEffects } from "./store/people/people.effects";
+import { PaymentEffects } from "./store/payment/payment.effects";
+import { PhotoEffects } from "./store/photo/photo.effects";
+import { WishlistEffects } from "./store/wishlist/wishlist.effects";
+import { CompareEffects } from "./store/compare/compare.effects";
+import { AddressesEffects } from "./store/adresses/addresses.effects";
 
 import { ProductService } from "@box/services/e-commerce/product.service";
 import { CartService } from "@box/services/e-commerce/cart.service";
-import { OrderService } from "@box/services/e-commerce/order.service";
+import { OrderService } from "app/store/order/order.service";
+import { PeopleService } from "@box/services/e-commerce/people.service";
 import { TokenService } from "@box/services/e-commerce/token.service";
+import { PaypalService } from "app/store/payment/paypal.service";
+import { CreditCardService } from "app/store/payment/credit-card.service";
 import { AuthGuardService } from "@box/services/e-commerce/auth-guard.service";
 import { NonAuthGuardService } from "@box/services/e-commerce/non-auth-guard.service";
 import { AccountService } from "@box/services/e-commerce/account.service";
-
+import { ProductPhotoService } from '@box/services/e-commerce/product-photo.service';
+import { WishlistService } from '@box/services/e-commerce/wishlist.service';
+import { CompareService } from '@box/services/e-commerce/compare.service';
 import { TokenInterceptor } from "@box/services/e-commerce/token.interceptor";
 
 import { AuthInterceptor } from '@box/blocks/interceptor/auth.interceptor';
@@ -50,11 +62,16 @@ import { ErrorHandlerInterceptor } from '@box/blocks/interceptor/errorhandler.in
 import { NotificationInterceptor } from '@box/blocks/interceptor/notification.interceptor';
 
 import { Ng2Webstorage } from 'ngx-webstorage';
+// import { ResourceAccountModule } from './account/account.module';
 
 const appRoutes: Routes = [
     {
-        path: 'shop',
-        loadChildren: './main/shop/shop.module#ShopModule'
+        path: 'home',
+        loadChildren: './main/home/home.module#HomeModule'
+    },
+    {
+        path: 'products',
+        loadChildren: './main/products/products.module#ProductsModule'
     },
     {
         path: 'pages',
@@ -73,8 +90,12 @@ const appRoutes: Routes = [
         loadChildren: './main/search/search.module#SearchModule'
     },
     {
+        path: 'account',
+        loadChildren: './account/account.module#ResourceAccountModule'
+    },
+    {
         path: '**',
-        redirectTo: 'shop/home'
+        redirectTo: 'home'
     }
 ];
 
@@ -85,6 +106,7 @@ const appRoutes: Routes = [
     imports: [
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         BrowserModule,
+        // ResourceAccountModule,
         BrowserAnimationsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
@@ -107,10 +129,6 @@ const appRoutes: Routes = [
             }
         }),
         MatMomentDateModule,
-        MatButtonModule,
-        MatIconModule,
-        MatSnackBarModule,
-        MatProgressBarModule,
         BoxModule.forRoot(boxConfig),
         BoxProgressBarModule,
         BoxSharedModule,
@@ -120,13 +138,37 @@ const appRoutes: Routes = [
         LayoutModule,
 
         StoreModule.forRoot(reducers),
-        EffectsModule.forRoot([CartEffects, OrderEffects, AuthEffects, ShowcaseEffects, BrowseEffects]),
+        EffectsModule.forRoot([
+            CartEffects,
+            OrderEffects,
+            AuthEffects,
+            ShowcaseEffects,
+            BrowseEffects,
+            PeopleEffects,
+            AddressesEffects,
+            PaymentEffects,
+            PhotoEffects,
+            WishlistEffects,
+            CompareEffects
+        ]),
     ],
     bootstrap: [
         AppComponent
     ],
     providers: [
-        ProductService, CartService, OrderService, TokenService, AuthGuardService, NonAuthGuardService, AccountService,
+        ProductService,
+        CartService,
+        OrderService,
+        TokenService,
+        AuthGuardService,
+        NonAuthGuardService,
+        AccountService,
+        PeopleService,
+        PaypalService,
+        CreditCardService,
+        ProductPhotoService,
+        WishlistService,        
+        CompareService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

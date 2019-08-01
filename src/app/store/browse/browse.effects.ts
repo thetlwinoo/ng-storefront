@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, switchMap, mergeMap } from 'rxjs/operators';
-import * as BrowseActions from "./browse.actions";
-import { ProductService } from "@box/services/e-commerce/product.service";
-import { Observable } from "rxjs/Observable";
+  import { Injectable } from '@angular/core';
+  import { Actions, Effect, ofType } from '@ngrx/effects';
+  import { map, switchMap, mergeMap } from 'rxjs/operators';
+  import * as BrowseActions from "./browse.actions";
+  import { ProductService } from "@box/services/e-commerce/product.service";
+  import { Observable } from "rxjs";
 
 
 @Injectable()
@@ -17,6 +17,7 @@ export class BrowseEffects {
     switchMap((params: { page: number, sort: string, category: string }) => {
       return this.productService.getProducts(params.page, params.sort, params.category)
         .map(res => {
+          console.log(res);
           return {
             type: BrowseActions.FETCH_PRODUCTS_SUCCESS,
             payload: {

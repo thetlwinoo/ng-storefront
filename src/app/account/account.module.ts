@@ -1,7 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 // import { ResourceSharedModule } from 'app/shared';
+import { BreadcrumbInitializedGuard } from '@box/services/breadcrumb-initialized-guard.service';
 
 import {
   PasswordStrengthBarComponent,
@@ -17,7 +19,9 @@ import {
 @NgModule({
   imports: [
     // ResourceSharedModule, 
-    RouterModule.forChild(accountState)
+    RouterModule.forChild(accountState),
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     ActivateComponent,
@@ -28,6 +32,9 @@ import {
     PasswordResetFinishComponent,
     SettingsComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    BreadcrumbInitializedGuard
+  ]
 })
 export class ResourceAccountModule { }

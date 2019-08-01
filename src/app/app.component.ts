@@ -159,7 +159,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 }
 
                 this.document.body.classList.add(this.boxConfig.colorTheme);
-            });
+            });        
     }
 
     /**

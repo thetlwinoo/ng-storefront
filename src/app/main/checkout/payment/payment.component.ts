@@ -1,48 +1,117 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import * as fromApp from "app/store/app.reducers";
 import { Store } from "@ngrx/store";
 import * as OrderActions from "app/store/order/order.actions";
-import { PaymentObject } from "app/store/order/order.reducer";
-import { Router } from "@angular/router";
-
+import * as PaymentActions from "app/store/payment/payment.actions";
+import { Router, ActivatedRoute, Params, NavigationEnd } from "@angular/router";
+import { MenuItem } from 'primeng/api';
+import { Observable } from "rxjs/Observable";
+import { Subscription } from "rxjs/Subscription";
+import 'rxjs/add/operator/take';
+import { Cart } from "app/store/cart/cart.reducer";
+import { HttpError } from "app/store/app.reducers";
+import { Orders } from '@box/models';
+import { filter, take } from 'rxjs/operators';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit {
-  paymentForm: FormGroup;
+export class PaymentComponent implements OnInit, OnDestroy {
+  // cartState: Observable<{ cart: Cart, errors: HttpError[], loading: boolean }>;
+  // orderState: Observable<{ currentOrder: Orders, errors: HttpError[] }>;
+  paymentState: Observable<{ createPaypal: any, errors: HttpError[], loading: boolean }>;
+
+  activatedRouteSubscription: Subscription;
+  paymentSubscription: Subscription;
+  querySubscribe: Subscription;
+  orders: any;
+  paypalRedirectUrl: string = null;
+  createPaypalOrderId: string = null;
+
   constructor(
     private store: Store<fromApp.AppState>,
+    // private router: Router,
+    protected activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    // this.router.events
+    //   .pipe(
+    //     filter((event) => event instanceof NavigationEnd),
+    //     take(1)
+    //   )
+    //   .subscribe((e) => {
+    //     console.log('router nav', e);
+    //   });
+  }
 
   ngOnInit() {
-    this.paymentForm = new FormGroup({
-      'cardNo': new FormControl('333', Validators.required),
-      'cardOwner': new FormControl('ant', Validators.required),
-      'cardExp': new FormGroup({
-        'month': new FormControl('1', [Validators.required]),
-        'year': new FormControl('2018', [Validators.required]),
-      }),
-      'cardCCV': new FormControl('333', Validators.required),
+    // this.cartState = this.store.select('cart');
+    // this.orderState = this.store.select('order');
+    this.paymentState = this.store.select('payment');
+
+    this.activatedRouteSubscription = this.activatedRoute.data.subscribe(({ orders }) => {
+      this.orders = orders;
+    });    
+
+    this.paymentSubscription = this.paymentState.subscribe(data => {
+      console.log('paymentSubscription', data)
+      if (data.createPaypal && data.createPaypal.status == 'success') {
+        console.log('create success', data)
+        this.paypalRedirectUrl = data.createPaypal.redirect_url;
+      }
+    }); 
+
+    this.querySubscribe = this.route.queryParams.subscribe((params: Params) => {      
+      if (params['paymentId'] && params['PayerID']) {
+        this.store.dispatch(new PaymentActions.CompletePaypal({
+          paymentId: params['paymentId'],
+          payerId: params['PayerID'],
+          orderId: this.orders.id,
+        }));
+      } 
     });
   }
 
-  onSubmitPaymentForm() {
-    console.log(this.paymentForm);
-    console.log(this.paymentForm.value.cardExp);
-    const paymentData: PaymentObject = {
-      cardOwner: this.paymentForm.value.cardOwner,
-      cardNo: this.paymentForm.value.cardNo,
-      cardExp: this.paymentForm.value.cardExp,
-      cardCCV: this.paymentForm.value.cardCCV,
-    };
-    this.store.dispatch(new OrderActions.PostPayment(paymentData));
+  ngOnDestroy() {
+    if (this.activatedRouteSubscription) this.activatedRouteSubscription.unsubscribe();
+    // if (this.paymentSubscription) this.paymentSubscription.unsubscribe();
+    if (this.querySubscribe) this.querySubscribe.unsubscribe();
+  }
 
-    console.log(paymentData);
-    this.router.navigate(["/checkout/confirm"]);
+  onPaypalCheckout(event) {
+    let payload = {
+      // sum: this.totalDue
+      sum: this.orders.totalDue,
+      returnUrl: this.router.url
+    };
+    // console.log('on paypal', payload);
+    this.store.dispatch(new PaymentActions.CreatePaypal(payload));
+  }
+
+  onChargeCard(event) {
+    // let form = document.getElementsByTagName("form")[0];
+    (<any>window).Stripe.card.createToken({
+      number: event.cardNumber,
+      exp_month: event.cardExpiryMonth,
+      exp_year: event.cardExpiryYear,
+      cvc: event.cardCVV
+    }, (status: number, response: any) => {
+      if (status === 200) {
+        let payload = {
+          token: response.id,
+          amount: this.orders.totalDue,
+          orderId: this.orders.id
+        };
+        this.store.dispatch(new PaymentActions.ChargeStripe(payload));
+
+      } else {
+        console.log(response.error.message);
+      }
+    });
   }
 }

@@ -1,9 +1,10 @@
-import {Action} from '@ngrx/store';
-import {Cart} from "./cart.reducer";
-import {HttpError} from "../app.reducers";
+import { Action } from '@ngrx/store';
+import { Cart } from "./cart.reducer";
+import { HttpError } from "../app.reducers";
 
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const REDUCE_FROM_CART = 'REDUCE_FROM_CART';
 export const EMPTY_CART = 'EMPTY_CART';
 export const EMPTY_CART_SUCCESS = 'EMPTY_CART_SUCCESS';
 export const FETCH_CART = 'FETCH_CART';
@@ -16,7 +17,7 @@ export const CART_ERROR = 'CART_ERROR';
 export class AddToCart implements Action {
   readonly type = ADD_TO_CART;
 
-  constructor(public payload: { id: number, amount: string }) {
+  constructor(public payload: { id: number, quantity: number }) {
   }
 }
 
@@ -35,6 +36,13 @@ export class RemoveFromCart implements Action {
   } //index of the product in the list to be deleted
 }
 
+export class ReduceFromCart implements Action {
+  readonly type = REDUCE_FROM_CART;
+
+  constructor(public payload: { id: number, quantity: number }) {
+  }
+}
+
 export class EmptyCart implements Action {
   readonly type = EMPTY_CART;
 }
@@ -42,7 +50,6 @@ export class EmptyCart implements Action {
 export class EmptyCartSuccess implements Action {
   readonly type = EMPTY_CART_SUCCESS;
 }
-
 
 export class FetchCart implements Action {
   readonly type = FETCH_CART;
@@ -71,4 +78,4 @@ export class CartError implements Action {
 
 
 export type CartActions = SetCart | FetchCart | FetchCartSuccess | AddToCart
-  | RemoveFromCart | EmptyCart | EmptyCartSuccess | ApplyDiscount | CartError;
+  | RemoveFromCart | ReduceFromCart | EmptyCart | EmptyCartSuccess | ApplyDiscount | CartError;

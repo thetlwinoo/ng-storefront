@@ -7,6 +7,8 @@ import { FilterPipe } from './filter.pipe';
 import { CamelCaseToDashPipe } from './camelCaseToDash.pipe';
 import { EllipsisPipe } from './ellipsis.pipe';
 import { OrderByPipe } from './order-by.pipe';
+import { ReviewedPipe } from './reviewed.pipe';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
     declarations: [
@@ -16,7 +18,9 @@ import { OrderByPipe } from './order-by.pipe';
         FilterPipe,
         CamelCaseToDashPipe,
         EllipsisPipe,
-        OrderByPipe
+        OrderByPipe,
+        ReviewedPipe,
+        SafePipe
     ],
     imports: [],
     exports: [
@@ -26,7 +30,9 @@ import { OrderByPipe } from './order-by.pipe';
         FilterPipe,
         CamelCaseToDashPipe,
         EllipsisPipe,
-        OrderByPipe
+        OrderByPipe,
+        ReviewedPipe,
+        SafePipe
     ]
 })
 export class BoxPipesModule {

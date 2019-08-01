@@ -1,80 +1,127 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import * as OrderActions from "app/store/order/order.actions";
-import { PostOrdersObject } from "app/store/order/order.reducer";
+// import { PostOrdersObject } from "app/store/order/order.reducer";
 import * as fromApp from "app/store/app.reducers";
 import { Store } from "@ngrx/store";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import * as BlankValidators from "@box/services/core/validators/blank.validator";
 import { AccountService } from '@box/services/core';
 import { Account } from '@box/models';
+import { Observable } from "rxjs/Observable";
+import { Addresses, Orders, IOrders } from '@box/models';
+import { HttpError } from "app/store/app.reducers";
+import * as AddressActions from "app/store/adresses/addresses.actions";
+import * as moment from 'moment';
+import { MenuItem } from 'primeng/components/common/api';
+import { MessageService } from '@box/services/message.service';
+import { Cart } from "app/store/cart/cart.reducer";
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.scss']
 })
-export class OrderFormComponent implements OnInit {
-  orderForm: FormGroup;
-  emailPattern: string = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-
+export class OrderFormComponent implements OnInit, OnDestroy {
   innerLoading: boolean = true;
+
+  addNewAddressInd: boolean = false;
+  account: Account;
+  cartPrice: number;
+  totalCount: number = 0;
+  applyCodeShow: boolean = false;
+  defaultAddress: Addresses;
+  placeOrderInd: boolean = false;
+
+  addressState: Observable<{ addresses: any[], default: any, errors: HttpError[], loading: boolean }>;
+  orderState: Observable<{ currentOrder: Orders, errors: HttpError[] }>;
+  cartState: Observable<{ cart: Cart, errors: HttpError[], loading: boolean }>;
+  cartPriceSubscription: Subscription;
+  addressStateSubscription: Subscription;
+  orderSubscription: Subscription;
 
   constructor(
     private store: Store<fromApp.AppState>,
     private accountService: AccountService,
-    private router: Router
-  ) { }
+    private messageService: MessageService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+
+  }
 
   ngOnInit() {
-    this.orderForm = new FormGroup({
-      'shipName': new FormControl(null, [Validators.pattern('^[a-zA-Z\\s]+$'), Validators.required, BlankValidators.notBlankValidator]),
-      'email': new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern), BlankValidators.notBlankValidator]),
-      'shipAddress': new FormControl(null, [Validators.pattern('[0-9a-zA-Z #,-]+'), Validators.required, BlankValidators.notBlankValidator]),
-      'shipAddress2': new FormControl(null, [Validators.pattern('[0-9a-zA-Z #,-]+'), BlankValidators.checkIfBlankValidator]),
-      'city': new FormControl(null, [Validators.pattern('^[a-zA-Z\\s]+$'), Validators.required, BlankValidators.notBlankValidator]),
-      'state': new FormControl(null, [Validators.pattern('^[a-zA-Z\\s]+$'), BlankValidators.checkIfBlankValidator]),
-      'zip': new FormControl(null, [Validators.required, Validators.maxLength(6), Validators.minLength(5)]),
-      'country': new FormControl(null, [Validators.pattern('^[a-zA-Z\\s]+$'), Validators.required, BlankValidators.notBlankValidator]),
-      'phone': new FormControl(null, [Validators.required, Validators.pattern('[0-9]+'), Validators.minLength(11), Validators.maxLength(12)]),
-      'cargoFirm': new FormControl(null, [Validators.required, BlankValidators.notBlankValidator]),
-    });
+    this.store.dispatch(new AddressActions.FetchAddresses);
+    this.addressState = this.store.select('addresses');
+    this.orderState = this.store.select('order');
 
     this.accountService.identity().then((account: Account) => {
-      console.log('order user',account)
-      // this.orderForm.patchValue({
-      //   shipName: account.displayName
-      //   email: data.email,
-      //   shipAddress: data.address,
-      //   shipAddress2: data.address2,
-      //   city: data.city,
-      //   state: data.state,
-      //   zip: data.zip,
-      //   country: data.country,
-      //   phone: data.phone,
-      //   cargoFirm: 'ups'
-      // });
-
+      console.log('order user', account)
+      this.account = account;
       this.innerLoading = false;
     });
+
+    this.cartState = this.store.select('cart');
+    this.cartPriceSubscription = this.cartState.subscribe(
+      (data) => {
+        // console.log('cart state')
+        let cp = 0;
+
+        if (data.cart.cartItemLists) {
+          for (let i = 0; i < data.cart.cartItemLists.length; i++) {
+            const product = data.cart.cartItemLists[i].product;
+            cp = cp + (product.unitPrice * data.cart.cartItemLists[i].quantity);
+          }
+
+          this.totalCount = data.cart.cartItemLists.length;
+        }
+
+        this.cartPrice = cp;
+      }
+    );
+
+    this.addressStateSubscription = this.addressState.subscribe(data => {
+      if (data && !data.loading && data.default) {
+        this.defaultAddress = data.default;
+      }
+    });
+
+    this.orderSubscription = this.orderState.subscribe(data => {      
+      if (data.currentOrder && data.currentOrder.totalDue > 0 && this.placeOrderInd) {
+        this.router.navigate(['/checkout/payment', data.currentOrder.id, 'secure']);
+      }
+    })
   }
-  onSubmitOrderForm() {
-    console.log(this.orderForm);
-    const postData: PostOrdersObject = {
-      shipName: this.orderForm.value.shipName.trim(),
-      email: this.orderForm.value.email.trim(),
-      shipAddress: this.orderForm.value.shipAddress.trim(),
-      shipAddress2: this.orderForm.value.shipAddress2 == null ? null : this.orderForm.value.shipAddress2.trim(),
-      city: this.orderForm.value.city.trim(),
-      state: this.orderForm.value.state.trim(),
-      zip: this.orderForm.value.zip,
-      country: this.orderForm.value.country.trim(),
-      phone: this.orderForm.value.phone,
-      cargoFirm: this.orderForm.value.cargoFirm
+
+  onAddNewAddress(event) {
+    this.addNewAddressInd = true;
+  }
+
+  onCancel(event) {
+    this.addNewAddressInd = false;
+  }
+
+  onCreateCompleted(event) {
+    // this.store.dispatch(new AddressActions.FetchAddresses);
+  }
+
+  placeOrder() {
+    const postOrders: IOrders = {
+      billToAddressId: this.defaultAddress.id,
+      shipToAddressId: this.defaultAddress.id,
+      orderDate: moment(),
+      shipDate: moment(),
+      dueDate: moment()
     };
-    console.log(postData);
-    console.log('Posting order from form');
-    this.store.dispatch(new OrderActions.PostOrderForm(postData));
-    this.router.navigate(["/checkout/payment"]);
+    console.log('POST ORDERS', postOrders);
+    this.store.dispatch(new OrderActions.PostOrder(postOrders));
+    this.placeOrderInd = true;
+  }
+
+  ngOnDestroy() {
+    if (this.addressStateSubscription) this.addressStateSubscription.unsubscribe();
+    if (this.cartPriceSubscription) this.cartPriceSubscription.unsubscribe();
+    if (this.orderSubscription) this.orderSubscription.unsubscribe();
   }
 }

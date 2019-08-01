@@ -16,7 +16,9 @@ button {
         line-height: normal;
     }
 
-    &.mat-icon-button:focus{
+    &.mat-icon-button:focus,
+    &.mat-button:focus,
+    &.mat-menu-item:focus {
         outline: none !important;
     }
 }
@@ -122,4 +124,23 @@ mat-chip {
 // Fix: Mat-card-image requires a bigger width than 100%
 .mat-card-image {
     max-width: none !important;
+}
+
+.shop-sidebar-wrapper {
+    .mat-expansion-panel {
+        margin-top: 10px;
+        box-shadow: none !important;
+
+        .mat-expansion-panel-header {
+            padding: 0 10px !important;
+        }
+
+        .mat-expansion-panel-body {
+            padding: 0 0 16px !important;
+        }
+    }
+}
+
+#reviews-nav{
+    border:none !important;
 }

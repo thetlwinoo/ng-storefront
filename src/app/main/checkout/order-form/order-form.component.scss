@@ -1,36 +1,38 @@
-:host {
-
-    .address-form {
-        background: #FFFFFF;
-        box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.10);
-        border-radius: 6px;
-        padding-top: 10px !important;
-    }
-
-    .address-form-container {
-        width: 80%;
-    }
-
-    .title {
-        height: 60px;
-        border-bottom: 1px solid #E1E8EE;
+:host{
+    .item {
         padding: 20px 30px;
-        color: #5E6977;
+        // height: 120px;
+        // border-bottom: 1px solid #E1E8EE;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .price {
+        text-align: center;
+        font-size: 16px;
+        color: #43484D;
+        font-weight: 300;        
+    }
+
+    .total-price{
         font-size: 18px;
-        font-weight: 400;
+        font-weight: 500;
+        color: #ff5722;
     }
 
-    @media only screen and (max-width: 767px) {
-
-        .container-fluid {
-            width: 95% !important;
-        }
-
-        .address-form-container {
-            width: 100%;
-        }
-
+    .pricing span {
+        font-size: 18px;
+        color: #43484D;
+        font-weight: 500;
     }
 
+    .apply-code {
+        width: 100%;
+    }
 
+    .discount-code{
+        font-size: 18px;
+        color: #43484D;
+        font-weight: 500;
+    }
 }

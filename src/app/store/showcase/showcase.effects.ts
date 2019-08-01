@@ -32,6 +32,14 @@ export class ShowcaseEffects {
     )
   )
 
+  @Effect()
+  FetchDailyDiscover = this.actions$.pipe(
+    ofType(ShowcaseActions.FETCH_DAILY_DISCOVER),
+    switchMap((action: ShowcaseActions.FetchDailyDiscover) => this.productService.getDailyDiscover()
+      .map(res => ({ type: ShowcaseActions.FETCH_DAILY_DISCOVER_SUCCESS, payload: res }))
+    )
+  )
+
   constructor(private actions$: Actions, private productService: ProductService) {
   }
 }

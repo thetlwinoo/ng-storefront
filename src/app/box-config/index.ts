@@ -11,7 +11,7 @@ import { BoxConfig } from '@box/types';
 export const boxConfig: BoxConfig = {
     // Color themes can be defined in src/app/app.theme.scss
     colorTheme: 'theme-default',
-    customScrollbars: false,
+    customScrollbars: true,
     layout: {
         style: 'horizontal-layout-1',
         width: 'fullwidth',

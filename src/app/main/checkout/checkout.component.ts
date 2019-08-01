@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from "rxjs/Observable";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
+import { filter, switchMap } from 'rxjs/operators';
+// import { PostOrdersObject } from 'app/store/order/order.reducer';
 
 @Component({
   selector: 'app-checkout',
@@ -6,10 +10,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+  currentRoute: String;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute) {
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        switchMap(
+          () =>
+            (this.route.firstChild && this.route.firstChild.data) ||
+            Observable.of({}),
+        ),
+      )
+      .subscribe(params => {
+        if (params.route) {
+          this.currentRoute = params.route;
+        }
+      });
   }
+
+  ngOnInit() {    
+  }
+
+  ngOnDestroy() {
+  }  
 
 }

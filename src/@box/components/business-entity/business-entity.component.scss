@@ -1,0 +1,29 @@
+:host{
+    #business-entity{
+        table{
+            width: 100%;
+            td{
+                &.address-title{
+                    display: inline-flex;
+
+                    .ship-name{
+                        width: auto !important;
+                        font-size: 1.2em;
+                        color: #43484D;
+                        font-weight: 500;                        
+                    }
+
+                    .address-type{
+                        width: auto !important;
+                        margin-left: 10px;
+                    }
+                }        
+                
+                .info{
+                    font-weight: 500;
+                    font-size: 0.95em;
+                }
+            }
+        }
+    }
+}

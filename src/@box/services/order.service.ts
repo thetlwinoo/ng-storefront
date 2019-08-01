@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product,CartItem, Order } from '@box/models';
+import { Product,CartItem, Orders } from '@box/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class OrderService {
   constructor(private router: Router) { }
 
   // Get order items
-  public getOrderItems() : Order {
+  public getOrderItems() : Orders {
     return this.OrderDetails;
   }
 
