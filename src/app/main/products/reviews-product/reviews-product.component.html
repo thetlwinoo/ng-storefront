@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="display-container mt-3 fixed-width-full">
+    <div class="display-wrapper">
+      <div class="display">
+        <div>
+          <div class="title">
+            <h2 class="section-title outer-title">Ratings & Reviews of {{product.productName}}</h2>
+          </div>
+          <div class="body">
+            <div class="body-content">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="summary">
+                    <div class="score">
+                      <span class="score-average">5</span>
+                      <span class="score-max">/5</span>
+                    </div>
+                    <div class="average">
+                      <p-rating [cancel]="false" [(ngModel)]="average" stars="5" [iconOnStyle]="{'font-size': '2.2em'}"
+                        [iconOffStyle]="{'font-size': '2.2em'}" readonly="true">
+                      </p-rating>
+                    </div>
+                    <div class="count">
+                      1 Ratings
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="detail">
+                    <ul class="p-0">
+                      <li *ngFor="let val of details">
+                        <div class="star">
+                          <p-rating [cancel]="false" [(ngModel)]="val.star" stars="5" readonly="true">
+                          </p-rating>
+                        </div>
+                        <span class="progress-wrap">
+                          <div class="progress-item">
+                            <p-progressBar [value]="val.progress" [showValue]="false" [style]="{'height': '15px'}">
+                            </p-progressBar>
+                          </div>
+
+                        </span>
+                        <span class="percent">{{val.percent}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="filter">
+                    <span class="title">
+                      Product Reviews
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="reviews">
+                  <div class="item">
+                    <div class="top">
+                      <div class="rating">
+                        <p-rating [cancel]="false" [(ngModel)]="average" stars="5" readonly="true">
+                        </p-rating>
+                      </div>
+
+                      <span class="title-right">5 days ago</span>
+                    </div>
+                    <div class="middle">
+                      <span>by name</span>
+                      <span>
+                        <fa-icon icon="check-square"></fa-icon>
+                        <span class="verify">Verified Purchase</span>
+                      </span>
+                    </div>
+                    <div class="content-wrapper">
+                      <div class="content">Good </div>
+                      <div class="bottom">
+                        <span class="left">
+                          <span class="like-icon">
+                            <fa-icon [icon]="['far', 'thumbs-up']"></fa-icon>
+                          </span>
+                          <span>0</span>
+                        </span>
+                        <span class="right"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

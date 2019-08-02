@@ -131,16 +131,20 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  addToCart(amount: HTMLInputElement) {
-    const val = amount.value;
-    let reg = new RegExp('^[0-9]+$');
-    if (!reg.test(val) || parseInt(val) == 0) {
-      alert("Please enter a valid amount.");
-      return;
-    }
+  buyNow(event) {
+    this.addToCart(1);
+    this.router.navigate(['/checkout']);
+  }
 
+  addToCart(amount: number) {
+    // const val = amount;
+    // let reg = new RegExp('^[0-9]+$');
+    // if (!reg.test(val) || parseInt(val) == 0) {
+    //   alert("Please enter a valid amount.");
+    //   return;
+    // }
     if (this.isAuthenticated()) {
-      this.store.dispatch(new CartActions.AddToCart({ id: this.product.id, quantity: parseInt(val) }));
+      this.store.dispatch(new CartActions.AddToCart({ id: this.product.id, quantity: amount }));
     }
     else {
       this.login();

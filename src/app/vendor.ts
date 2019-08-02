@@ -55,7 +55,8 @@ import {
     faSmile as fasSmile,
     faMeh as fasMeh,
     faThumbsUp as fasThumbsUp,
-    faTimesCircle
+    faTimesCircle,
+    faCheckSquare
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -122,3 +123,4 @@ library.add(farMeh);
 library.add(fasThumbsUp);
 library.add(farThumbsUp);
 library.add(faTimesCircle);
+library.add(faCheckSquare);

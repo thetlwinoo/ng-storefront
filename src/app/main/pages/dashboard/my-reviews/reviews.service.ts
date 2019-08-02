@@ -14,6 +14,8 @@ type EntityArrayResponseType = HttpResponse<IReviews[]>;
 type EntityOrdersResponseType = HttpResponse<IOrders>;
 type EntityOrdersArrayResponseType = HttpResponse<IOrders[]>;
 
+type EntityReviewLinesArrayResponseType = HttpResponse<IReviewLines[]>;
+
 @Injectable({ providedIn: 'root' })
 export class ReviewsService {
     public resourceUrl = `${environment.serverApi.baseUrl}` + 'api/reviews';
@@ -48,10 +50,16 @@ export class ReviewsService {
             .pipe(map((res: EntityOrdersArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
-    getReviewsByOrderId(id: number): Observable<EntityResponseType> {
+    // getReviewsByOrderId(id: number): Observable<EntityResponseType> {
+    //     let params = new HttpParams();
+    //     params = params.set('orderId', id.toString());
+    //     return this.http.get<IReviews>(this.extendUrl + '/reviews', { observe: 'response', params: params });
+    // }
+
+    getReviewLinesByProductId(id: number): Observable<EntityReviewLinesArrayResponseType> {
         let params = new HttpParams();
-        params = params.set('orderId', id.toString());
-        return this.http.get<IReviews>(this.extendUrl + '/reviews', { observe: 'response', params: params });
+        params = params.set('productId', id.toString());
+        return this.http.get<IReviews[]>(this.extendUrl + '/reviewed', { observe: 'response', params: params });
     }
 
     createExtend(reviews: IReviews) {

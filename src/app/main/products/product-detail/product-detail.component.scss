@@ -1,7 +1,12 @@
 :host {
-    .wrapper{
+    .details-wrapper {
+        background: #FFFFFF;
+    }
+
+    .wrapper {
         padding: 20px 0px;
     }
+
     .product-reviews {
 
         .review-left {
@@ -18,10 +23,12 @@
             float: right;
             display: inline-flex;
 
-            > button{
+            >button {
+
                 // margin: 0 10px;
                 // font-size: 1.7em;
                 mat-icon {
+
                     &:active,
                     &:hover,
                     &.favorite,
@@ -30,12 +37,6 @@
                     }
                 }
             }
-        }
-    }
-
-    .collection-wrapper {
-        >.container {
-            background: white;
         }
     }
 

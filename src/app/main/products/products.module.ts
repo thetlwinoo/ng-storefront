@@ -9,6 +9,7 @@ import { ProductBoxModule } from '@box/components';
 // import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { BoxSharedModule } from '@box/shared.module';
+import { ReviewsProductComponent } from './reviews-product/reviews-product.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ProductDetailComponent,
-    RelatedProductsComponent
+    RelatedProductsComponent,
+    ReviewsProductComponent
   ],
   imports: [
     CommonModule,
