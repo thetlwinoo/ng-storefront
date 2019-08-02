@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { IReviews, IProducts, Products } from '@box/models';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { ReviewsService } from '../reviews.service';
-import { ProductReviewsService } from '../product-reviews.service';
+import { ReviewLinesService } from '../review-lines.service';
 import { ProductService } from '@box/services/e-commerce/product.service';
 import { OrderService } from 'app/store/order/order.service';
 
@@ -37,7 +37,7 @@ export class ReviewUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected reviewsService: ReviewsService,
-    protected productReviewsService: ProductReviewsService,
+    protected reviewLinesService: ReviewLinesService,
     // protected productsService: ProductsService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
@@ -116,8 +116,8 @@ export class ReviewUpdateComponent implements OnInit {
     this.dataUtils.setFileData(event, entity, field, isImage);
   }
 
-  clearInputImage(field: string, fieldContentType: string, idInput: string) {
-    // this.dataUtils.clearInputImage(this.reviews, this.elementRef, field, fieldContentType, idInput);
+  clearInputImage(event,field: string, fieldContentType: string, idInput: string) {
+    this.dataUtils.clearInputImage(event, this.elementRef, field, fieldContentType, idInput);
   }
 
   previousState() {
@@ -129,7 +129,7 @@ export class ReviewUpdateComponent implements OnInit {
 
     if (this.orders.orderReview.id !== undefined) {
       // this.orders.orderReview.orderId = this.orders.id;
-      this.subscribeToSaveResponse(this.reviewsService.updateExtend(this.orders.orderReview));
+      this.subscribeToSaveResponse(this.reviewsService.updateExtend(this.orders.orderReview, this.orders.id));
     } else {
       this.subscribeToSaveResponse(this.reviewsService.createExtend(this.orders.orderReview));
     }
@@ -142,19 +142,23 @@ export class ReviewUpdateComponent implements OnInit {
   protected onSaveSuccess(event) {
     const totalCount: number = this.orders.orderLineLists.length;
     let completedReviewsCount: number = 0;
+    if (this.orders.orderReview) {
+      this.orders.orderReview.reviewLists.map((reviewLine, index) => {
+        if (reviewLine.productRating && reviewLine.productReview) {
+          completedReviewsCount += 1;
+        }
 
-    this.orders.orderLineLists.map((orderLine, index) => {
-      if (orderLine.product.productReview.productRating && orderLine.product.productReview.productReview) {
-        completedReviewsCount += 1;
-      }
-      
-      if (orderLine.product.productReview.id !== undefined) {
-        // orderLine.product.productReview.productId = orderLine.product.id;
-        this.subscribeToSaveProductReviewsResponse(this.productReviewsService.updateExtend(orderLine.product.productReview), totalCount, ++index, completedReviewsCount);
-      } else {
-        this.subscribeToSaveProductReviewsResponse(this.productReviewsService.createExtend(orderLine.product.productReview), totalCount, ++index, completedReviewsCount);
-      }
-    });
+        reviewLine.reviewId = event.id;
+        reviewLine.productId = reviewLine.product.id;
+
+        if (reviewLine.id !== undefined) {
+          this.subscribeToSaveProductReviewsResponse(this.reviewLinesService.update(reviewLine), totalCount, ++index, completedReviewsCount);
+        } else {
+          this.subscribeToSaveProductReviewsResponse(this.reviewLinesService.create(reviewLine), totalCount, ++index, completedReviewsCount);
+        }
+      });
+    }
+
   }
 
   protected subscribeToSaveProductReviewsResponse(result: Observable<HttpResponse<any>>, totalCount: number, count: number, completedReviewsCount: number) {
@@ -174,7 +178,7 @@ export class ReviewUpdateComponent implements OnInit {
   }
 
   protected onCompletedReviews(event) {
-    console.log('on completed reviews',event);
+    console.log('on completed reviews', event);
     this.isSaving = false;
     this.previousState();
   }

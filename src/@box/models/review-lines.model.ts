@@ -1,4 +1,4 @@
-export interface IProductReviews {
+export interface IReviewLines {
     id?: number;
     productRating?: number;
     productReview?: string;
@@ -8,10 +8,13 @@ export interface IProductReviews {
     deliveryReview?: string;
     photoContentType?: string;
     photo?: any;
+    productProductName?: string;
     productId?: number;
+    product?: any;
+    reviewId?: number;
 }
 
-export class ProductReviews implements IProductReviews {
+export class ReviewLines implements IReviewLines {
     constructor(
         public id?: number,
         public productRating?: number,
@@ -22,6 +25,9 @@ export class ProductReviews implements IProductReviews {
         public deliveryReview?: string,
         public photoContentType?: string,
         public photo?: any,
-        public productId?: number
-    ) {}
+        public productProductName?: string,
+        public productId?: number,
+        public product?: any,
+        public reviewId?: number
+    ) { }
 }

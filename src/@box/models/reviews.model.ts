@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IReviewLines } from '@box/models';
 
 export interface IReviews {
     id?: number;
@@ -11,6 +12,7 @@ export interface IReviews {
     overAllDeliveryReview?: string;
     reviewAsAnonymous?: boolean;
     completedReview?: boolean;
+    reviewLists?: IReviewLines[];
     orderId?: number;
 }
 
@@ -26,6 +28,7 @@ export class Reviews implements IReviews {
         public overAllDeliveryReview?: string,
         public reviewAsAnonymous?: boolean,
         public completedReview?: boolean,
+        public reviewLists?: IReviewLines[],
         public orderId?: number
     ) {
         this.reviewAsAnonymous = this.reviewAsAnonymous || false;

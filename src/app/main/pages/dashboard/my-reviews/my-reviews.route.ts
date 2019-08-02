@@ -6,60 +6,45 @@ import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { MyReviewsComponent } from './my-reviews.component';
 import { ReviewsService } from './reviews.service';
-import { Reviews, IReviews, Orders, IOrders, ProductReviews, IProductReviews } from '@box/models';
+import { Reviews, IReviews, Orders, IOrders, ReviewLines, IReviewLines } from '@box/models';
 import { ReviewDetailsComponent } from './review-details/review-details.component';
 import { ReviewUpdateComponent } from './review-update/review-update.component';
 import { OrderService } from 'app/store/order/order.service';
 import * as moment from 'moment';
 
 @Injectable({ providedIn: 'root' })
-export class MyReviewsResolve implements Resolve<Orders> {
+export class MyReviewsResolve implements Resolve<Reviews> {
     constructor(
-        private service: ReviewsService,
         private orderService: OrderService
     ) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Orders> {
-        console.log('route', route)
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Reviews> {
         const id = route.params['id'] ? route.params['id'] : null;
-        // const orderId = route.queryParams['orderId'] ? route.queryParams['orderId'] : null;
-        // if (id) {
-        //     return this.service.find(id).pipe(
-        //         filter((response: HttpResponse<Reviews>) => response.ok),
-        //         map((reviews: HttpResponse<Reviews>) => reviews.body)
-        //     );
-        // }
-
-        // let newReviews = new Reviews();
-        // const currDate = moment();
-        // newReviews.reviewDate = currDate;        
-        // newReviews.reviewLineLists = [];        
-        // return of(newReviews);
 
         if (id) {
-            // newReviews.orderId = orderId;
             return this.orderService.getOrder(id).pipe(
                 filter((response: HttpResponse<Orders>) => response.ok),
                 map((orders: HttpResponse<Orders>) => {
                     console.log('erer', orders.body)
                     if (orders.body.orderReview == null) {
                         let newReviews = new Reviews();
-                        // const currDate = moment();
-                        // newReviews.reviewDate = currDate;
                         newReviews.orderId = orders.body.id;
-                        orders.body.orderReview = newReviews;
-                    }
+                        newReviews.reviewLists = [];
+                        
+                        orders.body.orderLineLists.map(orderLine => {
+                            let reviewLines: ReviewLines = new ReviewLines();
+                            reviewLines.productRating = 5;
+                            reviewLines.deliveryRating = 0;
+                            reviewLines.sellerRating = 0;
+                            reviewLines.productId = orderLine.product.id;   
+                            reviewLines.product = orderLine.product;                   
+                            newReviews.reviewLists.push(reviewLines);
+                            orders.body.orderReview = newReviews;
+                        });
 
-                    orders.body.orderLineLists.map(orderLine => {
-                        if (orderLine.product.productReview == null) {
-                            let productReviews: ProductReviews = new ProductReviews();
-                            productReviews.productRating = 5;
-                            productReviews.deliveryRating = 0;
-                            productReviews.sellerRating = 0;
-                            productReviews.productId = orderLine.product.id;
-                            orderLine.product.productReview = productReviews;
-                        }
-                    });
+                        console.log('erwereere',orders.body)
+                        return orders.body;
+                    }
 
                     return orders.body;
                 })

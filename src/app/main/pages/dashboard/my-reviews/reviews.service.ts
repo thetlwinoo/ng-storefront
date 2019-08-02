@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { DATE_FORMAT } from '@box/constants';
 import { environment } from '@app/env';
 import { createRequestOption } from '@box/utils/request-util';
-import { IProducts, Reviews, IReviews, IOrders, Orders } from '@box/models';
+import { IProducts, Reviews, IReviews, IOrders, Orders, IReviewLines,ReviewLines } from '@box/models';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
 
@@ -61,11 +61,15 @@ export class ReviewsService {
         return this.http.post<Reviews>(this.extendUrl + '/save', reviews, { observe: 'response', params: params });
     }
 
-    updateExtend(reviews: IReviews) {
+    updateExtend(reviews: IReviews, orderId: number) {
         console.log('post review', reviews);
         let params = new HttpParams();
-        params = params.set('orderId', reviews.orderId.toString());
+        params = params.set('orderId', orderId.toString());
         return this.http.put<Reviews>(this.extendUrl + '/save', reviews, { observe: 'response', params: params });
+    }
+
+    createReviewLines(reviewLines: IReviewLines) {
+        return this.http.post<Reviews>(this.extendUrl + '/add/review-lines', reviewLines, { observe: 'response'});
     }
 
     completedReviews(orderId: number) {

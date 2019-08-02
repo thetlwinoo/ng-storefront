@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { FileUploadModule } from 'ng2-file-upload';
+// import { FileUploadModule } from 'ng2-file-upload';
 import { ResourceSharedLibsModule, FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent } from '.';
 
 @NgModule({
     imports: [
         ResourceSharedLibsModule,
-        FileUploadModule
+        // FileUploadModule
     ],
     declarations: [
         FindLanguageFromKeyPipe,
@@ -14,7 +14,7 @@ import { ResourceSharedLibsModule, FindLanguageFromKeyPipe, JhiAlertComponent, J
     ],
     exports: [
         ResourceSharedLibsModule,
-        FileUploadModule,
+        // FileUploadModule,
         FindLanguageFromKeyPipe,
         JhiAlertComponent,
         JhiAlertErrorComponent

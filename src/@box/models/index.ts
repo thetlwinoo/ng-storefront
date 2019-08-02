@@ -17,4 +17,4 @@ export * from './business-entity-address.model';
 export * from './cloudinary.model';
 export * from './products.model';
 export * from './reviews.model';
-export * from './product-reviews.model';
+export * from './review-lines.model';

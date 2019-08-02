@@ -53,13 +53,16 @@ import {
     faEnvelope,
     faFrown as fasFrown,
     faSmile as fasSmile,
-    faMeh as fasMeh
+    faMeh as fasMeh,
+    faThumbsUp as fasThumbsUp,
+    faTimesCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
     faFrown as farFrown,
     faSmile as farSmile,
-    faMeh as farMeh
+    faMeh as farMeh,
+    faThumbsUp as farThumbsUp
 } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -116,3 +119,6 @@ library.add(fasSmile);
 library.add(farSmile);
 library.add(fasMeh);
 library.add(farMeh);
+library.add(fasThumbsUp);
+library.add(farThumbsUp);
+library.add(faTimesCircle);

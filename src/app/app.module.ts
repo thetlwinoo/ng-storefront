@@ -14,7 +14,7 @@ import { BoxModule } from '@box/box.module';
 import { BoxSharedModule } from '@box/shared.module';
 import { BoxProgressBarModule, BoxSidebarModule, BoxThemeOptionsModule } from '@box/components';
 import { ToastrModule } from 'ngx-toastr';
-import { ShoppingCartModule } from 'ng-shopping-cart';
+// import { ShoppingCartModule } from 'ng-shopping-cart';
 
 import { boxConfig } from 'app/box-config';
 
@@ -121,13 +121,13 @@ const appRoutes: Routes = [
             progressBar: false,
             enableHtml: true,
         }),
-        ShoppingCartModule.forRoot({
-            serviceType: 'localStorage',
-            serviceOptions: {
-                storageKey: 'BieeBoxCart',
-                clearOnError: true
-            }
-        }),
+        // ShoppingCartModule.forRoot({
+        //     serviceType: 'localStorage',
+        //     serviceOptions: {
+        //         storageKey: 'BieeBoxCart',
+        //         clearOnError: true
+        //     }
+        // }),
         MatMomentDateModule,
         BoxModule.forRoot(boxConfig),
         BoxProgressBarModule,

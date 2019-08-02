@@ -6,37 +6,57 @@
       <div class="row review-products-list">
         <div class="col-md-7">
           <div class="reviews-left-wrapper"
-            *ngFor="let orderLine of orders.orderLineLists;let i = index;trackBy: trackId">
+            *ngFor="let reviewLine of orders.orderReview.reviewLists;let i = index;trackBy: trackId">
             <div class="media mt-4">
-              <img *ngIf="orderLine.product.photo;else noimage" src="{{orderLine.product.photo}}" alt=""
+              <img *ngIf="reviewLine.product.photo;else noimage" src="{{reviewLine.product.photo}}" alt=""
                 class="mr-3 product" />
               <ng-template #noimage>
                 <img src="assets/images/noimage.png" alt="no image preview" class="mr-3 product">
               </ng-template>
 
               <div class="media-body">
-                <h5 class="mt-0">{{orderLine.product.productName}}</h5>
-                <h6 class="mb-2 text-muted">{{orderLine.product.productModelProductModelName}}</h6>
+                <h5 class="mt-0">{{reviewLine.product.productName}}</h5>
+                <h6 class="mb-2 text-muted">{{reviewLine.product.productModelProductModelName}}</h6>
 
                 <div class="form-group rating-display">
                   <p-rating id="field_productRating_{{i}}" name="productRating_{{i}}"
-                    [(ngModel)]="orderLine.product.productReview.productRating" [cancel]="false" stars="5"
+                    [(ngModel)]="reviewLine.productRating" [cancel]="false" stars="5"
                     [iconOnStyle]="{'font-size': '2.2em'}" [iconOffStyle]="{'font-size': '2.2em'}"></p-rating>
-                  <label
-                    for="field_productRating_{{i}}">{{getRatingDescription(orderLine.product.productReview.productRating)}}</label>
+                  <label for="field_productRating_{{i}}">{{getRatingDescription(reviewLine.productRating)}}</label>
                 </div>
 
                 <div class="form-group">
                   <label for="field_productReview_{{i}}">Review detail</label>
                   <textarea class="form-control review-text" rows="3" name="productReview_{{i}}"
-                    id="field_productReview_{{i}}" [(ngModel)]="orderLine.product.productReview.productReview"
+                    id="field_productReview_{{i}}" [(ngModel)]="reviewLine.productReview"
                     placeholder="What do you think of this product?"></textarea>
                 </div>
 
                 <div>
-                  <upload-review-image [review]="review" [reviewPhoto]="reviewPhoto"
-                    (uploadCompleted)="onUploadCompleted($event)" (deleteReviewPhoto)="onDeleteReviewPhoto($event)">
-                  </upload-review-image>
+                  <input hidden type="file" accept="image/*" id="fileupload" #fileInput [style.display]="'none'"
+                    (change)="setFileData($event, reviewLine, 'photo', true)" />
+                  <div class="review-image" *ngIf="!reviewLine.photo;else preview">
+                    <span>
+                      <!--  -->
+                      <div class="image-upload-btn" (click)="fileInput.click()">
+                        <fa-icon icon="image" class="next-icon next-icon-add next-icon-medium upload-btn-icon">
+                        </fa-icon>
+                        <p class="upload-text">Upload Photo</p>
+                      </div>
+                    </span>
+                  </div>
+                  <ng-template #preview>
+                    <div>
+                      <a (click)="clearInputImage(reviewLine,'photo', 'photoContentType', 'fileImage')"
+                        class="pull-left">
+                        <fa-icon [icon]="'times-circle'"></fa-icon>
+                    </a>
+                    </div>
+                    <div class="image-preview">
+                      <img [src]="'data:' + reviewLine.photoContentType + ';base64,' + reviewLine.photo"
+                        style="max-height: 100px;" alt="reviewLines image" draggable="false" />
+                    </div>
+                  </ng-template>
                 </div>
               </div>
             </div>

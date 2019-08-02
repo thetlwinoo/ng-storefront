@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
 import { Subscription } from "rxjs/Subscription";
 import { SnackBarService } from '@box/services/snackbar.service';
-import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem } from 'ng-shopping-cart';
+// import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem } from 'ng-shopping-cart';
 
 import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
