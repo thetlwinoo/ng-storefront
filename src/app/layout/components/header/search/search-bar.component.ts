@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ProductService } from '@box/services/e-commerce/product.service';
-import { Observable } from "rxjs/Observable";
+import { Observable, Subscription } from "rxjs";
 import { Router } from "@angular/router";
 
 @Component({
@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent implements OnInit, OnDestroy {
   @Input() url: String;
   @Input() query = '';
   @Input() searching = false;
@@ -26,6 +26,7 @@ export class SearchBarComponent implements OnInit {
   keyword: any;
   queryText: string;
   page: number = 0;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private productService: ProductService,
@@ -36,26 +37,16 @@ export class SearchBarComponent implements OnInit {
   }
 
   filterKeywords(event) {
-    let query = event.query;
-    this.queryText = query;
-    console.log('query', query);
-    this.productService.searchProduct(this.page, query)
+    this.queryText = event.query;
+    const searchSubscription = this.productService.searchProduct(this.page, event.query)
       .take(1)
       .catch(error => {
-        // this.canFetch = false;
         return Observable.throw(error);
       })
       .subscribe(data => {
         this.filteredKeywords = data;
-        // this.page++;
-        // if (data.length != 0) {
-        //   this.canFetch = true;
-        // }
-        console.log(this.filteredKeywords)
       });
-    // this.countryService.getCountries().then(countries => {
-    //     this.filteredCountriesSingle = this.filterCountry(query, countries);
-    // });
+    this.subscriptions.push(searchSubscription);
   }
 
   searchProduct(search: string) {
@@ -63,36 +54,22 @@ export class SearchBarComponent implements OnInit {
       return;
     }
     let url = '/search/' + search;
-    console.log(url)
     this.router.navigate([url]);
   }
 
-  onClickSearch(event) {    
+  onClickSearch(event) {
     this.searchProduct(this.keyword.productName ? this.keyword.productName : this.keyword);
   }
 
   onKeySearch(event) {
-    console.log(event)
-    if (event.isTrusted && event.key == "Enter") {      
+    if (event.isTrusted && event.key == "Enter") {
       this.searchProduct(this.keyword.productName ? this.keyword.productName : this.keyword);
     }
   }
-  // onFocus(event) {
-  //   this.onfocus = true;
-  // }
 
-  // onFocusOut(event) {
-  //   setTimeout(() => {
-  //     this.onfocus = false;
-  //   }, 150);
-
-  // }
-
-  // onClick(event, keyword) {
-  //   event.preventDefault();
-  //   const search = this.boxsearch.nativeElement;
-  //   search.value = keyword;
-  // }
-
-
+  ngOnDestroy() {
+    this.subscriptions.forEach(el => {
+      if (el) el.unsubscribe();
+    });
+  }
 }

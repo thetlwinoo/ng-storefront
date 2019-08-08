@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { Router, NavigationExtras } from '@angular/router';
 import { IProducts, IOrders, Orders, OrderLines } from '@box/models';
 import { AccountService } from '@box/services/core/auth/account.service';
-import { ReviewsService } from './reviews.service';
+import { ReviewsService } from '../../../../store/reviews/reviews.service';
 import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 @Component({
@@ -63,7 +63,9 @@ export class MyReviewsComponent implements OnInit {
 
     this.loadAll();
     this.accountService.identity().then(account => {
-      this.currentAccount = account;
+      if(account){
+        this.currentAccount = account;
+      }      
     });
     this.registerChangeInReviews();
   }

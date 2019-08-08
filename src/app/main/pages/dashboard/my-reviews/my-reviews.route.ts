@@ -5,7 +5,7 @@ import { UserRouteAccessService } from '@box/services/core/auth/user-route-acces
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { MyReviewsComponent } from './my-reviews.component';
-import { ReviewsService } from './reviews.service';
+import { ReviewsService } from '../../../../store/reviews/reviews.service';
 import { Reviews, IReviews, Orders, IOrders, ReviewLines, IReviewLines } from '@box/models';
 import { ReviewDetailsComponent } from './review-details/review-details.component';
 import { ReviewUpdateComponent } from './review-update/review-update.component';

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { IReviews, IProducts, Products } from '@box/models';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
-import { ReviewsService } from '../reviews.service';
-import { ReviewLinesService } from '../review-lines.service';
+import { ReviewsService } from '../../../../../store/reviews/reviews.service';
+import { ReviewLinesService } from '../../../../../store/reviews/review-lines.service';
 import { ProductService } from '@box/services/e-commerce/product.service';
 import { OrderService } from 'app/store/order/order.service';
 

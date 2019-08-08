@@ -40,7 +40,7 @@ import { PhotoEffects } from "./store/photo/photo.effects";
 import { WishlistEffects } from "./store/wishlist/wishlist.effects";
 import { CompareEffects } from "./store/compare/compare.effects";
 import { AddressesEffects } from "./store/adresses/addresses.effects";
-
+import { ReviewsEffects } from "./store/reviews/reviews.effects";
 import { ProductService } from "@box/services/e-commerce/product.service";
 import { CartService } from "@box/services/e-commerce/cart.service";
 import { OrderService } from "app/store/order/order.service";
@@ -54,6 +54,7 @@ import { AccountService } from "@box/services/e-commerce/account.service";
 import { ProductPhotoService } from '@box/services/e-commerce/product-photo.service';
 import { WishlistService } from '@box/services/e-commerce/wishlist.service';
 import { CompareService } from '@box/services/e-commerce/compare.service';
+import { ReviewsService } from 'app/store/reviews/reviews.service';
 import { TokenInterceptor } from "@box/services/e-commerce/token.interceptor";
 
 import { AuthInterceptor } from '@box/blocks/interceptor/auth.interceptor';
@@ -149,7 +150,8 @@ const appRoutes: Routes = [
             PaymentEffects,
             PhotoEffects,
             WishlistEffects,
-            CompareEffects
+            CompareEffects,
+            ReviewsEffects
         ]),
     ],
     bootstrap: [
@@ -169,26 +171,27 @@ const appRoutes: Routes = [
         ProductPhotoService,
         WishlistService,        
         CompareService,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthExpiredInterceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorHandlerInterceptor,
-            multi: true
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: NotificationInterceptor,
-            multi: true
-        }
+        ReviewsService,
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: AuthInterceptor,
+        //     multi: true
+        // },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: AuthExpiredInterceptor,
+        //     multi: true
+        // },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: ErrorHandlerInterceptor,
+        //     multi: true
+        // },
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: NotificationInterceptor,
+        //     multi: true
+        // }
         // {
         //     provide: HTTP_INTERCEPTORS,
         //     useClass: TokenInterceptor,

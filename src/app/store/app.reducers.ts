@@ -10,6 +10,7 @@ import * as fromPayment from './payment/payment.reducer';
 import * as fromPhotos from './photo/photo.reducer';
 import * as fromWishlist from './wishlist/wishlist.reducer';
 import * as fromCompare from './compare/compare.reducer';
+import * as fromReviews from './reviews/reviews.reducer';
 import { HttpErrorResponse } from "@angular/common/http";
 
 export interface HttpError {
@@ -28,7 +29,8 @@ export interface AppState {
     payment: fromPayment.State,
     photos: fromPhotos.State,
     wishlist: fromWishlist.State,
-    compare: fromCompare.State
+    compare: fromCompare.State,
+    reviews: fromReviews.State
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -42,5 +44,6 @@ export const reducers: ActionReducerMap<AppState> = {
     payment: fromPayment.paymentReducer,
     photos: fromPhotos.photoReducer,
     wishlist: fromWishlist.wishlistReducer,
-    compare: fromCompare.compareReducer
+    compare: fromCompare.compareReducer,
+    reviews: fromReviews.reviewReducer
 };

@@ -50,7 +50,7 @@ export class HorizontalLayout1Component implements OnInit, OnDestroy {
      * On init
      */
     ngOnInit(): void {
-        this.crumbs$ = this.breadcrumb.crumbs$;
+        // this.crumbs$ = this.breadcrumb.crumbs$;
         this.home = {icon: 'pi pi-home', routerLink: ['/shop/home']};
         // Subscribe to config changes
         this._boxConfigService.config

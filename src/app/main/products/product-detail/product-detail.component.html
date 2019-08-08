@@ -143,7 +143,7 @@
                     [style.display]="(cartState | async).loading ? 'none' : 'inline-block'" class="addtocart-button"
                     pButton label="Add to cart">
                   </button> -->
-                    <button mat-raised-button color="warn" (click)="buyNow($event)"
+                    <button mat-raised-button color="warn" (click)="buyNow(amount)"
                       [disabled]="(cartState | async).loading">Buy Now</button>
                     <button mat-raised-button color="accent" (click)="addToCart(amount)"
                       [disabled]="(cartState | async).loading" class="addtocart-button">Add To Cart</button>

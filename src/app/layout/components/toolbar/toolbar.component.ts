@@ -49,7 +49,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     // Private
     private _unsubscribeAll: Subject<any>;
-
+    private subscriptions: Subscription[] = [];
     /**
      * Constructor
      *
@@ -125,7 +125,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Subscribe to the config changes        
-        this._boxConfigService.config
+        const configSubscription = this._boxConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((settings) => {
                 this.boxConfig = settings;
@@ -133,46 +133,48 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                 this.rightNavbar = settings.layout.navbar.position === 'right';
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
             });
-
+        this.subscriptions.push(configSubscription);
         this.accountService.identity().then((account: Account) => {
             this.account = account;
-            console.log('logon account',account)
         });
-        this.registerAuthenticationSuccess();        
+        this.registerAuthenticationSuccess();
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { 'id': this._translateService.currentLang });
 
         this.wishlistState = this.store.select('wishlist');
-        this.wishlistState.subscribe(data=>{
-            if(data && data.wishlists && data.wishlists.wishlistLists){
+        const wishlistSubscription = this.wishlistState.subscribe(data => {
+            if (data && data.wishlists && data.wishlists.wishlistLists) {
                 this.wishlistCount = data.wishlists.wishlistLists.length;
             }
-            else{
-                this.wishlistCount = 0 ;
+            else {
+                this.wishlistCount = 0;
             }
         });
+        this.subscriptions.push(wishlistSubscription);
 
         this.compareState = this.store.select('compare');
-        this.compareState.subscribe(data=>{
-            console.log('compare',data)
-            if(data && data.compares && data.compares.compareLists){
+        const compareSubscription = this.compareState.subscribe(data => {
+            if (data && data.compares && data.compares.compareLists) {
                 this.compareCount = data.compares.compareLists.length;
-            }else{
-                this.compareCount = 0 ;
+            } else {
+                this.compareCount = 0;
             }
         });
-
-        this.store.dispatch(new WishlistActions.FetchWishlist());
-        this.store.dispatch(new CompareActions.FetchCompare());
+        this.subscriptions.push(compareSubscription);
     }
 
     registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', message => {
+        const eventSubscription = this.eventManager.subscribe('authenticationSuccess', message => {
             this.accountService.identity().then(account => {
-                this.account = account;
+                if (account) {
+                    this.account = account;
+                    this.store.dispatch(new WishlistActions.FetchWishlist());
+                    this.store.dispatch(new CompareActions.FetchCompare());
+                }
             });
         });
+        this.subscriptions.push(eventSubscription);
     }
 
     isAuthenticated() {
@@ -193,37 +195,22 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();        
+        this._unsubscribeAll.complete();
+
+        this.subscriptions.forEach(el => {
+            if (el) el.unsubscribe();
+        });
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Toggle sidebar open
-     *
-     * @param key
-     */
     toggleSidebarOpen(key): void {
         this._boxSidebarService.getSidebar(key).toggleOpen();
     }
 
-    /**
-     * Search
-     *
-     * @param value
-     */
     search(value): void {
         // Do your search here...
         console.log(value);
     }
 
-    /**
-     * Set the language
-     *
-     * @param lang
-     */
     setLanguage(lang): void {
         // Set the selected language for the toolbar
         this.selectedLanguage = lang;

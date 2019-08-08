@@ -16,6 +16,7 @@ export class AccountService {
     constructor(private http: HttpClient, private trackerService: JhiTrackerService) { }
 
     fetch(): Observable<HttpResponse<Account>> {
+        console.log('fetch account');
         return this.http.get<Account>(this.SERVER_API_URL + 'api/account', { observe: 'response' });
     }
 

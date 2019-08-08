@@ -2,11 +2,7 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectionStrateg
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Router, NavigationEnd, ActivatedRouteSnapshot, CanActivate, NavigationExtras } from '@angular/router';
-// import { select, Store } from '@ngrx/store';
-// import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-// import * as KeywordActions from '@store/keywords/actions/keyword.actions';
-// import * as fromKeywords from '@store/keywords/reducers';
 import { BoxConfigService } from '@box/services/config.service';
 import { boxAnimations } from '@box/animations';
 import { HeaderService } from './header.service';
@@ -15,7 +11,6 @@ import { AccountService } from '@box/services/core';
 import { Store } from "@ngrx/store";
 import * as fromApp from "app/store/app.reducers";
 import * as CartActions from 'app/store/cart/cart.actions';
-// import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem, LocaleFormat, parseLocaleFormat } from 'ng-shopping-cart';
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import { Cart } from "app/store/cart/cart.reducer";
@@ -43,67 +38,47 @@ export class HeaderComponent implements OnInit, OnDestroy {
     cartState: Observable<{ cart: Cart, errors: HttpError[], loading: boolean }>;
     cartItemCountSubscription: Subscription;
     cartItemCount: number = 0;
-
-    // format: LocaleFormat;
     empty = true;
-    // items: CartItem[];
     taxRate = 0;
     tax = 0;
     shipping = 0;
     cost = 0;
     totalCount = 0;
-    private _serviceSubscription: any;
+    private subscriptions: Subscription[] = [];
 
     constructor(
-        // private store: Store<fromKeywords.State>,
         private _headerService: HeaderService,
         private _router: Router,
         private _boxConfigService: BoxConfigService,
         private store: Store<fromApp.AppState>,
-        private accountService: AccountService,
-        // private cartService: CartService<any>
+        private accountService: AccountService
     ) {
-
-        // this.searchQuery$ = store.pipe(
-        //     select(fromKeywords.getSearchQuery),
-        //     take(1)
-        // );
-
-        // this.keywords$ = store.pipe(select(fromKeywords.getSearchResults));
-        // this.loading$ = store.pipe(select(fromKeywords.getSearchLoading));
-        // this.error$ = store.pipe(select(fromKeywords.getSearchError));
-
         this._unsubscribeAll = new Subject();
 
-        this._router.events.subscribe(event => {
+        const routerSubscription = this._router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 this.currentUrl = event.url;
             }
         });
-
+        this.subscriptions.push(routerSubscription);
         this._headerService.getDefaultKeywords({ $limit: 20 }).then(keywords => this.defaultKeywords = keywords);
-
-        // this.update();
-        // this._serviceSubscription = this.cartService.onChange.subscribe(() => {
-        //     this.update();
-        // });
     }
 
     ngOnInit() {
-        this._boxConfigService.config
+        const configSubscription = this._boxConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config) => {
                 this.boxConfig = config;
             });
-
+        this.subscriptions.push(configSubscription);
         this.cartState = this.store.select('cart');
 
-        this.accountService.getAuthenticationState().subscribe(auth => {
+        const accountSubscription = this.accountService.getAuthenticationState().subscribe(auth => {
             if (auth) {
-                console.log('AUTH ', auth);
+                // console.log('AUTH ', auth);
                 this.store.dispatch(new CartActions.FetchCart());
-                this.cartItemCountSubscription = this.cartState.subscribe(data => {
-                    console.log('cart data', data)
+                const cartSubscription = this.cartState.subscribe(data => {
+                    // console.log('cart data', data)
 
                     if (data.cart.cartItemLists) {
                         let totalCount = 0;
@@ -111,9 +86,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
                             totalCount += data.cart.cartItemLists[i].quantity;
                         }
                         this.cartItemCount = totalCount;
-                        console.log('cart total count', totalCount);
+                        // console.log('cart total count', totalCount);
                     }
                 });
+                this.subscriptions.push(cartSubscription);
             }
             else {
                 this.cartItemCount = 0;
@@ -121,12 +97,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
                     this.cartItemCountSubscription.unsubscribe();
                 }
             }
-        })
+        });
+        this.subscriptions.push(accountSubscription);
     }
-
-    // search(query: string) {
-    //     this.store.dispatch(new KeywordActions.Search(query));
-    // }
 
     onSummit(event) {
         let navigationExtras: NavigationExtras = {
@@ -142,56 +115,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this._serviceSubscription.unsubscribe();
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
 
-        if (this.cartItemCountSubscription != null) {
-            this.cartItemCountSubscription.unsubscribe();
-        }
+        this.subscriptions.forEach(el => {
+            if (el) el.unsubscribe();
+        });
     }
-
-    // increase(item: CartItem) {
-    //     item.setQuantity(item.getQuantity() + 1);
-    //     this.cartService.addItem(item);
-    // }
-
-    // decrease(item: CartItem) {
-    //     if (item.getQuantity() > 1) {
-    //         item.setQuantity(item.getQuantity() - 1);
-    //         this.cartService.addItem(item);
-    //     } else {
-    //         this.cartService.removeItem(item.getId());
-    //     }
-    // }
-
-    // remove(event, item: CartItem) {
-    // event.preventDefault();
-    // event.stopPropagation();
-    // this.cartService.removeItem(item.getId());
-    // return false;
-    // }
-
-    // update() {
-    // this.empty = this.cartService.isEmpty();
-    // this.items = this.cartService.getItems();
-    // this.taxRate = this.cartService.getTaxRate() / 100;
-    // this.tax = this.cartService.getTax();
-    // this.shipping = this.cartService.getShipping();
-    // this.cost = this.cartService.totalCost();
-    // this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
-    // this.totalCount = this.cartService.itemCount();
-    // }
 
     onCart(event) {
         event.preventDefault();
         event.stopPropagation();
         return false;
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        // if (changes['localeFormat']) {
-        //     this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
-        // }
     }
 }

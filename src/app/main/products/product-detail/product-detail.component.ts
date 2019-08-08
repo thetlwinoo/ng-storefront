@@ -106,8 +106,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
         console.log('id', params['id']);
         this.store.dispatch(new PhotoActions.FetchPhotos(params['id']));
-        this.store.dispatch(new WishlistActions.CheckInWishlist(params['id']));
-        this.store.dispatch(new CompareActions.CheckInCompare(params['id']));
+
+        if (this.isAuthenticated()) {
+          this.store.dispatch(new WishlistActions.CheckInWishlist(params['id']));
+          this.store.dispatch(new CompareActions.CheckInCompare(params['id']));
+        }
       }
     );
 
@@ -131,20 +134,21 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-  buyNow(event) {
-    this.addToCart(1);
+  buyNow(amount: HTMLInputElement) {
+    this.addToCart(amount);
     this.router.navigate(['/checkout']);
   }
 
-  addToCart(amount: number) {
-    // const val = amount;
-    // let reg = new RegExp('^[0-9]+$');
-    // if (!reg.test(val) || parseInt(val) == 0) {
-    //   alert("Please enter a valid amount.");
-    //   return;
-    // }
+  addToCart(amount: HTMLInputElement) {
+    const val = amount.value;
+    let reg = new RegExp('^[0-9]+$');
+    if (!reg.test(val) || parseInt(val) == 0) {
+      alert("Please enter a valid amount.");
+      return;
+    }
+
     if (this.isAuthenticated()) {
-      this.store.dispatch(new CartActions.AddToCart({ id: this.product.id, quantity: amount }));
+      this.store.dispatch(new CartActions.AddToCart({ id: this.product.id, quantity: parseInt(val) }));
     }
     else {
       this.login();
