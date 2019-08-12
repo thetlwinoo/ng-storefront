@@ -169,34 +169,29 @@ const appRoutes: Routes = [
         PaypalService,
         CreditCardService,
         ProductPhotoService,
-        WishlistService,        
+        WishlistService,
         CompareService,
         ReviewsService,
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: AuthInterceptor,
-        //     multi: true
-        // },
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: AuthExpiredInterceptor,
-        //     multi: true
-        // },
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: ErrorHandlerInterceptor,
-        //     multi: true
-        // },
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: NotificationInterceptor,
-        //     multi: true
-        // }
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: TokenInterceptor,
-        //     multi: true
-        // }
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthExpiredInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorHandlerInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: NotificationInterceptor,
+            multi: true
+        }
     ]
 })
 export class AppModule {

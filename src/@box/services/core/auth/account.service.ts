@@ -59,7 +59,7 @@ export class AccountService {
         );
     }
 
-    identity(force?: boolean): Promise<any> {
+        identity(force?: boolean): Promise<any> {
         if (force) {
             this.userIdentity = undefined;
         }
